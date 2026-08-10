@@ -1,10 +1,24 @@
+# macOS
 .DS_Store
+
+# Quarto
 /.quarto/
+**/*_cache/
+**/_site/
+**/*_files/
+
+# Local Quarto configuration
 /_*.local
-/.venv/
-/.condaenv/
-*_cache/
-/env/
-/_site/
-/.venv/
-/README_files/
+
+# Python
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+
+# Python environments
+.venv/
+.condaenv/
+env/
+
+# Pixi environment
+.pixi/

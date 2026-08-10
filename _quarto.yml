@@ -5,36 +5,44 @@ execute:
   freeze: auto
 
 website:
-  title: "Keller Group Lab Manual"
-  repo-url: https://github.com/keller-lab/web-manual
-  issue-url: https://github.com/keller-lab/web-manual/issues
+  title: "Pollack Group Lab Manual"
+  repo-url: https://github.com/abpoll/web-manual
+  issue-url: https://github.com/abpoll/web-manual/issues
   repo-actions: [edit, issue]
+
   page-footer:
     right:
       - icon: github
-        href: https://github.com/keller-lab
-        aria-label: Keller Lab GitHub
+        href: https://github.com/abpoll/web-manual
+        aria-label: Pollack Lab GitHub
+
   navbar:
-      background: light
-      title: false
-      left:
-       - text: "Welcome!"
-         href: index.qmd
-       - text: "Lab Values"
-         href: docs/lab-values/index.qmd
-       - text: "Onboarding"
-         href: docs/onboarding/index.qmd
-       - text: "Guide"
-         href: docs/guide/index.qmd
-      tools:
-       - icon: github
-         menu:
-          - text: Source Code
-            href:  https://github.com/keller-lab/web-manual
-          - text: Report a Bug
-            href:  https://github.com/keller-lab/web-manual/issues
+    background: light
+    title: false
+
+    left:
+      - text: "Welcome!"
+        href: index.qmd
+      - text: "Lab Values"
+        href: docs/lab-values/index.qmd
+      - text: "Onboarding"
+        href: docs/onboarding/index.qmd
+      - text: "Guide"
+        href: docs/guide/index.qmd
+      - text: "Cookbook"
+        href: docs/cookbook/index.qmd
+
+    tools:
+      - icon: github
+        menu:
+          - text: "Source Code"
+            href: https://github.com/abpoll/web-manual
+          - text: "Report a Bug"
+            href: https://github.com/abpoll/web-manual/issues
 
   sidebar:
+
+    # Onboarding
     - id: onboarding
       collapse-level: 1
       contents:
@@ -45,37 +53,66 @@ website:
               href: docs/checklists.qmd
             - text: "Resources"
               href: docs/resources.qmd
-              
+
+    # Guide
     - id: guide
       collapse-level: 1
       contents:
         - section: "Guide"
           href: docs/guide/index.qmd
           contents:
-           - section: "Data Analysis"
-             contents:
-              - text: "Our Approach"
-                href: docs/analysis/our-approach.qmd
-              - text: "Common GitHub Use Cases"
-                href: docs/analysis/lab-github.qmd
-           - section: "Science Communication"
-             contents: 
-              - text: "Our Goals"
-                href: docs/sci-comm/our-goals.qmd
-              - text: "Presentations"
-                href: docs/sci-comm/presentation-guidelines.qmd
-           - section: "Learning Materials"
-             contents: 
-              - text: Reading Lists
-                href: docs/materials/reading-list.qmd
-              - text: Repositories
-                href: docs/materials/reproduce-repos.qmd
-           - text: "Professional Development"
-             href: docs/prof-dev.qmd
+
+            - section: "Data Analysis"
+              contents:
+                - text: "Our Approach"
+                  href: docs/analysis/our-approach.qmd
+
+            - section: "Research Computing"
+              href: docs/computing/index.qmd
+              contents:
+                - text: "Our Computing Approach"
+                  href: docs/computing/computing-approach.qmd
+                - text: "Research Project Organization"
+                  href: docs/computing/project-organization.qmd
+                - text: "Version Control"
+                  href: docs/computing/version-control.qmd
+
+            - section: "Science Communication"
+              contents:
+                - text: "Our Goals"
+                  href: docs/sci-comm/our-goals.qmd
+                - text: "Presentations"
+                  href: docs/sci-comm/presentation-guidelines.qmd
+
+            - section: "Learning Materials"
+              contents:
+                - text: "Reading Lists"
+                  href: docs/materials/reading-list.qmd
+                - text: "Repositories"
+                  href: docs/materials/reproduce-repos.qmd
+
+            - text: "Professional Development"
+              href: docs/prof-dev.qmd
+
+    # Cookbook
+    - id: cookbook
+      collapse-level: 1
+      contents:
+        - section: "Lab Cookbook"
+          href: docs/cookbook/index.qmd
+          contents:
+
+            - section: "Lab Operations"
+              href: docs/cookbook/lab-operations/index.qmd
+
+            - section: "Research Computing"
+              href: docs/cookbook/research-computing/index.qmd
+
+            - section: "Data Management"
+              href: docs/cookbook/data-management/index.qmd
 
 format:
   html:
     theme: cosmo
     css: styles.css
     toc: true
-

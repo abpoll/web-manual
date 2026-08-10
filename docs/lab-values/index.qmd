@@ -2,8 +2,6 @@
 title: "Lab Values"
 ---
 
-![Sorry, Klaus, this is not about doggos. Credit: https://www.pexels.com/photo/photo-of-dog-laying-on-grass-3039079/](images/pexels-chetanvlad-3039079.jpg){#fig-main-col .margin-caption}
-
 Our group holds the following core values (in no particular order):
 
 * **Transparency**: We share our research process, code, data, and limitations openly. We aim to be explicit about the values-laden nature of our work. We push ourselves to communicate honestly and clearly. 

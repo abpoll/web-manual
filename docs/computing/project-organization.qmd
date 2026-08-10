@@ -1,0 +1,332 @@
+---
+title: "Research Project Organization"
+description: "How we organize computational research projects for transparency, reproducibility, and broad reusability."
+---
+
+Computational research projects should be organized so that another researcher—*including your future self*—can understand, reproduce, modify, and extend the work. Good project organization also makes it easier to move between a laptop, interactive computing environments, and high-performance computing without restructuring the project each time.
+
+There is no single directory structure that is appropriate for every project. However, our projects should generally follow a few principles:
+
+- **Use version control from the beginning.**
+- **Separate code from research data.**
+- **Define computational environments explicitly.**
+- **Separate analysis workflows from reusable functions.**
+- **Avoid unnecessary assumptions about the computer on which code is running.**
+- **Document decisions, dependencies, and workflows as the project develops.**
+
+The recommendations below describe how we generally implement these principles on University of Iowa infrastructure. 
+
+## Where your project lives
+
+A research project is not a directory on one computer.
+
+In our typical workflow:
+
+- **GitHub** provides the authoritative version-controlled repository for code and project configuration.
+- **Argon home storage** provides a working location for project code on University of Iowa research computing infrastructure.
+- **IDAS** provides an interactive environment for exploratory analysis, notebooks, visualization, and development.
+- **Argon** provides scheduled computing resources for larger or longer-running workflows.
+- **LSS** provides shared storage for research data and computational outputs.
+
+Our projects span these systems without requiring separate copies of the project design. IDAS hosts mounts of Argon and LSS, and Argon hosts a mount of LSS. This streamlines our workflow whether we are working interactively on IDAS or running a job on Argon.
+
+### Code
+
+Code, configuration files, documentation, and computational environment definitions generally belong in the project's Git repository.
+
+A project repository might look like:
+
+```text
+risk_prob/
+├── config/ # configuration files, such as a .yaml, for exogenous parameterizations
+├── jobs/ # scheduler jobs for Argon
+├── notebooks/ # Jupyter notebooks for IDAS
+├── scripts/ # analysis scripts
+├── src/ # directory for project-specific repeated functionality
+│   └── risk_prob/
+├── pyproject.toml 
+├── pixi.lock
+└── README.md # a very detailed README that explains the project, its structure, and how to reproduce the analysis
+```
+
+We will instantitate our project repositories on Argon home storage and access it from IDAS through the Argon home mount. We will test resproducibility on other systems, such as our local machines after making any adjustments to obtain minimal reproducible examples when projects are large and complex.
+
+GitHub provides the shared version-controlled representation of the project repository.
+
+### Data
+
+Research data generally **do not belong in Git**.
+
+Large source datasets, intermediate data products, model outputs, and other research data should normally be stored on **LSS**. LSS can be accessed from both Argon and IDAS, allowing computational workflows and interactive analyses to operate on the same underlying data.
+
+A project might use a data structure such as:
+
+```text
+project-name/
+└── data/
+    ├── raw/
+    ├── processed/
+    └── results/
+```
+
+The exact organization will vary by project. The important principle is that data organization should be deliberate and documented. In particular, raw source data should generally be preserved rather than modified in place. Transformations should produce new processed data or outputs so that the provenance of derived datasets remains understandable.
+
+::: {.callout-tip title="Related recipes"}
+Accessing the `project-name/` data directory consistently from different computational systems can be achieved through a `paths.py` module in `src/project-name/` of your code repository. Recipes for this and other common tasks, such as transferring local data to LSS and downloading external datasets are available in the [Data Management](../cookbook/data-management/index.qmd) section of the cookbook.
+:::
+
+## Breakdown of recommended project structure
+
+A Python-based computational research project will often look like:
+
+```text
+project-name/
+├── config/
+├── jobs/
+├── notebooks/
+├── scripts/
+├── src/
+│   └── project_name/
+│       └── __init__.py
+├── pyproject.toml
+├── pixi.lock
+├── README.md
+└── .gitignore
+```
+
+This is a starting place. I recommend that you adapt this structure fit your project's needs, but take each addition and removal with care. A small project may not need every directory, while a large project may require additional organization.
+
+### `notebooks/`
+
+Use notebooks for interactive analysis, exploration, visualization, and workflows. For some projects, you may find a single notebook is sufficient.
+
+### `scripts/`
+
+Use scripts for scaling up workflows. We often will run scripts on Argon. You may not need this directory for some projects.
+
+### `src/`
+
+Use `src/project_name/` for reusable **project-specific Python code**.
+
+For example:
+
+```text
+src/
+└── risk_prob/
+    ├── __init__.py
+    ├── paths.py
+    └── processing.py
+```
+
+A notebook can then use that functionality:
+
+```python
+from risk_prob.processing import process_data
+
+processed = process_data(data)
+```
+
+rather than repeatedly defining `process_data()` inside notebooks or copying the function between analyses.
+
+This separation makes functions easier to test, reuse, document, and modify. It is especially helpful if functions are used repeatedly. 
+
+While we recommend project-specific reusable code be placed in `src/project_name/`, you may eventually find that some functionality is useful across multiple projects. In such cases, it may be appropriate to create a standalone package. A standalone package should have its own repository, version history, tests, documentation, and environment or dependency specification. For example, [UNSAFE](https://github.com/abpoll/unsafe) is maintained separately because its flood-risk functionality is intended to support multiple research projects rather than one particular analysis.
+
+**The guiding organizational principle is that your project should balance transparency and comprensability.**
+
+### `jobs/`
+
+Projects that run work on Argon may use `jobs/` to place scripts submitted to the scheduler.
+
+
+### `config/`
+
+Configuration files can store parameters that should not be hard-coded throughout scripts and notebooks.
+
+Whether a particular setting belongs in configuration, source code, or an analysis depends on the project, but parameters that may change across experiments or computing environments are often good candidates for explicit configuration.
+
+## Computational environments
+
+A reproducible project must describe not only its code but also the software required to run that code.
+
+We use [**Pixi**](https://pixi.prefix.dev/latest/) to manage computational environments for Python-based research projects.
+
+The important distinction is between the definition of an environment and the installed environment itself.
+
+Files such as:
+
+```text
+pyproject.toml
+pixi.lock
+```
+
+describe the project and its resolved dependencies and should generally be version controlled.
+
+The actual installed environment:
+
+```text
+.pixi/
+```
+
+contains machine-specific installed software and should not be committed to Git.
+
+This means another researcher can clone the repository and recreate the required software environment compatible with their operating system and machine.
+
+::: {.callout-tip title="Related recipe"}
+See the Cookbook for the [recipe](../cookbook/research-computing/initialize-python-project.qmd) to initialize a Python research project and environment with Pixi.
+:::
+
+When Pixi is used to initialize a Python project with `pixi init --format pyproject`, the project is initially configured as an installable Python package using the standard `src/` layout.
+
+This allows project-specific code to be imported normally from notebooks and scripts:
+
+```python
+from project_name.module import function
+```
+
+rather than manipulating `PYTHONPATH`, modifying `sys.path`, or copying functions between files.
+
+## Working across IDAS and Argon
+
+Working across IDAS and Argon requires some care, but Pixi makes this manageable!
+
+The same version-controlled project should be usable from both systems, while each system maintains the software environment appropriate to that machine.
+
+Because these systems run on different operatins systems, and Argon's OS is quite old, our current workflow is:
+
+1. Set up your project and environment on Argon first, using Pixi to manage the environment.
+1. Develop and inspect analyses interactively using IDAS.
+2. Store project data on LSS.
+3. Submit larger workflows to Argon when necessary.
+4. Write outputs back to LSS.
+5. Inspect, analyze, or visualize those outputs from IDAS.
+
+::: {.callout-tip title="Related recipes"}
+See the Research Computing sections of the Cookbook for procedures related to:
+
+- configuring a Pixi project for Argon and IDAS;
+- maintaining a Pixi environment across systems as you add dependencies;
+- running a Pixi-managed project as an Argon batch job.
+:::
+
+### IDAS
+
+IDAS is well-suited for:
+
+- interactive Python work;
+- Jupyter notebooks;
+- exploratory data analysis;
+- visualization;
+- developing and testing workflows; and
+- analyses that fit comfortably within the resources available to an IDAS session.
+
+### Argon
+
+Argon is well-suited for:
+
+- long-running workflows;
+- computationally intensive analyses;
+- large memory or multicore jobs;
+- unattended processing; and
+- workflows that should be submitted through the job scheduler rather than run interactively.
+
+## Write portable paths
+
+Code should avoid assuming that a particular filesystem path exists everywhere it runs.
+
+For example, the same LSS storage may be exposed at different paths on IDAS and Argon. Hard-coding one machine's absolute path throughout notebooks and scripts makes the project unnecessarily machine-specific.
+
+Instead, centralize filesystem knowledge.
+
+For example, in `src/project_name/paths.py`, you could write::
+
+```python
+from pathlib import Path
+
+
+def get_lss_root() -> Path:
+    candidates = [
+        Path("/path/used/on/system-a"),
+        Path("/path/used/on/system-b"),
+    ]
+
+    for path in candidates:
+        if path.exists():
+            return path
+
+    raise RuntimeError("Could not locate LSS.")
+```
+
+The rest of the project can then define paths relative to that root:
+
+```python
+LSS = get_lss_root()
+
+DATA = LSS / "projects" / "project-name" / "data"
+RAW = DATA / "raw"
+PROCESSED = DATA / "processed"
+RESULTS = DATA / "results"
+```
+
+Now the machine-specific knowledge exists in one place instead of being repeated throughout the analysis and you can directly import these constants into your scripts and notebooks. 
+
+For paths **within the repository**, use relative paths or paths derived from a known project location rather than absolute paths tied to one person's account.
+
+## Version control the project, not the environment or data
+
+A useful way to think about a computational project is that Git should contain the information required to understand and reconstruct the analysis, but not every file involved in running it.
+
+Generally version control:
+
+- source code;
+- notebooks;
+- scripts;
+- configuration;
+- documentation;
+- environment manifests and lock files;
+- small metadata files needed to reproduce workflows.
+
+Generally do not version control:
+
+- installed environments;
+- caches;
+- temporary files;
+- large research datasets;
+- large generated outputs;
+- credentials or secrets.
+
+Use `.gitignore` deliberately to keep machine-local and generated content out of the repository.
+
+For broader guidance on how we use Git and GitHub, see [Version Control](version-control.qmd).
+
+## Document as you go
+
+Documentation should develop alongside the project rather than being written only when the analysis is complete.
+
+At minimum, a project's `README.md` should eventually make it possible to determine:
+
+- what the project does;
+- how the repository is organized;
+- how to create its computational environment;
+- where required data come from;
+- how major workflows are run; and
+- where outputs are produced.
+
+Additional documentation may be appropriate for larger projects.
+
+Configuration files, descriptive names, docstrings, comments where needed, and informative Git history all contribute to making a project understandable.
+
+## Examples
+
+Well-organized existing projects can provide useful patterns, but they should be treated as examples rather than mandatory templates.
+
+See [Example Repositories](../materials/reproduce-repos.qmd) for projects that illustrate different approaches to reproducible computational research.
+
+## Related recipes
+
+The Cookbook contains the procedural workflows that implement many of the practices described in this guide.
+
+Relevant recipe areas include:
+
+- [Research Computing](../cookbook/research-computing/index.qmd)
+- [Data Management](../cookbook/data-management/index.qmd)

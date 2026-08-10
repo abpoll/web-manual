@@ -1,0 +1,51 @@
+---
+title: "Contribute to Lab Meetings"
+description: "Maintain agendas, schedules, and presentation materials for Pollack Group lab meetings."
+categories:
+  - Lab Operations
+  - Collaboration
+---
+
+## Goal
+
+Maintain the shared lab meeting repository so that meeting schedules, agendas, and presentation materials are organized and accessible to the group.
+
+## Prerequisites
+
+- Access to the Pollack Group lab meeting repository
+- Basic familiarity with Git and GitHub
+
+See the [Version Control](../../computing/version-control.qmd) guide for our general approach and recommended learning resources.
+
+## Procedure
+
+### 1. Review the current meeting schedule
+
+TODO: Add the lab meeting repository and describe the agreed-upon term organization.
+
+### 2. Create or update the meeting agenda
+
+TODO: Define the directory and naming convention for individual meetings.
+
+### 3. Add presentation materials
+
+TODO: Define where presentation materials or links should be stored.
+
+### 4. Submit your changes
+
+Follow the repository's contribution workflow and submit substantive changes for review when appropriate.
+
+## Verify
+
+Confirm that the meeting agenda, schedule, and any presentation links render correctly on GitHub and point to the intended materials.
+
+## Common problems
+
+To be completed as the lab meeting workflow is established.
+
+## Related resources
+
+### Related recipes
+
+- [Contribute to the Lab Manual](lab-manual.qmd)
+- [Contribute to the Lab Website](lab-website.qmd)

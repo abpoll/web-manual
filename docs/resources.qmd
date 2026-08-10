@@ -7,21 +7,13 @@ format:
 There are a number of resources you should familiarize yourself with as a part of your onboarding. It may also be helpful to revisit this list from time to time after you settle in. Poke around and see what is useful to adopt in your workflows.
 
 ## Resources for Research
-* Dartmouth Libraries
-  - Definitely check out the links connected to [Data Services](https://www.library.dartmouth.edu/research-create/data-services).
-  - There are nice workshop series for learning the fundamentals of topics like python, LaTeX, GitHub, etc., [Check them out](https://www.library.dartmouth.edu/research-create/teaching-workshops) and contribute your knowledge to the manual!
-* Thayer School Computing Services [Knowledge Base](https://kb.thayer.dartmouth.edu/).
-  - Not extensive but several articles will likely become a key part of your workflows
-* [AI Tools repository](https://ai.dartmouth.edu/).
-  - We are very lucky to have access to a number of AI tools, especially the [Dartmouth Chat](chat.dartmouth.edu) app that supports commercial and open-source models for all Dartmouth members.
+* University Libraries
+  - Definitely check out the links connected to [Research Data Services](https://www.lib.uiowa.edu/data/).
+* High Performance Computing [Documentation](https://uiowa.atlassian.net/wiki/spaces/hpcdocs/overview?homepageId=76513285).
 
 
 ## Resources for life
-* Enjoy the upper valley!!
-  - [Explore](https://gme.dartmouth-hitchcock.org/sites/default/files/2023-06/guide-to-the-upper-valley.pdf)
-  - [Connect](https://www.uvyp.org/the-essentials) to existing communities
-* Housing in the upper valley
+* [Graduate Student Life](https://grad.uiowa.edu/prospective-students/graduate-student-life)
+* [Housing](https://grad.admissions.uiowa.edu/about-iowa/housing)
   - [Rentals](https://realestate.dartmouth.edu/) for grad students and postdocs
   - [Craigslist](https://nh.craigslist.org/search/apa#search=1~gallery~0~0) sometimes has good finds
-* Good Facebook marketplace for furniture! 
-* Take the [bus](https://advancetransit.com/) if you can

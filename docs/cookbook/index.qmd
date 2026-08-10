@@ -1,0 +1,29 @@
+---
+title: "Lab Cookbook"
+sidebar: false
+---
+
+The Lab Cookbook contains tested recipes for recurring Pollack Group
+workflows. Recipes focus on tasks that combine multiple steps, tools, or
+lab-specific conventions.
+
+## Cookbook sections
+
+### Lab Operations
+
+Workflows for maintaining shared lab resources and activities.
+
+[Browse Lab Operations recipes](lab-operations/index.qmd)
+
+### Research Computing
+
+Workflows for using the Pollack Group's research computing infrastructure.
+
+[Browse Research Computing recipes](research-computing/index.qmd)
+
+### Data Management
+
+Workflows for acquiring, transferring, organizing, and maintaining research
+data.
+
+[Browse Data Management recipes](data-management/index.qmd)

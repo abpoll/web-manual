@@ -1,5 +1,5 @@
 ---
-title: "Welcome to the Keller Group Lab Manual!"
+title: "Welcome to the Pollack Group Lab Manual!"
 ---
 
 ::: {.callout-note}
@@ -7,11 +7,11 @@ title: "Welcome to the Keller Group Lab Manual!"
 This manual is always under construction. If you would like to fix any mistakes, request additional material, or modify content, please submit a new Issue on [GitHub](https://github.com/abpoll/web-manual/issues).
 :::
 
-![The Keller Group as of January, 2025](images/lab_group_photo.jpg){#fig-main-col .margin-caption}
+![Adam's Dog Beaux (placeholder for lab photo)](images/lab_group_photo.png){#fig-main-col .margin-caption}
 
 ## Overview
 
-The purpose of this manual is to help new members and collaborators build a shared base of foundational knowledge for the kind of work we do in the [Keller Lab Group](https://keller-lab.github.io/). This is a collaborative, living document build with [Quarto](https://quarto.org/) and hosted with [GitHub Pages](https://pages.github.com/).  
+The purpose of this manual is to help new members and collaborators build a shared base of foundational knowledge for the kind of work we do in the [Pollack Lab Group](https://abpoll.github.io/). This is a collaborative, living document build with [Quarto](https://quarto.org/) and hosted with [GitHub Pages](https://pages.github.com/).  
 
 This manual details lab procedures, policies, and expectations for research group members (and may be helpful for collaborators to consult). The manual contains three sections:
 

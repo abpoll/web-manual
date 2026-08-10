@@ -1,0 +1,45 @@
+---
+title: "Contribute to the Lab Website"
+description: "Propose, develop, test, and submit changes to the Pollack Group website."
+categories:
+  - Lab Operations
+  - Collaboration
+---
+
+## Goal
+
+Contribute updates or improvements to the Pollack Group website while allowing changes to be reviewed and tested before publication.
+
+## Prerequisites
+
+- Access to the Pollack Group website repository
+- Pixi
+- Quarto
+- Basic familiarity with Git and GitHub
+
+
+## Procedure
+
+TODO: Complete this recipe once the Pollack Group website repository and development workflow have been finalized.
+
+At minimum, the workflow should follow the group's general collaboration model:
+
+1. Discuss substantial changes through an issue when useful.
+2. Create a branch for the change.
+3. Make and locally test the changes.
+4. Commit and push the branch.
+5. Open a pull request.
+6. Merge after review.
+
+Repository-specific setup, development, and deployment instructions should be maintained in the website repository's README and linked from this recipe rather than duplicated here.
+
+## Verify
+
+TODO: Document the appropriate local preview and deployment checks once the website technology is finalized.
+
+## Related resources
+
+### Related recipes
+
+- [Contribute to Lab Meetings](lab-meetings.qmd)
+- [Contribute to the Lab Manual](lab-manual.qmd)

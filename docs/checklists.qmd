@@ -9,7 +9,7 @@ format:
 - [ ] Have fun and be safe
 - [ ] Review your personal motivation, values, and professional goals
 
-## Coordinate with Klaus{#coordinate}
+## Coordinate with Adam{#coordinate}
 
 This document is available as a pdf (see the right margin) so that you may download and check/highlight items as you complete them. 
 
@@ -19,46 +19,43 @@ This document is available as a pdf (see the right margin) so that you may downl
 - [ ] Set up your calendar (e.g., Outlook)
   - Block out working and lunch hours
   - Leave room for lab meetings, journal club, etc.,
-  - Set up your weekly meeting schedule with Klaus
-- [ ] Accept Klaus's invitation to our group's lab meeting GitHub repo
-- [ ] Make sure you have access to the group's shared-folders directory on Google Drive
+  - Set up your weekly meeting schedule with Adam
+- [ ] Accept Adam's invitation to our group's lab meeting GitHub repo
+- [ ] Make sure you have access to the group's shared-folders directory on OneDrive
 - [ ] Find out who to ask for lab meeting invite
 - [ ] Find out who to ask for Slack workspace invite
 - [ ] Find out who to ask for webpage profile
-- [ ] Find out who to talk to at Irving or Thayer for your ID card, office access, etc., if you don't already know
-  - [This](https://www.dartmouth.edu/finance/employee-services/other_services/dartcard/) is a good start
+- [ ] Find out who to talk to at SEES or CLAS for your ID card, office access, etc., if you don't already know
 - [ ] Get situated in your office space
-  - Get equipment (currently Siqi will help with this)
-  - Thayer IT can help set up your laptop
+  - Get equipment
 - [ ] Introduce yourself to the staff that help make our group successful
-  - [Cate Albright](mailto:Cate.Albright@dartmouth.edu)
-  - [Jentry Campbell](https://www.library.dartmouth.edu/directory/f0069hv)
-  - Irving Staff (e.g., [Molly Dunn](https://irving.dartmouth.edu/people/molly-dunn))
+  - [Angie Bellew](mailto:angela-bellew@uiowa.edu)
+  - [Katie Bottorff](mailto:katlin-bottorff@uiowa.edu)
+  - [Ali Geraets](mailto:alexandra-geraets@uiowa.edu)
+  - [Matthew Wortel](mailto:matthew-wortel@uiowa.edu)
 - [ ] Discuss research interests and potential projects
 
 ### After first meeting
 - [ ] Send photo, bio, contact, socials to web manager
-  - [ ] Check out existing [profiles](https://keller-lab.github.io/people.html) for examples
+  - [ ] Check out existing profiles (TO DO) for examples
 - [ ] Join group Slack and browse/join channels
-- [ ] [{{< fa envelope title="Email" >}} Thayer Computing](mailto:computing@thayer.dartmouth.edu) for access to Kasper and `jumbo/keller-lab/` and CC Klaus (he will tell computing gurus it is ok to add you)
+- [ ] Apply for an [Argon](https://research.its.uiowa.edu/our-services/computing-services/argon-high-performance-computing-hpc) and [IDAS](https://research.its.uiowa.edu/our-services/computing-services/interactive-data-analytics-service-idas) account.
 - [ ] Work through required trainings
-  - Dartmouth will have some for you
-  - You may want to do [human subjects training](https://docs.google.com/document/d/1nky1Qc8IxAUwdbQy9rVxIj0GC15RtbtOZs2cL3YAU54/edit?tab=t.0)
-  - Get [driving approval](https://www.dartmouth.edu/transportation/driver_safety_program/approval_process/index.php)
+  - University of Iowa will have some for you
 
 ### Before first lab meeting
-- [ ] Check out the lab meeting [repo](https://github.com/keller-lab/lab-meetings) and add yourself to the next presentation block
+- [ ] Check out the lab meeting repo (TO DO) and add yourself to the next presentation block
   - Note: Depending on your experience level, you may find it helpful to consult [some examples](analysis/lab-github.qmd).
 - [ ] Prepare a 5 minute max presentation to introduce yourself to the group
   - [ ] Review our [presentation guidelines](sci-comm/presentation-guidelines.qmd)
 
 ### Losing your training wheels
-Now that you have followed these steps, your tasks in the group will become more organic and unique to your chosen path. There is some reading material we strongly recommend for all lab members (and Klaus may assign some), but you can otherwise go through the [reading list](materials/reading-list.qmd) as best suits your early exploration and planning stages. Otherwise, work through the tutorials in the [Guide](guide/index.qmd) and find [projects](materials/reproduce-repos.qmd) to reproduce! 
+Now that you have followed these steps, your tasks in the group will become more organic and unique to your chosen path. There is some reading material we strongly recommend for all lab members (and Adam may assign some), but you can otherwise go through the [reading list](materials/reading-list.qmd) as best suits your early exploration and planning stages. Otherwise, work through the tutorials in the [Guide](guide/index.qmd) and find [projects](materials/reproduce-repos.qmd) to reproduce! 
 
 
 ## Set up work environment{#setup}
 
-If you work from a Dartmouth laptop, it will come equipped with a lot of helpful software and functionality. If not, you may have to contribute to the manual to offer guidance for setting up software, tools, etc., Either way, there are still set up steps you will have to follow, such as:
+If you work from a University of Iowa laptop, it will come equipped with a lot of helpful software and functionality. If not, you may have to contribute to the manual to offer guidance for setting up software, tools, etc., Either way, there are still set up steps you will have to follow, such as:
 
 ::: {.column-margin}
 ::: {.callout-note}
@@ -66,19 +63,15 @@ It would be great to have guide entries about selecting between various referenc
 :::
 :::
 
-- [ ] Choose a reference manager (e.g., Zotero or Paperpile)
-  - Many of us use Paperpile because of its Chrome plugin and integration into Google Docs, but Zotero might play better with collaborators and other workflows
+- [ ] Set up Zotero account and install desktop app and browser plugin
 - [ ] [Set up a GitHub account](https://docs.github.com/en/get-started/start-your-journey/creating-an-account-on-github) if you don't have one already
 - [ ] Configure your GitHub with [SSH](https://docs.github.com/en/authentication/connecting-to-github-with-ssh)
 - [ ] Set up your coding environment 
-  - Many of us use VSCode for our IDE. You can SSH onto Kasper or work locally through the same interface.  
-  - Dartmouth also offers [FastX](https://services.dartmouth.edu/TDClient/1806/Portal/KB/ArticleDet?ID=81595).
-  - Or, you can run a Jupyter Notebook on Kasper or a HPC node. See [here](https://services.dartmouth.edu/TDClient/1806/Portal/KB/ArticleDet?ID=124517).
+  - You will likely run VSCode and Jupyter Notebooks through IDAS, and run scripts through Argon on compute nodes.   
+  - I recommend a local computing setup as well. 
 - [ ] Set up online profiles
   - [ ] Researchgate
   - [ ] Google scholar
-- [ ] Set up a Google Drive for collaboration
-  - You can set up a shared drive or share specific folders
-- [ ] Install software that you need for your work. For example, many of us use [mamba](https://mamba.readthedocs.io/en/latest/) for package management
+- [ ] Install software that you need for your work. 
 
 While this is an incomplete list, it will hopefully be enough to get you going for the reading list and the guide <i class="fa-regular fa-face-grin-wide"></i>

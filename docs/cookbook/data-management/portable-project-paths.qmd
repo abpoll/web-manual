@@ -1,0 +1,276 @@
+---
+title: "Configure Portable Project Data Paths"
+description: "Configure a Python project to locate data on LSS when running on either Argon or IDAS."
+categories:
+  - Data Management
+  - Python
+  - LSS
+  - Argon
+  - IDAS
+  - Project Organization
+---
+
+## Goal
+
+Configure a Python project so that notebooks, scripts, and reusable functions
+can locate the same project data when running on either Argon or IDAS.
+
+LSS is available from both systems, but it is mounted at different filesystem
+locations. We therefore do not want to hard-code an Argon or IDAS path
+throughout the project.
+
+Instead, we will:
+
+1. identify the LSS mount available on the current system;
+2. define the project's important data directories in one Python module; and
+3. import those paths wherever they are needed.
+
+This recipe uses the `risk_prob` project as an example.
+
+## Prerequisites
+
+This recipe assumes that:
+
+- the project is organized as an installable Python package using a `src/`
+  layout;
+- the project can be run from both Argon and IDAS; and
+- project data are stored on the Pollack Group LSS.
+
+For a project named `risk_prob`, the relevant structure is:
+
+```text
+risk_prob/
+├── notebooks/
+├── scripts/
+├── src/
+│   └── risk_prob/
+│       ├── __init__.py
+│       └── paths.py
+├── pyproject.toml
+└── pixi.lock
+```
+
+The data are stored separately on LSS:
+
+```text
+lss-apollack/
+└── projects/
+    └── risk_prob/
+        └── data/
+            ├── raw/
+            ├── processed/
+            └── results/
+```
+
+## Understand the two LSS paths
+
+The same Pollack Group LSS is exposed at different paths on Argon and IDAS.
+
+On **Argon**, the LSS root is:
+
+```text
+/Shared/lss-apollack
+```
+
+On **IDAS**, the LSS root is:
+
+```text
+/home/<hawkid>/LSS/lss-apollack
+```
+
+The remainder of the path is the same on both systems:
+
+```text
+projects/risk_prob/data
+```
+
+We therefore only need to detect the **LSS root**. Everything below it can
+be defined once.
+
+## Procedure
+
+### 1. Create a project path module
+
+Inside the project's Python package, create:
+
+```text
+src/risk_prob/paths.py
+```
+
+For `risk_prob`, use:
+
+```python
+from pathlib import Path
+
+
+def get_lss_root() -> Path:
+    """Return the Pollack Group LSS root available on this system."""
+
+    candidates = [
+        Path("/Shared/lss-apollack"),             # Argon
+        Path.home() / "LSS" / "lss-apollack",    # IDAS
+    ]
+
+    for path in candidates:
+        if path.is_dir():
+            return path
+
+    raise RuntimeError(
+        "Could not locate the Pollack Group LSS. "
+        "Expected /Shared/lss-apollack on Argon or "
+        "~/LSS/lss-apollack on IDAS."
+    )
+
+
+LSS = get_lss_root()
+
+DATA = LSS / "projects" / "risk_prob" / "data"
+
+RAW = DATA / "raw"
+PROCESSED = DATA / "processed"
+RESULTS = DATA / "results"
+```
+
+This module contains all machine-specific knowledge about where the LSS is
+mounted.
+
+The rest of the project does not need to know whether it is running on
+Argon or IDAS.
+
+### 2. Import project paths in scripts and notebooks
+
+Instead of writing:
+
+```python
+from pathlib import Path
+
+data = Path("/Shared/lss-apollack/projects/risk_prob/data")
+```
+
+or:
+
+```python
+from pathlib import Path
+
+data = (
+    Path.home()
+    / "LSS"
+    / "lss-apollack"
+    / "projects"
+    / "risk_prob"
+    / "data"
+)
+```
+
+use:
+
+```python
+from risk_prob.paths import DATA
+```
+
+The same script can now run unchanged on Argon or IDAS.
+
+
+### 3. Add more project paths when they are shared
+
+As a project develops, other commonly used locations can be defined in
+`paths.py`.
+
+For example:
+
+```python
+EXTERNAL = RAW / "external"
+HAZARD = EXTERNAL / "haz"
+```
+
+Avoid defining every directory in the project globally. Add paths here when
+they represent stable locations used across multiple scripts, notebooks, or
+modules.
+
+## Verify
+
+First verify the paths on IDAS.
+
+In a notebook using the project's kernel:
+
+```python
+from risk_prob.paths import LSS, DATA, RAW
+
+print(LSS)
+print(DATA)
+print(RAW)
+```
+
+For `risk_prob`, the output on IDAS should begin with:
+
+```text
+/home/<hawkid>/LSS/lss-apollack
+```
+
+and `DATA` should resolve to:
+
+```text
+/home/<hawkid>/LSS/lss-apollack/projects/risk_prob/data
+```
+
+On Argon:
+
+```bash
+pixi run python -c "from risk_prob.paths import LSS, DATA; print(LSS); print(DATA)"
+```
+
+should report:
+
+```text
+/Shared/lss-apollack
+/Shared/lss-apollack/projects/risk_prob/data
+```
+
+## Common problems
+
+### `ModuleNotFoundError: No module named 'risk_prob'`
+
+The project package is not available to the Python environment currently
+running the code.
+
+Confirm that you are using the project's Pixi environment:
+
+```bash
+pixi run python -c "import risk_prob; print(risk_prob.__file__)"
+```
+
+For a Jupyter notebook, also check:
+
+```python
+import sys
+print(sys.executable)
+```
+
+and confirm that the notebook is using the project's intended kernel.
+
+### A new data directory does not exist yet
+
+The path definitions above describe locations; they do not automatically
+create them.
+
+When a workflow is responsible for creating a new directory, create it
+explicitly:
+
+```python
+outdir = RAW / "external" / "haz" / "new_dataset"
+outdir.mkdir(parents=True, exist_ok=True)
+```
+
+This makes directory creation part of the workflow that actually needs the
+directory.
+
+## Related resources
+
+### Guide
+
+- [Research Project Organization](../../computing/project-organization.qmd)
+- [Our Computing Approach](../../computing/computing-approach.qmd)
+
+### Related recipes
+
+- [Initialize a Python Research Project with Pixi](../research-computing/initialize-python-project.qmd)

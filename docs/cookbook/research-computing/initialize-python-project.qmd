@@ -1,0 +1,456 @@
+---
+title: "Initialize a Python Research Project with Pixi"
+description: "Create a reproducible Python project and configure it for local development or use across Argon and IDAS."
+categories:
+  - Research Computing
+  - Pixi
+  - Python
+  - Argon
+  - IDAS
+  - Reproducibility
+---
+
+## Goal
+
+Initialize a Python research project using Pixi, organize the project using a
+standard `src/` layout, and define a reproducible computational environment.
+
+There are two workflows:
+
+1. a project used on a single computer; and
+2. a project that will be used across Argon and IDAS.
+
+The second workflow should be used for projects that need both interactive
+analysis on IDAS and larger or longer-running computation on Argon.
+
+## Prerequisites
+
+- Git
+- [Pixi](https://pixi.prefix.dev/latest/reference/cli/pixi/install/)
+- For local development: a local Python-capable development environment
+- For the HPC workflow: access to Argon and IDAS
+
+## Project layout
+
+A Python research project will generally use a `src/` layout:
+
+```text
+project-name/
+├── config/
+├── jobs/
+├── notebooks/
+├── scripts/
+├── src/
+│   └── project_name/
+│       └── __init__.py
+├── pyproject.toml
+├── pixi.lock
+└── README.md
+```
+
+The `src/project_name/` directory contains reusable project-specific Python
+code. Notebooks and scripts should import that code rather than repeatedly
+defining the same functions.
+
+## Single-machine project
+
+Use this workflow when the project will be developed and run on one
+computer and does not need to maintain separate environments on different
+systems.
+
+### 1. Create or enter the project directory
+
+```bash
+mkdir project-name
+cd project-name
+```
+
+If the repository already exists, simply work from its root directory.
+
+### 2. Initialize the Python project
+
+If the project does not already have a `pyproject.toml`:
+
+```bash
+pixi init --format pyproject
+```
+
+If the project already has a `pyproject.toml`, run:
+
+```bash
+pixi init
+```
+
+Pixi will add its workspace configuration to the existing Python project.
+It can also configure the project itself as an editable dependency. The
+`pyproject.toml` serves as the project and Pixi manifest, while `pixi.lock`
+records the resolved environment. 
+
+### 3. Add Python dependencies
+
+For example:
+
+```bash
+pixi add python=3.12 pandas numpy
+```
+
+Use `pixi add` rather than manually installing packages into the environment.
+This records the dependency in the project manifest and updates the lock file.
+
+### 4. Install the environment
+
+```bash
+pixi install
+```
+
+The actual environment is maintained by Pixi and should not be committed to
+Git. Commit the project definition and lock file instead:
+
+```text
+pyproject.toml
+pixi.lock
+```
+
+Pixi creates the local `.pixi/` directory for the installed environment.
+
+### 5. Run Python
+
+Rather than manually activating the environment, use:
+
+```bash
+pixi run python
+```
+
+or:
+
+```bash
+pixi run python scripts/example.py
+```
+
+Commands such as `pixi run` automatically ensure that the environment is
+available and up to date.
+
+### 6. Register the environment as a Jupyter kernel
+
+If the project will use Jupyter notebooks or executable Quarto documents,
+make sure `jupyter` and `ipykernel` are included in the environment:
+
+```bash
+pixi add jupyter ipykernel
+```
+
+Register the project's Python environment as a Jupyter kernel:
+
+```bash
+pixi run python -m ipykernel install \
+    --user \
+    --name project_name \
+    --display-name "Python (project_name)"
+```
+
+Replace `project_name` with a short, recognizable name for the project.
+
+The kernel only needs to be registered once. Installing additional packages
+into the same Pixi environment does not normally require creating a new
+kernel. Once the kernel is registered, you can follow your normal Jupyter workflow.
+
+
+
+## Argon + IDAS project
+
+Projects that will use both Argon and IDAS require additional care because
+the two systems do not have identical operating systems or system libraries.
+
+The project definition is shared, but the installed environments are
+machine-specific.
+
+### 1. Initialize the project on Argon
+
+Create or clone the project on Argon and initialize Pixi there.
+
+For a new Python project:
+
+```bash
+pixi init --format pyproject
+```
+
+For an existing Python project:
+
+```bash
+pixi init
+```
+
+Add the project dependencies normally:
+
+```bash
+pixi add python=3.12 pandas numpy
+```
+
+### 2. Target Argon's system compatibility
+
+Argon and IDAS run different Linux environments. In particular, Argon uses
+an older version of glibc than IDAS.
+
+Pixi uses these system characteristics when resolving compiled dependencies.
+If the environment is solved against IDAS's newer system, Pixi may select
+packages that cannot run on Argon.
+
+For a project that must run on both systems, configure the project to target
+Argon's older system requirements.
+
+In the Pixi workspace configuration, use:
+
+```toml
+[tool.pixi.workspace]
+channels = ["conda-forge"]
+platforms = [
+    { platform = "linux-64", linux = "3.10", glibc = "2.17" }
+]
+```
+
+If the project uses `pixi.toml` rather than `pyproject.toml`, the equivalent
+configuration is:
+
+```toml
+[workspace]
+channels = ["conda-forge"]
+platforms = [
+    { platform = "linux-64", linux = "3.10", glibc = "2.17" }
+]
+```
+
+This reflects the relevant system requirements on Argon:
+
+```text
+Linux:  3.10
+glibc:  2.17
+```
+
+IDAS has newer system libraries, so an environment compatible with this
+older baseline can also be instantiated on IDAS.
+
+
+### 3. Configure detached environments
+
+The project files are accessible from both Argon and IDAS, but the two
+systems must **not share an installed Pixi environment**.
+
+On both Argon and IDAS from their respective home directories, create:
+
+```text
+~/.pixi/config.toml
+```
+
+with:
+
+```toml
+detached-environments = "~/.pixi/envs"
+```
+
+This separates the portable project definition from its machine-specific
+installation:
+
+```text
+Shared project
+├── pyproject.toml
+├── pixi.lock
+├── src/
+├── notebooks/
+└── scripts/
+
+Argon
+└── ~/.pixi/envs/
+    └── Argon-compatible installed environment
+
+IDAS
+└── ~/.pixi/envs/
+    └── IDAS installed environment
+```
+
+The project definition and lock file are shared. The installed environments
+are not.
+
+### 4. Solve and install on Argon
+
+Run:
+
+```bash
+pixi install
+```
+
+Argon is the authoritative place to update the environment definition for a
+project that must support both Argon and IDAS.
+
+After changing dependencies:
+
+```bash
+pixi add package-name
+pixi install
+```
+
+or update an existing dependency as appropriate.
+
+Commit the resulting project configuration:
+
+```bash
+git add pyproject.toml pixi.lock
+git commit -m "Update project dependencies"
+```
+
+### 5. Use the same project on IDAS
+
+The project directory is accessible from IDAS, so the same:
+
+```text
+pyproject.toml
+pixi.lock
+```
+
+are available there.
+
+The installed Pixi environment, however, is **not** shared with Argon.
+
+Each machine should maintain its own local Pixi environment.
+
+On IDAS, from the project root:
+
+```bash
+pixi install
+```
+
+This creates or updates the IDAS-local environment from the project's
+definition and lock file.
+
+Do not copy the Argon `.pixi/` directory to IDAS.
+
+### 6. Use the environment on IDAS
+
+For command-line work:
+
+```bash
+pixi run python
+```
+
+For Jupyter, register the project environment as a kernel:
+
+```bash
+pixi run python -m ipykernel install \
+    --user \
+    --name project_name \
+    --display-name "Python (project_name)"
+```
+
+Use that kernel for notebooks associated with the project.
+
+If the environment changes substantially, reinstall the kernel so that the
+kernel specification points to the current project environment.
+
+## Maintaining the project across Argon and IDAS
+
+For projects that use both systems, the recommended workflow is:
+
+```text
+1. Modify project dependencies on Argon
+2. Run pixi install on Argon
+3. Verify the environment
+4. Commit pyproject.toml + pixi.lock
+5. Use the updated project on IDAS
+6. Run pixi install on IDAS when needed
+7. Recreate/update the Jupyter kernel if necessary
+```
+
+The important distinction is:
+
+**Shared:**
+
+- `pyproject.toml`
+- `pixi.lock`
+- source code
+- notebooks
+- scripts
+- project configuration
+
+**Machine-specific:**
+
+- the installed `.pixi/` environment
+- Jupyter kernel registration
+- machine-specific caches
+- system-level modules and software
+
+## Data and storage
+
+Project code and project data have different storage requirements.
+
+Generally:
+
+- keep code and project configuration in Git;
+- keep large research datasets on LSS;
+- keep generated environments out of Git;
+- use portable/project-relative paths where possible;
+- use a shared path helper when machine-specific mount locations need to be
+  handled.
+
+For more detail, see
+[Research Project Organization](../../computing/project-organization.qmd).
+
+::: {.callout-tip title="Related recipes"}
+
+- [Configure Portable Project Paths](../data-management/portable-project-paths.qmd)
+
+:::
+
+## Verify
+
+### Single-machine project
+
+Confirm that the environment works:
+
+```bash
+pixi run python --version
+```
+
+and:
+
+```bash
+pixi run python -c "import sys; print(sys.executable)"
+```
+
+The executable should be inside the project's Pixi environment.
+
+### Argon + IDAS project
+
+On each system:
+
+```bash
+pixi run python --version
+```
+
+and:
+
+```bash
+pixi info
+```
+
+Confirm that Pixi is using the expected platform and local environment.
+
+From IDAS, confirm that the intended Jupyter kernel starts and that:
+
+```python
+import sys
+print(sys.executable)
+```
+
+points to the project's IDAS-local Pixi environment.
+
+## Related resources
+
+### Guide
+
+- [Research Project Organization](../../computing/project-organization.qmd)
+- [Our Computing Approach](../../computing/computing-approach.qmd)
+- [Version Control](../../computing/version-control.qmd)
+
+### External documentation
+
+- [Pixi Python projects](https://pixi.prefix.dev/latest/python/pyproject_toml/)
+- [HPC Documentation](https://uiowa.atlassian.net/wiki/spaces/hpcdocs/overview?homepageId=76513285)

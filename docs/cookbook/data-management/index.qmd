@@ -1,0 +1,11 @@
+---
+title: "Data Management"
+listing:
+  contents:
+    - "*.qmd"
+    - "!index.qmd"
+  type: default
+  sort: "title"
+---
+
+These recipes document recurring workflows for data management activities.

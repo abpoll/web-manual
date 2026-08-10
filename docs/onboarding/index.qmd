@@ -3,16 +3,16 @@ title: "Onboarding"
 ---
 
 ## Welcome!
-Congratulations on joining the Keller group! You are going to have a lot of fun over the next few years. Things are probably moving fast and you might feel overwhelmed by the pace, your big ideas, Klaus's big ideas, and a steep learning curve for some of the skills you need to do your research well. This manual can help you get on the track to accomplishing your goals. To settle in, follow the onboarding checklists. The first two are quick and the rest should keep you busy as you iterate on paper ideas with Klaus. 
+Congratulations on joining the Pollack group! You are going to have a lot of fun over the next few years. Things are probably moving fast and you might feel overwhelmed by the pace, your big ideas, Adam's big ideas, and a steep learning curve for some of the skills you need to do your research well. This manual can help you get on the track to accomplishing your goals. To settle in, follow the onboarding checklists. The first two are quick and the rest should keep you busy as you iterate on paper ideas with Adam. 
 
 ## Checklists
 
 | Order          | Topic                                                                | Expected Commitment                 |
 |:-------------: |:--------------------------------------------------------------------:|:-----------------------------------:|
-| 1              | [Coordinate with Klaus](../checklists.qmd#coordinate)      | &lt; 1 week                         |
+| 1              | [Coordinate with Adam](../checklists.qmd#coordinate)      | &lt; 1 week                         |
 | 2              | [Set up work environment](../checklists.qmd#setup)         | &lt; 1 week                         |
-| 3              | [Work through reading lists](../materials/reading-list.qmd)                | 4 (PhD) or 8 (postdoc) hrs per week |
-| 3              | [Work through the guide](../guide/index.qmd)                         | 4 (PhD) or 8 (postdoc) hrs per week |
+| 3              | [Work through reading lists](../materials/reading-list.qmd)                | 4 (MS/PhD) or 8 (postdoc) hrs per week |
+| 3              | [Work through the guide](../guide/index.qmd)                         | 4 (MS/PhD) or 8 (postdoc) hrs per week |
 | 3              | [Reproduce relevant studies](../materials/reproduce-repos.qmd)         | 1-2 hours if you're lucky           |
 
 ## Resources

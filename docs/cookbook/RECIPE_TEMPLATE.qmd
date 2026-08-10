@@ -1,0 +1,62 @@
+---
+title: "Recipe Title"
+description: "One-sentence description of what this recipe accomplishes."
+categories:
+  - Category 1
+  - Category 2
+---
+
+## Goal
+
+Briefly describe what this recipe accomplishes and when someone would use it.
+
+## Prerequisites
+
+List anything that must already be installed, configured, or available before beginning this recipe.
+
+- Prerequisite 1
+- Prerequisite 2
+
+If there are no special prerequisites, say so.
+
+## Procedure
+
+### 1. First step
+
+Explain what to do and, where appropriate, why.
+
+```bash
+command
+```
+
+### 2. Second step
+
+Continue with the steps required to complete the task.
+
+```python
+command
+```
+
+Add or remove steps as needed.
+
+## Verify
+
+Describe the expected result and explain how to confirm that the procedure worked.
+
+## Common problems
+
+### Example problem or error message
+
+Explain what the problem means and how to resolve it.
+
+Remove this section if there are no known common problems.
+
+## Related resources
+
+### Guide
+
+- [Relevant Guide page](../../guide/index.qmd)
+
+### Related recipes
+
+- [Related recipe](related-recipe.qmd)

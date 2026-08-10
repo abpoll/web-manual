@@ -27,7 +27,7 @@ Credit to James Doss-Gollin's [CEVE 421/521: Climate Risk Management Course at R
 These code blocks and recommendations can be helpful for routine tasks, but may require knowledge and set-up that they don't explicitly acknowledge. To use these recipes well, you should work through the recommended tutorials and resources above (or have commensurate knowledge). 
 
 ### Keep track of lab meetings
-[This](https://github.com/keller-lab/lab-meetings) is our lab meeting repo. 
+This (TO DO) is our lab meeting repo. 
 
 The person responsible for organizing and leading lab meetings will:
 
@@ -44,7 +44,7 @@ We should probably have subdirectories on the `main` branch for each term and av
 We only expect other lab members to view this repo.
 
 ### Contribute to the webpage
-[This](https://github.com/keller-lab/keller-lab.github.io) is our webpage repo. 
+This [TO DO] is our webpage repo. 
 
 :::{.callout-caution}
 ## We may want to migrate to Quarto!
@@ -62,12 +62,12 @@ Occassionally, other lab members may want to propose changes. You can always pos
   - `git add .`
   - `git commit -m add link to lab manual on web page resources`
   - `git push -u origin web-manual`
-  - On the web repo, open a PR with a detailed description and assign the task to Klaus and the person in charge of the webpage
+  - On the web repo, open a PR with a detailed description and assign the task to Adam and the person in charge of the webpage
 
 
 ### Contribute to this manual
 
-[This](https://github.com/keller-lab/web-manual) is the web manual repo. 
+[This](https://github.com/abpoll/web-manual) is the web manual repo. 
 
 We need to define the workflow for contributing to it before we add more instructions here. 
 
@@ -92,7 +92,7 @@ No matter how you initialize your project, please keep the following principles 
 * Keep reproducibility in mind (e.g., use relative filepaths, update your README as you go, keep your kapser & local machine repos up to date with each other and make sure you can run code on both machines, etc.,)
 * In general, separate functions from analysis.
   - Study the `UNSAFE` directory structure (esp. the `pyproject.toml`) and see how we use it in the `examples/` directory. See [here](https://github.com/abpoll/unsafe)
-  - Use software packages you develop for various functions as submodules in your analysis-focused projects. For example, see [here](https://github.com/abpoll/nsi_fit) - lab members can reach out to Adam for access if this repo is still private when they take a peek. 
+  - Use software packages you develop for various functions as submodules in your analysis-focused projects. For example, see [here](https://github.com/abpoll/nsi_fit). 
 
 Check out our [example repositories](../materials/reproduce-repos.qmd) to see neat code directory structures. Reproduce these examples to see how the data gets structured for ideas on how to structure your unique project well. 
 

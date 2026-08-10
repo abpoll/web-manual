@@ -1,0 +1,12 @@
+---
+title: "Lab Operations"
+listing:
+  contents:
+    - "*.qmd"
+    - "!index.qmd"
+  type: default
+  sort: "title"
+---
+
+These recipes document recurring workflows for maintaining shared Pollack
+Group resources and activities.

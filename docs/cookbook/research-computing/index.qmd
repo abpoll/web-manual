@@ -1,0 +1,11 @@
+---
+title: "Research Computing"
+listing:
+  contents:
+    - "*.qmd"
+    - "!index.qmd"
+  type: default
+  sort: "title"
+---
+
+These recipes document recurring workflows for research computing activities.

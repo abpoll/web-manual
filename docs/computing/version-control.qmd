@@ -1,0 +1,57 @@
+---
+title: "Version Control"
+---
+
+## Our approach
+
+We use [Git](https://git-scm.com/) for version control and [GitHub](https://github.com/) to host and collaborate on repositories.
+
+Version control is an important part of how we conduct reproducible and collaborative research. We use Git and GitHub to:
+
+- maintain version control for research projects;
+- collaborate on code, analyses, and documentation;
+- propose and review changes through pull requests;
+- document problems, ideas, and planned work through issues; and
+- maintain shared lab resources such as our lab manual, website, and meeting materials.
+
+Git should be used throughout a project. Commit changes regularly and use informative commit messages so that the history of a project documents how the work developed.
+
+## Working collaboratively
+
+For shared repositories, substantive changes should generally be developed on a branch rather than directly on `main`.
+
+A typical collaborative workflow is:
+
+1. Create a branch for the change.
+2. Develop and test the change on that branch.
+3. Commit changes with informative messages.
+4. Push the branch to GitHub.
+5. Open a pull request.
+6. Review and discuss the proposed changes.
+7. Merge the pull request after review.
+
+Issues can be used before implementation to discuss ideas, bugs, or proposed changes. This is particularly useful when the appropriate solution or scope is not yet clear.
+
+::: {.callout-tip title="Related recipes"}
+
+The Lab Cookbook contains procedures for contributing to shared Pollack Group resources:
+
+- [Contribute to the lab meeting repository](../cookbook/lab-operations/lab-meetings.qmd)
+- [Contribute to the lab manual](../cookbook/lab-operations/lab-manual.qmd)
+- [Contribute to the lab website](../cookbook/lab-operations/lab-website.qmd)
+
+:::
+
+## Learning Git and GitHub
+
+The recipes in this manual assume basic familiarity with Git and GitHub. They are not intended to replace a general Git tutorial.
+
+The following resources provide useful introductions and practice:
+
+- [Git Basics](https://www.theodinproject.com/lessons/foundations-git-basics) from The Odin Project
+- [Learn Git Branching](https://learngitbranching.js.org/), an interactive visual introduction to Git
+- [Version Control](https://missing.csail.mit.edu/2020/version-control/) from MIT's *The Missing Semester of Your CS Education*
+- [Git and GitHub for Poets](https://www.youtube.com/playlist?list=PLRqwX-V7Uu6ZF9C0YMKuns9sLDzK6zoiV), a video introduction to Git and GitHub
+- [Version Control with Git](https://swcarpentry.github.io/git-novice/) from Software Carpentry
+
+This list was adapted from resources curated by James Doss-Gollin for CEVE 421/521: Climate Risk Management at Rice University.

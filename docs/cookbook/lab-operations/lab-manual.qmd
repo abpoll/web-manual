@@ -1,0 +1,116 @@
+---
+title: "Contribute to the Lab Manual"
+description: "Propose, develop, preview, and submit changes to the Pollack Group Lab Manual."
+categories:
+  - Lab Operations
+  - Collaboration
+---
+
+## Goal
+
+Contribute corrections, new documentation, or new recipes to the Pollack Group Lab Manual.
+
+Minor edits can be proposed directly through GitHub. Larger changes should be developed locally so that the manual can be previewed before submitting a pull request.
+
+## Prerequisites
+
+For local development:
+
+- Git
+- Quarto
+- Pixi
+- access to the [Pollack Group Lab Manual repository](https://github.com/abpoll/web-manual)
+
+
+## Procedure
+
+### 1. Discuss substantial additions when appropriate
+
+For a substantial new Guide page or Cookbook recipe, consider opening a GitHub issue before beginning implementation.
+
+For new recipes in particular, the issue can be used to discuss:
+
+- the scope of the recipe;
+- whether an existing recipe already addresses the task;
+- where the recipe belongs in the Cookbook;
+- appropriate categories and metadata; and
+- related Guide pages and recipes.
+
+Small corrections do not require an issue.
+
+### 2. Create a branch
+
+From an up-to-date local copy of the repository:
+
+```bash
+git switch -c descriptive-branch-name
+```
+
+Use a concise name that describes the proposed change.
+
+### 3. Install the manual environment
+
+```bash
+pixi install
+```
+
+The Pixi environment provides Python and other dependencies used by executable content in the manual. Quarto itself is installed separately.
+
+### 4. Make your changes
+
+Guide pages explain concepts, practices, and the reasoning behind lab workflows.
+
+Cookbook recipes document recurring, multi-step lab procedures. New recipes should follow [`RECIPE_TEMPLATE.qmd`](../RECIPE_TEMPLATE.qmd).
+
+### 5. Preview the manual
+
+```bash
+quarto preview
+```
+
+Check the pages you modified as well as navigation, links, executable content, and formatting affected by your changes.
+
+### 6. Commit and push
+
+```bash
+git add .
+git commit -m "Describe your changes"
+git push -u origin descriptive-branch-name
+```
+
+### 7. Open a pull request
+
+Open a pull request on GitHub describing:
+
+- what you changed;
+- why the change is useful;
+- anything reviewers should test or consider.
+
+Address review comments on the same branch. The pull request will update automatically as additional commits are pushed.
+
+## Verify
+
+Before requesting merge, confirm that:
+
+- `quarto preview` runs successfully;
+- changed pages render correctly;
+- internal and external links work;
+- new recipes contain appropriate metadata; and
+- files unrelated to the contribution have not accidentally been included.
+
+## Common problems
+
+### The manual does not render
+
+Review the Quarto output.
+
+### Python packages are missing
+
+The manual's Python dependencies are managed with Pixi. Do not install a required project dependency manually into the environment. Add it through Pixi so that the environment definition and lock file remain reproducible.
+
+## Related resources
+
+### Related recipes
+
+- [Contribute to Lab Meetings](lab-meetings.qmd)
+- [Contribute to the Lab Website](lab-website.qmd)

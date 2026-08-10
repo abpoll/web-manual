@@ -1,10 +1,12 @@
-- title: Data Analysis
+- title: Research Computing
   subtitle: Think, Code, Visualize
   links:
-    - text: Our Approach
-      href: ../analysis/our-approach.qmd
-    - text: Common GitHub Use Cases
-      href: ../analysis/lab-github.qmd
+    - text: Our Computing Approach
+      href: ../computing/computing-approach.qmd
+    - text: Project Organization
+      href: ../computing/project-organization.qmd
+    - text: Version Control
+      href: ../computing/version-control.qmd
     
 - title: Science Communication
   subtitle: Empathize, Translate, Refine
