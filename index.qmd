@@ -13,11 +13,12 @@ This manual is always under construction. If you would like to fix any mistakes,
 
 The purpose of this manual is to help new members and collaborators build a shared base of foundational knowledge for the kind of work we do in the [Pollack Lab Group](https://abpoll.github.io/). This is a collaborative, living document build with [Quarto](https://quarto.org/) and hosted with [GitHub Pages](https://pages.github.com/).  
 
-This manual details lab procedures, policies, and expectations for research group members (and may be helpful for collaborators to consult). The manual contains three sections:
+This manual details lab procedures, policies, and expectations for research group members (and may be helpful for collaborators to consult). The manual contains four sections:
 
-1. [Lab Values](docs/lab-values/index.qmd) outlines the expectations we have for each other and ourselves to ensure a functional, healthy, and productive lab group; it is not a marketplace for Labrador Retrievers. 
+1. [Lab Values](docs/lab-values/index.qmd) outlines the expectations we have for each other and ourselves to ensure a functional, healthy, and productive lab group. 
 2. [Onboarding](docs/onboarding/index.qmd) is your first stop as a new lab member (and may be helpful for others) to get your working environment and workflows set up. 
 3. [Guide](docs/guide/index.qmd) is the home of our (always growing!) lab resources, how-tos, and tips for building a strong knowedge foundation for the kind of work we do in the group. 
+4. [Cookbook](docs/cookbook/index.qmd) is a collection of recipes for recurring lab procedures, including tasks from how to contribute to this manual to research methods. 
 
 
 ## Credit

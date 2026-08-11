@@ -1,0 +1,284 @@
+---
+title: "Download and Transfer Data to LSS"
+description: "Move research data from a local computer or external data service into the Pollack Group LSS."
+categories:
+  - Data Management
+  - LSS
+  - File Transfer
+  - Argon
+  - IDAS
+  - DesignSafe
+  - Zenodo
+---
+
+## Goal
+
+Transfer research data into the Pollack Group LSS so that it can be accessed
+from both Argon and IDAS.
+
+There are two broad cases:
+
+1. a file already exists on your local computer; or
+2. the data must first be downloaded from an external repository.
+
+The destination is the project's LSS data directory.
+
+## Prerequisites
+
+- Access to the Pollack Group LSS.
+- Argon access for transfers initiated from a local computer.
+- The destination directory should already exist or be created as part of
+  the workflow.
+
+See [Research Project Organization](../../computing/project-organization.qmd)
+for recommended separation of code and data.
+
+## Understand the paths
+
+The same LSS is exposed differently on Argon and IDAS.
+
+On Argon:
+
+```text
+/Shared/lss-apollack
+```
+
+On IDAS:
+
+```text
+~/LSS/lss-apollack
+```
+
+The project-specific path below the LSS root is the same.
+
+For example:
+
+```text
+projects/risk_prob/data/raw/
+```
+
+Do not copy machine-specific paths into project code. See
+[Configure Portable Project Data Paths](portable-project-paths.qmd).
+
+## Local computer → LSS
+
+When transferring a local file from your laptop, use Argon as the SSH
+endpoint.
+
+For example:
+
+```bash
+scp myfile.zip \
+  <your-hawk-id>@argon.hpc.uiowa.edu:/Shared/lss-apollack/projects/my_project/data/raw/
+```
+
+For a directory:
+
+```bash
+scp -r my_directory \
+  <your-hawk-id>@argon.hpc.uiowa.edu:/Shared/lss-apollack/projects/my_project/data/raw/
+```
+
+The destination directory must already exist. `scp` will not create a chain
+of missing parent directories.
+
+After the transfer, verify the file on Argon:
+
+```bash
+ls -lh /Shared/lss-apollack/projects/my_project/data/raw/
+```
+
+Because the data are on LSS, they should then also be visible from IDAS.
+
+## Working with LSS from IDAS
+
+When working on IDAS, you generally do not need to transfer files with
+`scp` if the data are already on LSS.
+
+Navigate directly to the appropriate LSS directory:
+
+```bash
+cd ~/LSS/lss-apollack/projects/my_project/data/raw
+```
+
+Work with the files from there.
+
+This is different from uploading a file from your laptop, where Argon is the
+SSH endpoint.
+
+## Download data from an external repository
+
+For large public datasets, download the data to LSS rather than first
+storing a large copy on a laptop.
+
+The general pattern is:
+
+```text
+external repository
+        ↓
+      Argon
+        ↓
+       LSS
+        ↓
+   IDAS / Argon Computing
+```
+
+There are many external repositories, each with potentially different authentication and download methods.
+Below, we describe common use-cases. **Please add instructions for other repositories as needed.**
+
+### DesignSafe
+
+DesignSafe provides project-specific paths for command-line data transfer.
+When a dataset is too large for a direct browser download, use the path
+provided by DesignSafe's large-data-transfer instructions.
+
+For example, a published project may be accessible through a path similar to:
+
+```text
+/corral/projects/NHERI/published/published-data/PRJ-####
+```
+
+Use the current DesignSafe documentation for authentication and the exact
+dataset path.
+
+Download directly to the intended LSS directory.
+
+Consider this example from one project:
+
+```bash
+scp   abpoll@data.tacc.utexas.edu:/corral/projects/NHERI/published/published-data/PRJ-6141/Project--historic-and-future-probabilistic-tropical-cyclone-flood-hazards-for-the-carolinas--V2/data/elevation_subgrid/dep_subgrid_5m.tif   .
+```
+
+
+### Zenodo
+
+Zenodo records expose files through the Zenodo API and direct file URLs.
+
+
+For a scripted workflow, use the Zenodo API to discover the file URL and
+write directly to the LSS destination.
+
+Consider the following example:
+
+```python
+import os
+import json
+import requests
+
+RECORD_ID = "21382870"
+OUTDIR = "../data/"
+
+record = requests.get(
+    f"https://zenodo.org/api/records/{RECORD_ID}"
+).json()
+
+print(json.dumps(record["files"], indent=2))
+
+os.makedirs(OUTDIR, exist_ok=True)
+
+for f in record["files"]:
+    filename = f["key"]
+    url = f["links"]["self"]
+
+    print(f"Downloading {filename}")
+
+    r = requests.get(url, stream=True)
+    r.raise_for_status()
+
+    with open(os.path.join(OUTDIR, filename), "wb") as out:
+        for chunk in r.iter_content(1024 * 1024):
+            out.write(chunk)
+
+print("Done.")
+```
+
+## Large downloads and interrupted transfers
+
+Large public-data downloads can fail because of temporary network or server
+errors.
+
+With `wget`:
+
+```bash
+wget --continue ...
+```
+
+A completed file does not need to be downloaded again, while an interrupted
+download can resume from the existing partial file.
+
+For long-running downloads, consider submitting the download as an Argon
+batch job rather than leaving it running interactively.
+
+See [Submit and Monitor an Argon Job](../research-computing/submit-monitor-argon-job.qmd).
+
+
+## Verify
+
+After transferring or downloading data:
+
+```bash
+ls -lh /Shared/lss-apollack/projects/my_project/data/raw/
+```
+
+Check the file size and, when appropriate, compare checksums supplied by the
+data provider.
+
+For data downloaded from an external repository, record the source,
+repository/record identifier, and relevant version or DOI in the project's
+documentation or metadata.
+
+## Common problems
+
+### `scp` reports "No such file or directory"
+
+The destination directory does not exist.
+
+Create the directory on LSS first, then repeat the transfer:
+
+```bash
+mkdir -p /Shared/lss-apollack/projects/my_project/data/raw
+```
+
+### `scp` cannot connect to Argon
+
+Check that you have network access and that the Argon SSH service is
+reachable from your current location. Off-campus requires that
+you are connected with the appropriate VPN.
+
+### You cannot use `scp` with an `smb://` address
+
+An SMB URL and an SSH endpoint are different protocols. `scp` requires an SSH
+destination.
+
+For local-to-LSS transfers, use the Argon SSH endpoint and write to the
+`/Shared/lss-apollack/...` path.
+
+### A large download fails partway through
+
+Use a resumable download method such as:
+
+```bash
+wget --continue ...
+```
+
+rather than restarting the complete transfer.
+
+### Record request is unsuccessful
+
+If the Zenodo record request fails, check that the record ID is correct.
+
+The Zenodo API may also have changed. Check the documentation for the current API and adjust
+the code and this recipe accordingly. 
+
+## Related resources
+
+### Guide
+
+- [Research Project Organization](../../computing/project-organization.qmd)
+- [Our Computing Approach](../../computing/computing-approach.qmd)
+
+### Related recipes
+
+- [Extract Selected Files from a Remote ZIP](extract-files-remote-zip.qmd)
+- [Configure Portable Project Data Paths](portable-project-paths.qmd)
+- [Submit and Monitor an Argon Job](../research-computing/argon-jobs.qmd)

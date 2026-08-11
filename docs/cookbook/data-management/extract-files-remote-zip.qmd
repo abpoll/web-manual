@@ -1,0 +1,129 @@
+---
+title: "Extract Selected Files from a Remote ZIP Archive"
+description: "Retrieve only selected files from a remote ZIP archive without downloading the entire archive."
+categories:
+  - Data Management
+  - Data Downloads
+  - Zenodo
+  - Python
+  - Remote Archives
+  - LSS
+---
+
+## Goal
+
+Extract only the files needed from a large remote ZIP archive without first
+downloading the entire archive.
+
+This is useful when a public dataset contains many files but only a small
+subset is needed for the analysis.
+
+For example, a shapefile is made up of several related files:
+
+```text
+domain_mask.shp
+domain_mask.shx
+domain_mask.dbf
+domain_mask.prj
+domain_mask.cpg
+```
+
+All of those files may need to be extracted together, yet they may exist in 
+a repository with many other unneeded files.
+
+## Prerequisites
+
+- A Python environment with `requests` and `remotezip`.
+- A remote ZIP archive accessible through a URL.
+- A destination directory on LSS or another appropriate storage location.
+
+## Procedure
+
+For Zenodo, use the record API to discover the file URL.
+
+For example:
+
+```python
+import shutil
+from pathlib import Path
+from remotezip import RemoteZip
+from risk_prob.paths import RAW
+
+outdir = RAW / "external" / "haz" / "jackson" / "domain"
+
+RECORD_ID = "20158595"
+ZIP_URL = f"https://zenodo.org/api/records/{RECORD_ID}"
+
+import requests
+
+record = requests.get(ZIP_URL).json()
+
+# Find the zip file in the record
+zip_url = record["files"][0]["links"]["self"]
+
+outdir.mkdir(parents=True, exist_ok=True)
+
+wanted_suffixes = {
+    "domain_mask.shp",
+    "domain_mask.shx",
+    "domain_mask.dbf",
+    "domain_mask.prj",
+    "domain_mask.cpg",
+}
+
+with RemoteZip(zip_url) as z:
+    for name in z.namelist():
+        if Path(name).name in wanted_suffixes:
+            print(f"Extracting {name}")
+            with z.open(name) as src:
+                with open(outdir / Path(name).name, "wb") as dst:
+                    shutil.copyfileobj(src, dst)
+```
+
+The exact method for selecting the ZIP file should be adjusted as needed.
+
+
+## Verify the extracted files
+
+```python
+for filename in sorted(wanted_files):
+    path = outdir / filename
+    print(path, path.exists(), path.stat().st_size if path.exists() else None)
+```
+
+For the shapefile example, confirm that all required components are present.
+
+You can also inspect the directory from the shell:
+
+```bash
+ls -lh /path/to/project/data/raw/external/haz/jackson/domain/
+```
+
+## Common problems
+
+### A shapefile does not work after extraction
+
+A `.shp` file is not sufficient by itself. Make sure the related sidecar
+files required by the dataset are also present, especially `.shx`, `.dbf`,
+and `.prj`.
+
+### The remote archive is very large
+
+`RemoteZip` is useful when only selected files are required, but retrieving
+many files from a remote archive can still be slow.
+
+If a substantial fraction of the archive is needed, downloading the complete
+archive may be more efficient.
+
+See [Download and Transfer Data to LSS](lss-transfer.qmd).
+
+## Related resources
+
+### Guide
+
+- [Research Project Organization](../../computing/project-organization.qmd)
+
+### Related recipes
+
+- [Download and Transfer Data to LSS](lss-transfer.qmd)
+- [Configure Portable Project Data Paths](portable-project-paths.qmd)

@@ -1,0 +1,246 @@
+---
+title: "Submit and Monitor an Argon Job"
+description: "Submit a research workflow to Argon, run it with the project's Pixi environment, and monitor the job."
+categories:
+  - Research Computing
+  - Argon
+  - HPC
+  - SGE
+  - Pixi
+---
+
+## Goal
+
+Run a computational workflow on Argon.
+
+The typical workflow is:
+
+```text
+research project
+      ↓
+job script
+      ↓
+qsub
+      ↓
+compute node
+      ↓
+pixi run
+      ↓
+Python script / workflow
+      ↓
+log file
+```
+
+This recipe shows a basic job script and the commands used to submit, monitor,
+and inspect a job.
+
+## Prerequisites
+
+- Access to Argon.
+- A research project with a working Pixi environment.
+- A Python script or other workflow that should run on a compute node.
+- A `jobs/` directory in the project is recommended.
+
+See [Research Project Organization](../../computing/project-organization.qmd)
+and [Initialize a Python Research Project with Pixi](initialize-python-project.qmd)
+for project setup.
+
+## Procedure
+
+### 1. Create a job script
+
+Create a file such as:
+
+```text
+jobs/run_workflow.sh
+```
+
+A basic example is:
+
+```bash
+#!/bin/bash
+
+#$ -N my_project
+#$ -q UI
+#$ -cwd
+#$ -pe smp 1
+#$ -l h_rt=24:00:00
+#$ -j y
+#$ -o logs/my_project.log
+
+set -euo pipefail
+
+echo "========================================"
+echo "Job started: $(date)"
+echo "Host: $(hostname)"
+echo "Working directory: $PWD"
+echo "========================================"
+
+pixi run python scripts/my_workflow.py
+
+echo "========================================"
+echo "Job finished: $(date)"
+echo "========================================"
+```
+
+The `#$` lines are SGE scheduler directives.
+
+The important pieces are:
+
+- `-N` gives the job a name.
+- `-q UI` submits to the UI queue.
+- `-cwd` starts the job in the project directory from which it was submitted.
+- `-pe smp 1` requests one processing slot.
+- `-l h_rt=24:00:00` requests up to 24 hours of wall time.
+- `-j y` combines standard output and standard error.
+- `-o` specifies the log file.
+
+The `set -e` line ensures that the script exits on errors. `-u` treats any reference to an undefined variable as an error and `-o pipefail` ensures that the script exits if any command in a pipeline fails. Without this argument, a pipe will return the exist status of the last command in the pipe, which may not be the one that failed. 
+
+**Adjust the requested resources to the workflow rather than copying these
+values blindly.**
+
+### 2. Create a log directory
+
+From the project root:
+
+```bash
+mkdir -p logs
+```
+
+### 3. Submit the job
+
+Submit from the project root:
+
+```bash
+qsub jobs/run_workflow.sh
+```
+
+Record the job ID returned by `qsub`.
+
+### 4. Monitor the job
+
+Check your jobs with:
+
+```bash
+qstat -u $USER
+```
+
+or 
+
+```bash
+qstat -j JOB_ID
+```
+
+A queued job and a running job will appear in the scheduler output.
+
+### 5. Watch the log
+
+The job script writes output to:
+
+```text
+logs/my_project.log
+```
+
+While the job is running:
+
+```bash
+tail -f logs/my_project.log
+```
+
+The log should show the compute host, working directory, and output from the
+Python workflow.
+
+### 6. Inspect a completed or failed job
+
+If the job has finished, inspect the log:
+
+```bash
+cat logs/my_project.log
+```
+
+You can also open the log in a text editor or use `less` to scroll through it. 
+
+If more scheduler information is needed, use the job ID returned by `qsub`
+with the scheduler's accounting tools.
+
+### 7. Cancel a job
+
+If a queued or running job needs to be stopped, use the scheduler's job
+deletion command with the job ID.
+
+For example:
+
+```bash
+qdel JOB_ID
+```
+
+## Verify
+
+A successful run should produce:
+
+- a completed job in the scheduler;
+- a log file containing the workflow output; and
+- the expected project outputs.
+
+The log should also show that the workflow ran on a compute node rather than
+on the login node.
+
+## Common problems
+
+### The job is submitted but does not start
+
+The job may be waiting for requested resources or for an available slot in
+the selected queue.
+
+Check:
+
+```bash
+qstat -u $USER
+```
+
+and review the scheduler status.
+
+### The job cannot find the Python script
+
+Make sure the job was submitted from the project root and that:
+
+```bash
+pwd
+```
+
+would correspond to the directory containing `scripts/`, `jobs/`, and
+`pixi.toml`.
+
+The `-cwd` directive is important for this workflow.
+
+### `pixi` cannot be found
+
+Check that Pixi is available in the batch environment. The job should use the
+same project environment through:
+
+```bash
+pixi run ...
+```
+
+### The job runs out of time
+
+Increase the requested wall time:
+
+```bash
+#$ -l h_rt=48:00:00
+```
+
+only after considering whether the workflow should instead be broken into
+smaller jobs.
+
+## Related resources
+
+### Guide
+
+- [Our Computing Approach](../../computing/computing-approach.qmd)
+- [Research Project Organization](../../computing/project-organization.qmd)
+
+### Related recipes
+
+- [Initialize a Python Research Project with Pixi](initialize-python-project.qmd)
