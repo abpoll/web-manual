@@ -62,11 +62,6 @@ website:
           href: docs/guide/index.qmd
           contents:
 
-            - section: "Data Analysis"
-              contents:
-                - text: "Our Approach"
-                  href: docs/analysis/our-approach.qmd
-
             - section: "Research Computing"
               href: docs/computing/index.qmd
               contents:

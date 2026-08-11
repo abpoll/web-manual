@@ -1,0 +1,265 @@
+---
+title: "Publish a Quarto Site with GitHub Pages"
+description: "Configure a shared Quarto repository to automatically render and publish through GitHub Pages."
+categories:
+  - Lab Operations
+  - Quarto
+  - GitHub
+  - GitHub Pages
+  - GitHub Actions
+---
+
+## Goal
+
+Configure a Quarto website so that changes merged into the repository's
+`main` branch are automatically published with GitHub Pages.
+
+We use this workflow for shared Pollack Group Quarto resources such as the
+lab manual and lab website. You may find this recipe helpful for 
+other Quarto projects.
+
+This is primarily a **one-time repository setup**. Once publishing is
+configured, normal contributors should propose changes through pull requests.
+Merging an accepted change into `main` triggers publication automatically.
+
+## Prerequisites
+
+Before configuring publication, you should have:
+
+- a Quarto website that renders successfully;
+- a GitHub repository for the project; and
+- permission to configure the repository and GitHub Actions
+
+If the site contains executable content, make sure any required computational
+environment is also configured before proceeding.
+
+## Procedure
+
+### 1. Confirm that the site renders locally
+
+From the repository root:
+
+```bash
+quarto render
+```
+
+Resolve any errors before configuring automated publication.
+
+You can inspect the rendered site locally with:
+
+```bash
+quarto preview
+```
+
+### 2. Ignore the rendered website
+
+The rendered `_site/` directory should not normally be committed to the
+source branch.
+
+Make sure it is in the `.gitignore`:
+
+```text
+/_site/
+```
+
+GitHub Pages will publish rendered output separately from the source files.
+
+### 3. Configure executable content
+
+For sites containing executable `.qmd` files, we generally use Quarto's
+freeze functionality:
+
+```yaml
+execute:
+  freeze: auto
+```
+
+in `_quarto.yml`.
+
+This allows computational results to be generated and verified locally and
+stored under `_freeze/` rather than requiring the publishing workflow to
+reproduce every computational environment used by the site.
+
+Unlike `_site/`, `_freeze/` should therefore generally be version
+controlled when this workflow is used.
+
+### 4. Perform the initial GitHub Pages publication
+
+From the repository root:
+
+```bash
+quarto publish gh-pages
+```
+
+Follow Quarto's prompts to configure the initial GitHub Pages publication.
+
+This establishes the `gh-pages` branch used to hold the rendered website.
+
+### 5. Add the GitHub Actions workflow
+
+Create:
+
+```text
+.github/
+└── workflows/
+    └── publish.yml
+```
+
+Configure the workflow to run when changes reach `main` and also allow
+manual execution:
+
+```yaml
+on:
+  workflow_dispatch:
+  push:
+    branches: main
+```
+
+Use Quarto's current recommended GitHub Pages workflow for the remainder of
+`publish.yml`.
+
+::: {.callout-note}
+GitHub Actions and Quarto evolve over time. Rather than copying an old
+workflow indefinitely, compare the workflow against the current
+[Quarto GitHub Pages documentation](https://quarto.org/docs/publishing/github-pages.html)
+when setting up a new repository.
+:::
+
+### 6. Configure GitHub Actions permissions
+
+On GitHub, open the repository settings and configure the permissions needed
+for the publishing workflow to update the GitHub Pages branch.
+
+Follow the current Quarto/GitHub Pages documentation when selecting these
+settings.
+
+### 7. Commit the publishing configuration
+
+Create a branch for the configuration change if you are working in an
+existing shared repository.
+
+Commit at least:
+
+```text
+.github/workflows/publish.yml
+_quarto.yml
+.gitignore
+```
+
+along with any other files changed during setup.
+
+Push the branch and merge the configuration through a pull request when
+appropriate.
+
+### 8. Test automatic publication
+
+After the publishing configuration reaches `main`, open the repository on
+GitHub and inspect the **Actions** tab.
+
+Confirm that the publishing workflow completes successfully.
+
+Then open the published GitHub Pages site and confirm that the new version is
+visible.
+
+## Normal workflow after setup
+
+Once automatic publication is configured, contributors should **not normally
+run `quarto publish` themselves**.
+
+The routine workflow is:
+
+```text
+create branch
+     ↓
+make changes
+     ↓
+quarto preview
+     ↓
+quarto render
+     ↓
+commit + push
+     ↓
+pull request
+     ↓
+review + merge
+     ↓
+main
+     ↓
+GitHub Action
+     ↓
+GitHub Pages
+```
+
+This separates contribution from deployment and ensures that the published
+site corresponds to reviewed content on `main`.
+
+## Verify
+
+A correctly configured repository should satisfy all of the following:
+
+- `quarto render` succeeds locally;
+- `_site/` is not tracked on the source branch;
+- required `_freeze/` results are tracked when executable content uses
+  `freeze`;
+- pushing or merging to `main` triggers the publishing Action;
+- the Action completes successfully; and
+- the GitHub Pages URL displays the newly rendered site.
+
+## Common problems
+
+### The GitHub Action does not run
+
+Check that the workflow exists under:
+
+```text
+.github/workflows/
+```
+
+and that its trigger includes pushes to `main`.
+
+Also confirm that the repository's default branch is actually named `main`.
+
+### The Action runs but cannot publish
+
+Check the repository's GitHub Actions permissions and GitHub Pages
+configuration.
+
+### The published site is missing recent computational output
+
+If the project uses:
+
+```yaml
+execute:
+  freeze: auto
+```
+
+make sure the relevant document was rendered locally and that changes under
+`_freeze/` were committed.
+
+### The site works with `quarto preview` but the full render fails
+
+Run:
+
+```bash
+quarto render
+```
+
+and resolve the first reported error. Previewing is useful during development,
+but a successful preview is not a substitute for a successful full-project
+render before publication.
+
+## Related resources
+
+### Guide
+
+- [Version Control](../../computing/version-control.qmd)
+
+### Related recipes
+
+- [Contribute to the Lab Manual](lab-manual.qmd)
+- [Contribute to Lab Meetings](lab-meetings.qmd)
+- [Contribute to the Lab Website](lab-website.qmd)
+
+### External documentation
+
+- [Publishing Quarto websites with GitHub Pages](https://quarto.org/docs/publishing/github-pages.html)

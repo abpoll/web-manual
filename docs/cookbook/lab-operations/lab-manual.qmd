@@ -62,31 +62,115 @@ Guide pages explain concepts, practices, and the reasoning behind lab workflows.
 
 Cookbook recipes document recurring, multi-step lab procedures. New recipes should follow [`RECIPE_TEMPLATE.qmd`](../RECIPE_TEMPLATE.qmd).
 
-### 5. Preview the manual
+### 5. Preview while you work
+
+From the root of the repository:
 
 ```bash
 quarto preview
 ```
 
-Check the pages you modified as well as navigation, links, executable content, and formatting affected by your changes.
+Quarto will open a local version of the manual and automatically update it
+as source files change.
 
-### 6. Commit and push
+Use the preview to inspect:
+
+- page content and formatting;
+- navigation;
+- internal and external links;
+- callouts;
+- code output; and
+- changes to `_quarto.yml` or site styling.
+
+Stop the preview server with `Ctrl+C`.
+
+### 6. Fully render the manual
+
+Before committing the finished contribution, render the entire website:
 
 ```bash
-git add .
+quarto render
+```
+
+A successful preview does not replace this step. A full render checks the
+complete Quarto project and updates any executable content that needs to be
+recomputed.
+
+Do not proceed until the full render completes without errors.
+
+#### Executable content
+
+The manual uses Quarto's `freeze` functionality for executable content.
+
+If you modify a `.qmd` file containing executable Python code, render it
+locally using the appropriate environment before submitting the pull
+request:
+
+```bash
+quarto render
+```
+
+Updated computational results under `_freeze/` should be included in the
+commit when Quarto generates them.
+
+This allows the published manual to use locally verified computational
+results without requiring the publishing workflow to reproduce every
+research environment used by the documentation.
+
+### 7. Review your changes
+
+Check:
+
+```bash
+git status
+```
+
+and, when useful:
+
+```bash
+git diff
+```
+
+Make sure the contribution does not contain unrelated files, generated
+content that should be ignored, credentials, or other unintended changes.
+
+### 8. Commit and push
+
+Stage the intended changes:
+
+```bash
+git add <files>
+```
+
+Commit them:
+
+```bash
 git commit -m "Describe your changes"
+```
+
+Then push your branch:
+
+```bash
 git push -u origin descriptive-branch-name
 ```
 
-### 7. Open a pull request
+### 9. Open a pull request
 
-Open a pull request on GitHub describing:
+Open a pull request into `main` on GitHub.
+
+Describe:
 
 - what you changed;
 - why the change is useful;
-- anything reviewers should test or consider.
+- any decisions that would benefit from discussion; and
+- anything reviewers should specifically test.
 
-Address review comments on the same branch. The pull request will update automatically as additional commits are pushed.
+Address review comments on the same branch. Additional commits pushed to
+that branch will automatically appear in the pull request.
+
+Once the pull request has been reviewed and merged into `main`, the lab
+manual's publishing workflow will automatically rebuild and deploy the
+website.
 
 ## Verify
 
@@ -112,5 +196,4 @@ The manual's Python dependencies are managed with Pixi. Do not install a require
 
 ### Related recipes
 
-- [Contribute to Lab Meetings](lab-meetings.qmd)
-- [Contribute to the Lab Website](lab-website.qmd)
+- [Configure a Quarto Site for GitHub Pages](publish-quarto-github-pages.qmd)
