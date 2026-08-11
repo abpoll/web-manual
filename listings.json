@@ -1,0 +1,27 @@
+[
+  {
+    "listing": "/docs/cookbook/research-computing/index.html",
+    "items": [
+      "/docs/cookbook/research-computing/initialize-python-project.html"
+    ]
+  },
+  {
+    "listing": "/docs/cookbook/data-management/index.html",
+    "items": [
+      "/docs/cookbook/data-management/portable-project-paths.html"
+    ]
+  },
+  {
+    "listing": "/docs/cookbook/lab-operations/index.html",
+    "items": [
+      "/docs/cookbook/lab-operations/lab-meetings.html",
+      "/docs/cookbook/lab-operations/lab-manual.html",
+      "/docs/cookbook/lab-operations/lab-website.html",
+      "/docs/cookbook/lab-operations/publish-quarto-github-pages.html"
+    ]
+  },
+  {
+    "listing": "/docs/guide/index.html",
+    "items": []
+  }
+]

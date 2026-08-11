@@ -1,0 +1,1069 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.40">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="description" content="How we organize computational research projects for transparency, reproducibility, and broad reusability.">
+
+<title>Research Project Organization – Pollack Group Lab Manual</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-0be10a02aa56032eb6fe331f79f59765.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-sidebar floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Welcome!</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../docs/lab-values/index.html"> 
+<span class="menu-text">Lab Values</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../docs/onboarding/index.html"> 
+<span class="menu-text">Onboarding</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="../../docs/guide/index.html" aria-current="page"> 
+<span class="menu-text">Guide</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../docs/cookbook/index.html"> 
+<span class="menu-text">Cookbook</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+    <div class="dropdown">
+      <a href="" title="" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" role="link" aria-label=""><i class="bi bi-github"></i></a>
+      <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
+          <li>
+            <a class="dropdown-item quarto-navbar-tools-item" href="https://github.com/abpoll/web-manual">
+            Source Code
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item quarto-navbar-tools-item" href="https://github.com/abpoll/web-manual/issues">
+            Report a Bug
+            </a>
+          </li>
+      </ul>
+    </div>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../docs/guide/index.html">Guide</a></li><li class="breadcrumb-item"><a href="../../docs/computing/index.html">Research Computing</a></li><li class="breadcrumb-item"><a href="../../docs/computing/project-organization.html">Research Project Organization</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../docs/guide/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Guide</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../docs/computing/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Research Computing</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../docs/computing/computing-approach.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Our Computing Approach</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../docs/computing/project-organization.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Research Project Organization</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../docs/computing/version-control.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Version Control</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+ <span class="menu-text">Science Communication</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../docs/sci-comm/our-goals.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Our Goals</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../docs/sci-comm/presentation-guidelines.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Presentations</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
+ <span class="menu-text">Learning Materials</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../docs/materials/reading-list.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Reading Lists</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../docs/materials/reproduce-repos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Repositories</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../docs/prof-dev.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Professional Development</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#where-your-project-lives" id="toc-where-your-project-lives" class="nav-link active" data-scroll-target="#where-your-project-lives">Where your project lives</a>
+  <ul class="collapse">
+  <li><a href="#code" id="toc-code" class="nav-link" data-scroll-target="#code">Code</a></li>
+  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a></li>
+  </ul></li>
+  <li><a href="#breakdown-of-recommended-project-structure" id="toc-breakdown-of-recommended-project-structure" class="nav-link" data-scroll-target="#breakdown-of-recommended-project-structure">Breakdown of recommended project structure</a>
+  <ul class="collapse">
+  <li><a href="#notebooks" id="toc-notebooks" class="nav-link" data-scroll-target="#notebooks"><code>notebooks/</code></a></li>
+  <li><a href="#scripts" id="toc-scripts" class="nav-link" data-scroll-target="#scripts"><code>scripts/</code></a></li>
+  <li><a href="#src" id="toc-src" class="nav-link" data-scroll-target="#src"><code>src/</code></a></li>
+  <li><a href="#jobs" id="toc-jobs" class="nav-link" data-scroll-target="#jobs"><code>jobs/</code></a></li>
+  <li><a href="#config" id="toc-config" class="nav-link" data-scroll-target="#config"><code>config/</code></a></li>
+  </ul></li>
+  <li><a href="#computational-environments" id="toc-computational-environments" class="nav-link" data-scroll-target="#computational-environments">Computational environments</a></li>
+  <li><a href="#working-across-idas-and-argon" id="toc-working-across-idas-and-argon" class="nav-link" data-scroll-target="#working-across-idas-and-argon">Working across IDAS and Argon</a>
+  <ul class="collapse">
+  <li><a href="#idas" id="toc-idas" class="nav-link" data-scroll-target="#idas">IDAS</a></li>
+  <li><a href="#argon" id="toc-argon" class="nav-link" data-scroll-target="#argon">Argon</a></li>
+  </ul></li>
+  <li><a href="#write-portable-paths" id="toc-write-portable-paths" class="nav-link" data-scroll-target="#write-portable-paths">Write portable paths</a></li>
+  <li><a href="#version-control-the-project-not-the-environment-or-data" id="toc-version-control-the-project-not-the-environment-or-data" class="nav-link" data-scroll-target="#version-control-the-project-not-the-environment-or-data">Version control the project, not the environment or data</a></li>
+  <li><a href="#document-as-you-go" id="toc-document-as-you-go" class="nav-link" data-scroll-target="#document-as-you-go">Document as you go</a></li>
+  <li><a href="#examples" id="toc-examples" class="nav-link" data-scroll-target="#examples">Examples</a></li>
+  <li><a href="#related-recipes" id="toc-related-recipes" class="nav-link" data-scroll-target="#related-recipes">Related recipes</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/abpoll/web-manual/edit/main/docs/computing/project-organization.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/abpoll/web-manual/issues" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../docs/guide/index.html">Guide</a></li><li class="breadcrumb-item"><a href="../../docs/computing/index.html">Research Computing</a></li><li class="breadcrumb-item"><a href="../../docs/computing/project-organization.html">Research Project Organization</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Research Project Organization</h1>
+</div>
+
+<div>
+  <div class="description">
+    How we organize computational research projects for transparency, reproducibility, and broad reusability.
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Computational research projects should be organized so that another researcher—<em>including your future self</em>—can understand, reproduce, modify, and extend the work. Good project organization also makes it easier to move between a laptop, interactive computing environments, and high-performance computing without restructuring the project each time.</p>
+<p>There is no single directory structure that is appropriate for every project. However, our projects should generally follow a few principles:</p>
+<ul>
+<li><strong>Use version control from the beginning.</strong></li>
+<li><strong>Separate code from research data.</strong></li>
+<li><strong>Define computational environments explicitly.</strong></li>
+<li><strong>Separate analysis workflows from reusable functions.</strong></li>
+<li><strong>Avoid unnecessary assumptions about the computer on which code is running.</strong></li>
+<li><strong>Document decisions, dependencies, and workflows as the project develops.</strong></li>
+</ul>
+<p>The recommendations below describe how we generally implement these principles on University of Iowa infrastructure.</p>
+<section id="where-your-project-lives" class="level2">
+<h2 class="anchored" data-anchor-id="where-your-project-lives">Where your project lives</h2>
+<p>A research project is not a directory on one computer.</p>
+<p>In our typical workflow:</p>
+<ul>
+<li><strong>GitHub</strong> provides the authoritative version-controlled repository for code and project configuration.</li>
+<li><strong>Argon home storage</strong> provides a working location for project code on University of Iowa research computing infrastructure.</li>
+<li><strong>IDAS</strong> provides an interactive environment for exploratory analysis, notebooks, visualization, and development.</li>
+<li><strong>Argon</strong> provides scheduled computing resources for larger or longer-running workflows.</li>
+<li><strong>LSS</strong> provides shared storage for research data and computational outputs.</li>
+</ul>
+<p>Our projects span these systems without requiring separate copies of the project design. IDAS hosts mounts of Argon and LSS, and Argon hosts a mount of LSS. This streamlines our workflow whether we are working interactively on IDAS or running a job on Argon.</p>
+<section id="code" class="level3">
+<h3 class="anchored" data-anchor-id="code">Code</h3>
+<p>Code, configuration files, documentation, and computational environment definitions generally belong in the project’s Git repository.</p>
+<p>A project repository might look like:</p>
+<pre class="text"><code>risk_prob/
+├── config/ # configuration files, such as a .yaml, for exogenous parameterizations
+├── jobs/ # scheduler jobs for Argon
+├── notebooks/ # Jupyter notebooks for IDAS
+├── scripts/ # analysis scripts
+├── src/ # directory for project-specific repeated functionality
+│   └── risk_prob/
+├── pyproject.toml 
+├── pixi.lock
+└── README.md # a very detailed README that explains the project, its structure, and how to reproduce the analysis</code></pre>
+<p>We will instantitate our project repositories on Argon home storage and access it from IDAS through the Argon home mount. We will test resproducibility on other systems, such as our local machines after making any adjustments to obtain minimal reproducible examples when projects are large and complex.</p>
+<p>GitHub provides the shared version-controlled representation of the project repository.</p>
+</section>
+<section id="data" class="level3">
+<h3 class="anchored" data-anchor-id="data">Data</h3>
+<p>Research data generally <strong>do not belong in Git</strong>.</p>
+<p>Large source datasets, intermediate data products, model outputs, and other research data should normally be stored on <strong>LSS</strong>. LSS can be accessed from both Argon and IDAS, allowing computational workflows and interactive analyses to operate on the same underlying data.</p>
+<p>A project might use a data structure such as:</p>
+<pre class="text"><code>project-name/
+└── data/
+    ├── raw/
+    ├── processed/
+    └── results/</code></pre>
+<p>The exact organization will vary by project. The important principle is that data organization should be deliberate and documented. In particular, raw source data should generally be preserved rather than modified in place. Transformations should produce new processed data or outputs so that the provenance of derived datasets remains understandable.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Related recipes">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Related recipes
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Accessing the <code>project-name/</code> data directory consistently from different computational systems can be achieved through a <code>paths.py</code> module in <code>src/project-name/</code> of your code repository. Recipes for this and other common tasks, such as transferring local data to LSS and downloading external datasets are available in the <a href="../../docs/cookbook/data-management/index.html">Data Management</a> section of the cookbook.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="breakdown-of-recommended-project-structure" class="level2">
+<h2 class="anchored" data-anchor-id="breakdown-of-recommended-project-structure">Breakdown of recommended project structure</h2>
+<p>A Python-based computational research project will often look like:</p>
+<pre class="text"><code>project-name/
+├── config/
+├── jobs/
+├── notebooks/
+├── scripts/
+├── src/
+│   └── project_name/
+│       └── __init__.py
+├── pyproject.toml
+├── pixi.lock
+├── README.md
+└── .gitignore</code></pre>
+<p>This is a starting place. I recommend that you adapt this structure fit your project’s needs, but take each addition and removal with care. A small project may not need every directory, while a large project may require additional organization.</p>
+<section id="notebooks" class="level3">
+<h3 class="anchored" data-anchor-id="notebooks"><code>notebooks/</code></h3>
+<p>Use notebooks for interactive analysis, exploration, visualization, and workflows. For some projects, you may find a single notebook is sufficient.</p>
+</section>
+<section id="scripts" class="level3">
+<h3 class="anchored" data-anchor-id="scripts"><code>scripts/</code></h3>
+<p>Use scripts for scaling up workflows. We often will run scripts on Argon. You may not need this directory for some projects.</p>
+</section>
+<section id="src" class="level3">
+<h3 class="anchored" data-anchor-id="src"><code>src/</code></h3>
+<p>Use <code>src/project_name/</code> for reusable <strong>project-specific Python code</strong>.</p>
+<p>For example:</p>
+<pre class="text"><code>src/
+└── risk_prob/
+    ├── __init__.py
+    ├── paths.py
+    └── processing.py</code></pre>
+<p>A notebook can then use that functionality:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> risk_prob.processing <span class="im">import</span> process_data</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>processed <span class="op">=</span> process_data(data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>rather than repeatedly defining <code>process_data()</code> inside notebooks or copying the function between analyses.</p>
+<p>This separation makes functions easier to test, reuse, document, and modify. It is especially helpful if functions are used repeatedly.</p>
+<p>While we recommend project-specific reusable code be placed in <code>src/project_name/</code>, you may eventually find that some functionality is useful across multiple projects. In such cases, it may be appropriate to create a standalone package. A standalone package should have its own repository, version history, tests, documentation, and environment or dependency specification. For example, <a href="https://github.com/abpoll/unsafe">UNSAFE</a> is maintained separately because its flood-risk functionality is intended to support multiple research projects rather than one particular analysis.</p>
+<p><strong>The guiding organizational principle is that your project should balance transparency and comprensability.</strong></p>
+</section>
+<section id="jobs" class="level3">
+<h3 class="anchored" data-anchor-id="jobs"><code>jobs/</code></h3>
+<p>Projects that run work on Argon may use <code>jobs/</code> to place scripts submitted to the scheduler.</p>
+</section>
+<section id="config" class="level3">
+<h3 class="anchored" data-anchor-id="config"><code>config/</code></h3>
+<p>Configuration files can store parameters that should not be hard-coded throughout scripts and notebooks.</p>
+<p>Whether a particular setting belongs in configuration, source code, or an analysis depends on the project, but parameters that may change across experiments or computing environments are often good candidates for explicit configuration.</p>
+</section>
+</section>
+<section id="computational-environments" class="level2">
+<h2 class="anchored" data-anchor-id="computational-environments">Computational environments</h2>
+<p>A reproducible project must describe not only its code but also the software required to run that code.</p>
+<p>We use <a href="https://pixi.prefix.dev/latest/"><strong>Pixi</strong></a> to manage computational environments for Python-based research projects.</p>
+<p>The important distinction is between the definition of an environment and the installed environment itself.</p>
+<p>Files such as:</p>
+<pre class="text"><code>pyproject.toml
+pixi.lock</code></pre>
+<p>describe the project and its resolved dependencies and should generally be version controlled.</p>
+<p>The actual installed environment:</p>
+<pre class="text"><code>.pixi/</code></pre>
+<p>contains machine-specific installed software and should not be committed to Git.</p>
+<p>This means another researcher can clone the repository and recreate the required software environment compatible with their operating system and machine.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Related recipe">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Related recipe
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>See the Cookbook for the <a href="../../docs/cookbook/research-computing/initialize-python-project.html">recipe</a> to initialize a Python research project and environment with Pixi.</p>
+</div>
+</div>
+<p>When Pixi is used to initialize a Python project with <code>pixi init --format pyproject</code>, the project is initially configured as an installable Python package using the standard <code>src/</code> layout.</p>
+<p>This allows project-specific code to be imported normally from notebooks and scripts:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> project_name.module <span class="im">import</span> function</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>rather than manipulating <code>PYTHONPATH</code>, modifying <code>sys.path</code>, or copying functions between files.</p>
+</section>
+<section id="working-across-idas-and-argon" class="level2">
+<h2 class="anchored" data-anchor-id="working-across-idas-and-argon">Working across IDAS and Argon</h2>
+<p>Working across IDAS and Argon requires some care, but Pixi makes this manageable!</p>
+<p>The same version-controlled project should be usable from both systems, while each system maintains the software environment appropriate to that machine.</p>
+<p>Because these systems run on different operatins systems, and Argon’s OS is quite old, our current workflow is:</p>
+<ol type="1">
+<li>Set up your project and environment on Argon first, using Pixi to manage the environment.</li>
+<li>Develop and inspect analyses interactively using IDAS.</li>
+<li>Store project data on LSS.</li>
+<li>Submit larger workflows to Argon when necessary.</li>
+<li>Write outputs back to LSS.</li>
+<li>Inspect, analyze, or visualize those outputs from IDAS.</li>
+</ol>
+<div class="callout callout-style-default callout-tip callout-titled" title="Related recipes">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Related recipes
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>See the Research Computing sections of the Cookbook for procedures related to:</p>
+<ul>
+<li>configuring a Pixi project for Argon and IDAS;</li>
+<li>maintaining a Pixi environment across systems as you add dependencies;</li>
+<li>running a Pixi-managed project as an Argon batch job.</li>
+</ul>
+</div>
+</div>
+<section id="idas" class="level3">
+<h3 class="anchored" data-anchor-id="idas">IDAS</h3>
+<p>IDAS is well-suited for:</p>
+<ul>
+<li>interactive Python work;</li>
+<li>Jupyter notebooks;</li>
+<li>exploratory data analysis;</li>
+<li>visualization;</li>
+<li>developing and testing workflows; and</li>
+<li>analyses that fit comfortably within the resources available to an IDAS session.</li>
+</ul>
+</section>
+<section id="argon" class="level3">
+<h3 class="anchored" data-anchor-id="argon">Argon</h3>
+<p>Argon is well-suited for:</p>
+<ul>
+<li>long-running workflows;</li>
+<li>computationally intensive analyses;</li>
+<li>large memory or multicore jobs;</li>
+<li>unattended processing; and</li>
+<li>workflows that should be submitted through the job scheduler rather than run interactively.</li>
+</ul>
+</section>
+</section>
+<section id="write-portable-paths" class="level2">
+<h2 class="anchored" data-anchor-id="write-portable-paths">Write portable paths</h2>
+<p>Code should avoid assuming that a particular filesystem path exists everywhere it runs.</p>
+<p>For example, the same LSS storage may be exposed at different paths on IDAS and Argon. Hard-coding one machine’s absolute path throughout notebooks and scripts makes the project unnecessarily machine-specific.</p>
+<p>Instead, centralize filesystem knowledge.</p>
+<p>For example, in <code>src/project_name/paths.py</code>, you could write::</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_lss_root() <span class="op">-&gt;</span> Path:</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    candidates <span class="op">=</span> [</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>        Path(<span class="st">"/path/used/on/system-a"</span>),</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>        Path(<span class="st">"/path/used/on/system-b"</span>),</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    ]</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> path <span class="kw">in</span> candidates:</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> path.exists():</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> path</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">raise</span> <span class="pp">RuntimeError</span>(<span class="st">"Could not locate LSS."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The rest of the project can then define paths relative to that root:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>LSS <span class="op">=</span> get_lss_root()</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>DATA <span class="op">=</span> LSS <span class="op">/</span> <span class="st">"projects"</span> <span class="op">/</span> <span class="st">"project-name"</span> <span class="op">/</span> <span class="st">"data"</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>RAW <span class="op">=</span> DATA <span class="op">/</span> <span class="st">"raw"</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>PROCESSED <span class="op">=</span> DATA <span class="op">/</span> <span class="st">"processed"</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>RESULTS <span class="op">=</span> DATA <span class="op">/</span> <span class="st">"results"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Now the machine-specific knowledge exists in one place instead of being repeated throughout the analysis and you can directly import these constants into your scripts and notebooks.</p>
+<p>For paths <strong>within the repository</strong>, use relative paths or paths derived from a known project location rather than absolute paths tied to one person’s account.</p>
+</section>
+<section id="version-control-the-project-not-the-environment-or-data" class="level2">
+<h2 class="anchored" data-anchor-id="version-control-the-project-not-the-environment-or-data">Version control the project, not the environment or data</h2>
+<p>A useful way to think about a computational project is that Git should contain the information required to understand and reconstruct the analysis, but not every file involved in running it.</p>
+<p>Generally version control:</p>
+<ul>
+<li>source code;</li>
+<li>notebooks;</li>
+<li>scripts;</li>
+<li>configuration;</li>
+<li>documentation;</li>
+<li>environment manifests and lock files;</li>
+<li>small metadata files needed to reproduce workflows.</li>
+</ul>
+<p>Generally do not version control:</p>
+<ul>
+<li>installed environments;</li>
+<li>caches;</li>
+<li>temporary files;</li>
+<li>large research datasets;</li>
+<li>large generated outputs;</li>
+<li>credentials or secrets.</li>
+</ul>
+<p>Use <code>.gitignore</code> deliberately to keep machine-local and generated content out of the repository.</p>
+<p>For broader guidance on how we use Git and GitHub, see <a href="../../docs/computing/version-control.html">Version Control</a>.</p>
+</section>
+<section id="document-as-you-go" class="level2">
+<h2 class="anchored" data-anchor-id="document-as-you-go">Document as you go</h2>
+<p>Documentation should develop alongside the project rather than being written only when the analysis is complete.</p>
+<p>At minimum, a project’s <code>README.md</code> should eventually make it possible to determine:</p>
+<ul>
+<li>what the project does;</li>
+<li>how the repository is organized;</li>
+<li>how to create its computational environment;</li>
+<li>where required data come from;</li>
+<li>how major workflows are run; and</li>
+<li>where outputs are produced.</li>
+</ul>
+<p>Additional documentation may be appropriate for larger projects.</p>
+<p>Configuration files, descriptive names, docstrings, comments where needed, and informative Git history all contribute to making a project understandable.</p>
+</section>
+<section id="examples" class="level2">
+<h2 class="anchored" data-anchor-id="examples">Examples</h2>
+<p>Well-organized existing projects can provide useful patterns, but they should be treated as examples rather than mandatory templates.</p>
+<p>See <a href="../../docs/materials/reproduce-repos.html">Example Repositories</a> for projects that illustrate different approaches to reproducible computational research.</p>
+</section>
+<section id="related-recipes" class="level2">
+<h2 class="anchored" data-anchor-id="related-recipes">Related recipes</h2>
+<p>The Cookbook contains the procedural workflows that implement many of the practices described in this guide.</p>
+<p>Relevant recipe areas include:</p>
+<ul>
+<li><a href="../../docs/cookbook/research-computing/index.html">Research Computing</a></li>
+<li><a href="../../docs/cookbook/data-management/index.html">Data Management</a></li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/abpoll/web-manual/edit/main/docs/computing/project-organization.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/abpoll/web-manual/issues" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/abpoll/web-manual">
+      <i class="bi bi-github" role="img" aria-label="Pollack Lab GitHub">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

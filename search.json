@@ -1,0 +1,879 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Welcome to the Pollack Group Lab Manual!",
+    "section": "",
+    "text": "Learn and Contribute!\n\n\n\nThis manual is always under construction. If you would like to fix any mistakes, request additional material, or modify content, please submit a new Issue on GitHub."
+  },
+  {
+    "objectID": "index.html#overview",
+    "href": "index.html#overview",
+    "title": "Welcome to the Pollack Group Lab Manual!",
+    "section": "Overview",
+    "text": "Overview\nThe purpose of this manual is to help new members and collaborators build a shared base of foundational knowledge for the kind of work we do in the Pollack Lab Group. This is a collaborative, living document build with Quarto and hosted with GitHub Pages.\nThis manual details lab procedures, policies, and expectations for research group members (and may be helpful for collaborators to consult). The manual contains three sections:\n\nLab Values outlines the expectations we have for each other and ourselves to ensure a functional, healthy, and productive lab group; it is not a marketplace for Labrador Retrievers.\nOnboarding is your first stop as a new lab member (and may be helpful for others) to get your working environment and workflows set up.\nGuide is the home of our (always growing!) lab resources, how-tos, and tips for building a strong knowedge foundation for the kind of work we do in the group."
+  },
+  {
+    "objectID": "index.html#credit",
+    "href": "index.html#credit",
+    "title": "Welcome to the Pollack Group Lab Manual!",
+    "section": "Credit",
+    "text": "Credit\nThe organization and content of this lab manual borrows heavily from several documents:\n\nThe Quarto Website & GitHub Repository\nThe Srikrishnan Group at BEE Cornell Lab Manual\nThe Reed Group at Cornel CEE Lab Manual\nThe Julia Workshop for Data Science at ISMB, 2022\n\nA huge thank you to all of these sources for making their work open and instructive!"
+  },
+  {
+    "objectID": "docs/resources.html",
+    "href": "docs/resources.html",
+    "title": "Additional Resources",
+    "section": "",
+    "text": "There are a number of resources you should familiarize yourself with as a part of your onboarding. It may also be helpful to revisit this list from time to time after you settle in. Poke around and see what is useful to adopt in your workflows.",
+    "crumbs": [
+      "Onboarding",
+      "Resources"
+    ]
+  },
+  {
+    "objectID": "docs/resources.html#resources-for-research",
+    "href": "docs/resources.html#resources-for-research",
+    "title": "Additional Resources",
+    "section": "Resources for Research",
+    "text": "Resources for Research\n\nUniversity Libraries\n\nDefinitely check out the links connected to Research Data Services.\n\nHigh Performance Computing Documentation.",
+    "crumbs": [
+      "Onboarding",
+      "Resources"
+    ]
+  },
+  {
+    "objectID": "docs/resources.html#resources-for-life",
+    "href": "docs/resources.html#resources-for-life",
+    "title": "Additional Resources",
+    "section": "Resources for life",
+    "text": "Resources for life\n\nGraduate Student Life\nHousing\n\nRentals for grad students and postdocs\nCraigslist sometimes has good finds",
+    "crumbs": [
+      "Onboarding",
+      "Resources"
+    ]
+  },
+  {
+    "objectID": "docs/computing/project-organization.html",
+    "href": "docs/computing/project-organization.html",
+    "title": "Research Project Organization",
+    "section": "",
+    "text": "Computational research projects should be organized so that another researcher—including your future self—can understand, reproduce, modify, and extend the work. Good project organization also makes it easier to move between a laptop, interactive computing environments, and high-performance computing without restructuring the project each time.\nThere is no single directory structure that is appropriate for every project. However, our projects should generally follow a few principles:\nThe recommendations below describe how we generally implement these principles on University of Iowa infrastructure.",
+    "crumbs": [
+      "Guide",
+      "Research Computing",
+      "Research Project Organization"
+    ]
+  },
+  {
+    "objectID": "docs/computing/project-organization.html#where-your-project-lives",
+    "href": "docs/computing/project-organization.html#where-your-project-lives",
+    "title": "Research Project Organization",
+    "section": "Where your project lives",
+    "text": "Where your project lives\nA research project is not a directory on one computer.\nIn our typical workflow:\n\nGitHub provides the authoritative version-controlled repository for code and project configuration.\nArgon home storage provides a working location for project code on University of Iowa research computing infrastructure.\nIDAS provides an interactive environment for exploratory analysis, notebooks, visualization, and development.\nArgon provides scheduled computing resources for larger or longer-running workflows.\nLSS provides shared storage for research data and computational outputs.\n\nOur projects span these systems without requiring separate copies of the project design. IDAS hosts mounts of Argon and LSS, and Argon hosts a mount of LSS. This streamlines our workflow whether we are working interactively on IDAS or running a job on Argon.\n\nCode\nCode, configuration files, documentation, and computational environment definitions generally belong in the project’s Git repository.\nA project repository might look like:\nrisk_prob/\n├── config/ # configuration files, such as a .yaml, for exogenous parameterizations\n├── jobs/ # scheduler jobs for Argon\n├── notebooks/ # Jupyter notebooks for IDAS\n├── scripts/ # analysis scripts\n├── src/ # directory for project-specific repeated functionality\n│   └── risk_prob/\n├── pyproject.toml \n├── pixi.lock\n└── README.md # a very detailed README that explains the project, its structure, and how to reproduce the analysis\nWe will instantitate our project repositories on Argon home storage and access it from IDAS through the Argon home mount. We will test resproducibility on other systems, such as our local machines after making any adjustments to obtain minimal reproducible examples when projects are large and complex.\nGitHub provides the shared version-controlled representation of the project repository.\n\n\nData\nResearch data generally do not belong in Git.\nLarge source datasets, intermediate data products, model outputs, and other research data should normally be stored on LSS. LSS can be accessed from both Argon and IDAS, allowing computational workflows and interactive analyses to operate on the same underlying data.\nA project might use a data structure such as:\nproject-name/\n└── data/\n    ├── raw/\n    ├── processed/\n    └── results/\nThe exact organization will vary by project. The important principle is that data organization should be deliberate and documented. In particular, raw source data should generally be preserved rather than modified in place. Transformations should produce new processed data or outputs so that the provenance of derived datasets remains understandable.\n\n\n\n\n\n\nRelated recipes\n\n\n\nAccessing the project-name/ data directory consistently from different computational systems can be achieved through a paths.py module in src/project-name/ of your code repository. Recipes for this and other common tasks, such as transferring local data to LSS and downloading external datasets are available in the Data Management section of the cookbook.",
+    "crumbs": [
+      "Guide",
+      "Research Computing",
+      "Research Project Organization"
+    ]
+  },
+  {
+    "objectID": "docs/computing/project-organization.html#breakdown-of-recommended-project-structure",
+    "href": "docs/computing/project-organization.html#breakdown-of-recommended-project-structure",
+    "title": "Research Project Organization",
+    "section": "Breakdown of recommended project structure",
+    "text": "Breakdown of recommended project structure\nA Python-based computational research project will often look like:\nproject-name/\n├── config/\n├── jobs/\n├── notebooks/\n├── scripts/\n├── src/\n│   └── project_name/\n│       └── __init__.py\n├── pyproject.toml\n├── pixi.lock\n├── README.md\n└── .gitignore\nThis is a starting place. I recommend that you adapt this structure fit your project’s needs, but take each addition and removal with care. A small project may not need every directory, while a large project may require additional organization.\n\nnotebooks/\nUse notebooks for interactive analysis, exploration, visualization, and workflows. For some projects, you may find a single notebook is sufficient.\n\n\nscripts/\nUse scripts for scaling up workflows. We often will run scripts on Argon. You may not need this directory for some projects.\n\n\nsrc/\nUse src/project_name/ for reusable project-specific Python code.\nFor example:\nsrc/\n└── risk_prob/\n    ├── __init__.py\n    ├── paths.py\n    └── processing.py\nA notebook can then use that functionality:\nfrom risk_prob.processing import process_data\n\nprocessed = process_data(data)\nrather than repeatedly defining process_data() inside notebooks or copying the function between analyses.\nThis separation makes functions easier to test, reuse, document, and modify. It is especially helpful if functions are used repeatedly.\nWhile we recommend project-specific reusable code be placed in src/project_name/, you may eventually find that some functionality is useful across multiple projects. In such cases, it may be appropriate to create a standalone package. A standalone package should have its own repository, version history, tests, documentation, and environment or dependency specification. For example, UNSAFE is maintained separately because its flood-risk functionality is intended to support multiple research projects rather than one particular analysis.\nThe guiding organizational principle is that your project should balance transparency and comprensability.\n\n\njobs/\nProjects that run work on Argon may use jobs/ to place scripts submitted to the scheduler.\n\n\nconfig/\nConfiguration files can store parameters that should not be hard-coded throughout scripts and notebooks.\nWhether a particular setting belongs in configuration, source code, or an analysis depends on the project, but parameters that may change across experiments or computing environments are often good candidates for explicit configuration.",
+    "crumbs": [
+      "Guide",
+      "Research Computing",
+      "Research Project Organization"
+    ]
+  },
+  {
+    "objectID": "docs/computing/project-organization.html#computational-environments",
+    "href": "docs/computing/project-organization.html#computational-environments",
+    "title": "Research Project Organization",
+    "section": "Computational environments",
+    "text": "Computational environments\nA reproducible project must describe not only its code but also the software required to run that code.\nWe use Pixi to manage computational environments for Python-based research projects.\nThe important distinction is between the definition of an environment and the installed environment itself.\nFiles such as:\npyproject.toml\npixi.lock\ndescribe the project and its resolved dependencies and should generally be version controlled.\nThe actual installed environment:\n.pixi/\ncontains machine-specific installed software and should not be committed to Git.\nThis means another researcher can clone the repository and recreate the required software environment compatible with their operating system and machine.\n\n\n\n\n\n\nRelated recipe\n\n\n\nSee the Cookbook for the recipe to initialize a Python research project and environment with Pixi.\n\n\nWhen Pixi is used to initialize a Python project with pixi init --format pyproject, the project is initially configured as an installable Python package using the standard src/ layout.\nThis allows project-specific code to be imported normally from notebooks and scripts:\nfrom project_name.module import function\nrather than manipulating PYTHONPATH, modifying sys.path, or copying functions between files.",
+    "crumbs": [
+      "Guide",
+      "Research Computing",
+      "Research Project Organization"
+    ]
+  },
+  {
+    "objectID": "docs/computing/project-organization.html#working-across-idas-and-argon",
+    "href": "docs/computing/project-organization.html#working-across-idas-and-argon",
+    "title": "Research Project Organization",
+    "section": "Working across IDAS and Argon",
+    "text": "Working across IDAS and Argon\nWorking across IDAS and Argon requires some care, but Pixi makes this manageable!\nThe same version-controlled project should be usable from both systems, while each system maintains the software environment appropriate to that machine.\nBecause these systems run on different operatins systems, and Argon’s OS is quite old, our current workflow is:\n\nSet up your project and environment on Argon first, using Pixi to manage the environment.\nDevelop and inspect analyses interactively using IDAS.\nStore project data on LSS.\nSubmit larger workflows to Argon when necessary.\nWrite outputs back to LSS.\nInspect, analyze, or visualize those outputs from IDAS.\n\n\n\n\n\n\n\nRelated recipes\n\n\n\nSee the Research Computing sections of the Cookbook for procedures related to:\n\nconfiguring a Pixi project for Argon and IDAS;\nmaintaining a Pixi environment across systems as you add dependencies;\nrunning a Pixi-managed project as an Argon batch job.\n\n\n\n\nIDAS\nIDAS is well-suited for:\n\ninteractive Python work;\nJupyter notebooks;\nexploratory data analysis;\nvisualization;\ndeveloping and testing workflows; and\nanalyses that fit comfortably within the resources available to an IDAS session.\n\n\n\nArgon\nArgon is well-suited for:\n\nlong-running workflows;\ncomputationally intensive analyses;\nlarge memory or multicore jobs;\nunattended processing; and\nworkflows that should be submitted through the job scheduler rather than run interactively.",
+    "crumbs": [
+      "Guide",
+      "Research Computing",
+      "Research Project Organization"
+    ]
+  },
+  {
+    "objectID": "docs/computing/project-organization.html#write-portable-paths",
+    "href": "docs/computing/project-organization.html#write-portable-paths",
+    "title": "Research Project Organization",
+    "section": "Write portable paths",
+    "text": "Write portable paths\nCode should avoid assuming that a particular filesystem path exists everywhere it runs.\nFor example, the same LSS storage may be exposed at different paths on IDAS and Argon. Hard-coding one machine’s absolute path throughout notebooks and scripts makes the project unnecessarily machine-specific.\nInstead, centralize filesystem knowledge.\nFor example, in src/project_name/paths.py, you could write::\nfrom pathlib import Path\n\n\ndef get_lss_root() -&gt; Path:\n    candidates = [\n        Path(\"/path/used/on/system-a\"),\n        Path(\"/path/used/on/system-b\"),\n    ]\n\n    for path in candidates:\n        if path.exists():\n            return path\n\n    raise RuntimeError(\"Could not locate LSS.\")\nThe rest of the project can then define paths relative to that root:\nLSS = get_lss_root()\n\nDATA = LSS / \"projects\" / \"project-name\" / \"data\"\nRAW = DATA / \"raw\"\nPROCESSED = DATA / \"processed\"\nRESULTS = DATA / \"results\"\nNow the machine-specific knowledge exists in one place instead of being repeated throughout the analysis and you can directly import these constants into your scripts and notebooks.\nFor paths within the repository, use relative paths or paths derived from a known project location rather than absolute paths tied to one person’s account.",
+    "crumbs": [
+      "Guide",
+      "Research Computing",
+      "Research Project Organization"
+    ]
+  },
+  {
+    "objectID": "docs/computing/project-organization.html#version-control-the-project-not-the-environment-or-data",
+    "href": "docs/computing/project-organization.html#version-control-the-project-not-the-environment-or-data",
+    "title": "Research Project Organization",
+    "section": "Version control the project, not the environment or data",
+    "text": "Version control the project, not the environment or data\nA useful way to think about a computational project is that Git should contain the information required to understand and reconstruct the analysis, but not every file involved in running it.\nGenerally version control:\n\nsource code;\nnotebooks;\nscripts;\nconfiguration;\ndocumentation;\nenvironment manifests and lock files;\nsmall metadata files needed to reproduce workflows.\n\nGenerally do not version control:\n\ninstalled environments;\ncaches;\ntemporary files;\nlarge research datasets;\nlarge generated outputs;\ncredentials or secrets.\n\nUse .gitignore deliberately to keep machine-local and generated content out of the repository.\nFor broader guidance on how we use Git and GitHub, see Version Control.",
+    "crumbs": [
+      "Guide",
+      "Research Computing",
+      "Research Project Organization"
+    ]
+  },
+  {
+    "objectID": "docs/computing/project-organization.html#document-as-you-go",
+    "href": "docs/computing/project-organization.html#document-as-you-go",
+    "title": "Research Project Organization",
+    "section": "Document as you go",
+    "text": "Document as you go\nDocumentation should develop alongside the project rather than being written only when the analysis is complete.\nAt minimum, a project’s README.md should eventually make it possible to determine:\n\nwhat the project does;\nhow the repository is organized;\nhow to create its computational environment;\nwhere required data come from;\nhow major workflows are run; and\nwhere outputs are produced.\n\nAdditional documentation may be appropriate for larger projects.\nConfiguration files, descriptive names, docstrings, comments where needed, and informative Git history all contribute to making a project understandable.",
+    "crumbs": [
+      "Guide",
+      "Research Computing",
+      "Research Project Organization"
+    ]
+  },
+  {
+    "objectID": "docs/computing/project-organization.html#examples",
+    "href": "docs/computing/project-organization.html#examples",
+    "title": "Research Project Organization",
+    "section": "Examples",
+    "text": "Examples\nWell-organized existing projects can provide useful patterns, but they should be treated as examples rather than mandatory templates.\nSee Example Repositories for projects that illustrate different approaches to reproducible computational research.",
+    "crumbs": [
+      "Guide",
+      "Research Computing",
+      "Research Project Organization"
+    ]
+  },
+  {
+    "objectID": "docs/computing/project-organization.html#related-recipes",
+    "href": "docs/computing/project-organization.html#related-recipes",
+    "title": "Research Project Organization",
+    "section": "Related recipes",
+    "text": "Related recipes\nThe Cookbook contains the procedural workflows that implement many of the practices described in this guide.\nRelevant recipe areas include:\n\nResearch Computing\nData Management",
+    "crumbs": [
+      "Guide",
+      "Research Computing",
+      "Research Project Organization"
+    ]
+  },
+  {
+    "objectID": "docs/computing/version-control.html",
+    "href": "docs/computing/version-control.html",
+    "title": "Version Control",
+    "section": "",
+    "text": "We use Git for version control and GitHub to host and collaborate on repositories.\nVersion control is an important part of how we conduct reproducible and collaborative research. We use Git and GitHub to:\n\nmaintain version control for research projects;\ncollaborate on code, analyses, and documentation;\npropose and review changes through pull requests;\ndocument problems, ideas, and planned work through issues; and\nmaintain shared lab resources such as our lab manual, website, and meeting materials.\n\nGit should be used throughout a project. Commit changes regularly and use informative commit messages so that the history of a project documents how the work developed.",
+    "crumbs": [
+      "Guide",
+      "Research Computing",
+      "Version Control"
+    ]
+  },
+  {
+    "objectID": "docs/computing/version-control.html#our-approach",
+    "href": "docs/computing/version-control.html#our-approach",
+    "title": "Version Control",
+    "section": "",
+    "text": "We use Git for version control and GitHub to host and collaborate on repositories.\nVersion control is an important part of how we conduct reproducible and collaborative research. We use Git and GitHub to:\n\nmaintain version control for research projects;\ncollaborate on code, analyses, and documentation;\npropose and review changes through pull requests;\ndocument problems, ideas, and planned work through issues; and\nmaintain shared lab resources such as our lab manual, website, and meeting materials.\n\nGit should be used throughout a project. Commit changes regularly and use informative commit messages so that the history of a project documents how the work developed.",
+    "crumbs": [
+      "Guide",
+      "Research Computing",
+      "Version Control"
+    ]
+  },
+  {
+    "objectID": "docs/computing/version-control.html#working-collaboratively",
+    "href": "docs/computing/version-control.html#working-collaboratively",
+    "title": "Version Control",
+    "section": "Working collaboratively",
+    "text": "Working collaboratively\nFor shared repositories, substantive changes should generally be developed on a branch rather than directly on main.\nA typical collaborative workflow is:\n\nCreate a branch for the change.\nDevelop and test the change on that branch.\nCommit changes with informative messages.\nPush the branch to GitHub.\nOpen a pull request.\nReview and discuss the proposed changes.\nMerge the pull request after review.\n\nIssues can be used before implementation to discuss ideas, bugs, or proposed changes. This is particularly useful when the appropriate solution or scope is not yet clear.\n\n\n\n\n\n\nRelated recipes\n\n\n\nThe Lab Cookbook contains procedures for contributing to shared Pollack Group resources:\n\nContribute to the lab meeting repository\nContribute to the lab manual\nContribute to the lab website",
+    "crumbs": [
+      "Guide",
+      "Research Computing",
+      "Version Control"
+    ]
+  },
+  {
+    "objectID": "docs/computing/version-control.html#learning-git-and-github",
+    "href": "docs/computing/version-control.html#learning-git-and-github",
+    "title": "Version Control",
+    "section": "Learning Git and GitHub",
+    "text": "Learning Git and GitHub\nThe recipes in this manual assume basic familiarity with Git and GitHub. They are not intended to replace a general Git tutorial.\nThe following resources provide useful introductions and practice:\n\nGit Basics from The Odin Project\nLearn Git Branching, an interactive visual introduction to Git\nVersion Control from MIT’s The Missing Semester of Your CS Education\nGit and GitHub for Poets, a video introduction to Git and GitHub\nVersion Control with Git from Software Carpentry\n\nThis list was adapted from resources curated by James Doss-Gollin for CEVE 421/521: Climate Risk Management at Rice University.",
+    "crumbs": [
+      "Guide",
+      "Research Computing",
+      "Version Control"
+    ]
+  },
+  {
+    "objectID": "docs/cookbook/research-computing/index.html",
+    "href": "docs/cookbook/research-computing/index.html",
+    "title": "Research Computing",
+    "section": "",
+    "text": "These recipes document recurring workflows for research computing activities.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nInitialize a Python Research Project with Pixi\n\n\n\n\n\nCreate a reproducible Python project and configure it for local development or use across Argon and IDAS.\n\n\n\n\n\n\n\n\n\nNo matching items",
+    "crumbs": [
+      "Cookbook",
+      "Lab Cookbook",
+      "Research Computing"
+    ]
+  },
+  {
+    "objectID": "docs/cookbook/RECIPE_TEMPLATE.html",
+    "href": "docs/cookbook/RECIPE_TEMPLATE.html",
+    "title": "Recipe Title",
+    "section": "",
+    "text": "Briefly describe what this recipe accomplishes and when someone would use it."
+  },
+  {
+    "objectID": "docs/cookbook/RECIPE_TEMPLATE.html#goal",
+    "href": "docs/cookbook/RECIPE_TEMPLATE.html#goal",
+    "title": "Recipe Title",
+    "section": "",
+    "text": "Briefly describe what this recipe accomplishes and when someone would use it."
+  },
+  {
+    "objectID": "docs/cookbook/RECIPE_TEMPLATE.html#prerequisites",
+    "href": "docs/cookbook/RECIPE_TEMPLATE.html#prerequisites",
+    "title": "Recipe Title",
+    "section": "Prerequisites",
+    "text": "Prerequisites\nList anything that must already be installed, configured, or available before beginning this recipe.\n\nPrerequisite 1\nPrerequisite 2\n\nIf there are no special prerequisites, say so."
+  },
+  {
+    "objectID": "docs/cookbook/RECIPE_TEMPLATE.html#procedure",
+    "href": "docs/cookbook/RECIPE_TEMPLATE.html#procedure",
+    "title": "Recipe Title",
+    "section": "Procedure",
+    "text": "Procedure\n\n1. First step\nExplain what to do and, where appropriate, why.\ncommand\n\n\n2. Second step\nContinue with the steps required to complete the task.\ncommand\nAdd or remove steps as needed."
+  },
+  {
+    "objectID": "docs/cookbook/RECIPE_TEMPLATE.html#verify",
+    "href": "docs/cookbook/RECIPE_TEMPLATE.html#verify",
+    "title": "Recipe Title",
+    "section": "Verify",
+    "text": "Verify\nDescribe the expected result and explain how to confirm that the procedure worked."
+  },
+  {
+    "objectID": "docs/cookbook/RECIPE_TEMPLATE.html#common-problems",
+    "href": "docs/cookbook/RECIPE_TEMPLATE.html#common-problems",
+    "title": "Recipe Title",
+    "section": "Common problems",
+    "text": "Common problems\n\nExample problem or error message\nExplain what the problem means and how to resolve it.\nRemove this section if there are no known common problems."
+  },
+  {
+    "objectID": "docs/cookbook/RECIPE_TEMPLATE.html#related-resources",
+    "href": "docs/cookbook/RECIPE_TEMPLATE.html#related-resources",
+    "title": "Recipe Title",
+    "section": "Related resources",
+    "text": "Related resources\n\nGuide\n\nRelevant Guide page\n\n\n\nRelated recipes\n\nRelated recipe"
+  },
+  {
+    "objectID": "docs/cookbook/data-management/index.html",
+    "href": "docs/cookbook/data-management/index.html",
+    "title": "Data Management",
+    "section": "",
+    "text": "These recipes document recurring workflows for data management activities.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nConfigure Portable Project Data Paths\n\n\n\n\n\nConfigure a Python project to locate data on LSS when running on either Argon or IDAS.\n\n\n\n\n\n\n\n\n\nNo matching items",
+    "crumbs": [
+      "Cookbook",
+      "Lab Cookbook",
+      "Data Management"
+    ]
+  },
+  {
+    "objectID": "docs/cookbook/lab-operations/publish-quarto-github-pages.html",
+    "href": "docs/cookbook/lab-operations/publish-quarto-github-pages.html",
+    "title": "Publish a Quarto Site with GitHub Pages",
+    "section": "",
+    "text": "Configure a Quarto website so that changes merged into the repository’s main branch are automatically published with GitHub Pages.\nWe use this workflow for shared Pollack Group Quarto resources such as the lab manual and lab website. You may find this recipe helpful for other Quarto projects.\nThis is primarily a one-time repository setup. Once publishing is configured, normal contributors should propose changes through pull requests. Merging an accepted change into main triggers publication automatically."
+  },
+  {
+    "objectID": "docs/cookbook/lab-operations/publish-quarto-github-pages.html#goal",
+    "href": "docs/cookbook/lab-operations/publish-quarto-github-pages.html#goal",
+    "title": "Publish a Quarto Site with GitHub Pages",
+    "section": "",
+    "text": "Configure a Quarto website so that changes merged into the repository’s main branch are automatically published with GitHub Pages.\nWe use this workflow for shared Pollack Group Quarto resources such as the lab manual and lab website. You may find this recipe helpful for other Quarto projects.\nThis is primarily a one-time repository setup. Once publishing is configured, normal contributors should propose changes through pull requests. Merging an accepted change into main triggers publication automatically."
+  },
+  {
+    "objectID": "docs/cookbook/lab-operations/publish-quarto-github-pages.html#prerequisites",
+    "href": "docs/cookbook/lab-operations/publish-quarto-github-pages.html#prerequisites",
+    "title": "Publish a Quarto Site with GitHub Pages",
+    "section": "Prerequisites",
+    "text": "Prerequisites\nBefore configuring publication, you should have:\n\na Quarto website that renders successfully;\na GitHub repository for the project; and\npermission to configure the repository and GitHub Actions\n\nIf the site contains executable content, make sure any required computational environment is also configured before proceeding."
+  },
+  {
+    "objectID": "docs/cookbook/lab-operations/publish-quarto-github-pages.html#procedure",
+    "href": "docs/cookbook/lab-operations/publish-quarto-github-pages.html#procedure",
+    "title": "Publish a Quarto Site with GitHub Pages",
+    "section": "Procedure",
+    "text": "Procedure\n\n1. Confirm that the site renders locally\nFrom the repository root:\nquarto render\nResolve any errors before configuring automated publication.\nYou can inspect the rendered site locally with:\nquarto preview\n\n\n2. Ignore the rendered website\nThe rendered _site/ directory should not normally be committed to the source branch.\nMake sure it is in the .gitignore:\n/_site/\nGitHub Pages will publish rendered output separately from the source files.\n\n\n3. Configure executable content\nFor sites containing executable .qmd files, we generally use Quarto’s freeze functionality:\nexecute:\n  freeze: auto\nin _quarto.yml.\nThis allows computational results to be generated and verified locally and stored under _freeze/ rather than requiring the publishing workflow to reproduce every computational environment used by the site.\nUnlike _site/, _freeze/ should therefore generally be version controlled when this workflow is used.\n\n\n4. Perform the initial GitHub Pages publication\nFrom the repository root:\nquarto publish gh-pages\nFollow Quarto’s prompts to configure the initial GitHub Pages publication.\nThis establishes the gh-pages branch used to hold the rendered website.\n\n\n5. Add the GitHub Actions workflow\nCreate:\n.github/\n└── workflows/\n    └── publish.yml\nConfigure the workflow to run when changes reach main and also allow manual execution:\non:\n  workflow_dispatch:\n  push:\n    branches: main\nUse Quarto’s current recommended GitHub Pages workflow for the remainder of publish.yml.\n\n\n\n\n\n\nNote\n\n\n\nGitHub Actions and Quarto evolve over time. Rather than copying an old workflow indefinitely, compare the workflow against the current Quarto GitHub Pages documentation when setting up a new repository.\n\n\n\n\n6. Configure GitHub Actions permissions\nOn GitHub, open the repository settings and configure the permissions needed for the publishing workflow to update the GitHub Pages branch.\nFollow the current Quarto/GitHub Pages documentation when selecting these settings.\n\n\n7. Commit the publishing configuration\nCreate a branch for the configuration change if you are working in an existing shared repository.\nCommit at least:\n.github/workflows/publish.yml\n_quarto.yml\n.gitignore\nalong with any other files changed during setup.\nPush the branch and merge the configuration through a pull request when appropriate.\n\n\n8. Test automatic publication\nAfter the publishing configuration reaches main, open the repository on GitHub and inspect the Actions tab.\nConfirm that the publishing workflow completes successfully.\nThen open the published GitHub Pages site and confirm that the new version is visible."
+  },
+  {
+    "objectID": "docs/cookbook/lab-operations/publish-quarto-github-pages.html#normal-workflow-after-setup",
+    "href": "docs/cookbook/lab-operations/publish-quarto-github-pages.html#normal-workflow-after-setup",
+    "title": "Publish a Quarto Site with GitHub Pages",
+    "section": "Normal workflow after setup",
+    "text": "Normal workflow after setup\nOnce automatic publication is configured, contributors should not normally run quarto publish themselves.\nThe routine workflow is:\ncreate branch\n     ↓\nmake changes\n     ↓\nquarto preview\n     ↓\nquarto render\n     ↓\ncommit + push\n     ↓\npull request\n     ↓\nreview + merge\n     ↓\nmain\n     ↓\nGitHub Action\n     ↓\nGitHub Pages\nThis separates contribution from deployment and ensures that the published site corresponds to reviewed content on main."
+  },
+  {
+    "objectID": "docs/cookbook/lab-operations/publish-quarto-github-pages.html#verify",
+    "href": "docs/cookbook/lab-operations/publish-quarto-github-pages.html#verify",
+    "title": "Publish a Quarto Site with GitHub Pages",
+    "section": "Verify",
+    "text": "Verify\nA correctly configured repository should satisfy all of the following:\n\nquarto render succeeds locally;\n_site/ is not tracked on the source branch;\nrequired _freeze/ results are tracked when executable content uses freeze;\npushing or merging to main triggers the publishing Action;\nthe Action completes successfully; and\nthe GitHub Pages URL displays the newly rendered site."
+  },
+  {
+    "objectID": "docs/cookbook/lab-operations/publish-quarto-github-pages.html#common-problems",
+    "href": "docs/cookbook/lab-operations/publish-quarto-github-pages.html#common-problems",
+    "title": "Publish a Quarto Site with GitHub Pages",
+    "section": "Common problems",
+    "text": "Common problems\n\nThe GitHub Action does not run\nCheck that the workflow exists under:\n.github/workflows/\nand that its trigger includes pushes to main.\nAlso confirm that the repository’s default branch is actually named main.\n\n\nThe Action runs but cannot publish\nCheck the repository’s GitHub Actions permissions and GitHub Pages configuration.\n\n\nThe published site is missing recent computational output\nIf the project uses:\nexecute:\n  freeze: auto\nmake sure the relevant document was rendered locally and that changes under _freeze/ were committed.\n\n\nThe site works with quarto preview but the full render fails\nRun:\nquarto render\nand resolve the first reported error. Previewing is useful during development, but a successful preview is not a substitute for a successful full-project render before publication."
+  },
+  {
+    "objectID": "docs/cookbook/lab-operations/publish-quarto-github-pages.html#related-resources",
+    "href": "docs/cookbook/lab-operations/publish-quarto-github-pages.html#related-resources",
+    "title": "Publish a Quarto Site with GitHub Pages",
+    "section": "Related resources",
+    "text": "Related resources\n\nGuide\n\nVersion Control\n\n\n\nRelated recipes\n\nContribute to the Lab Manual\nContribute to Lab Meetings\nContribute to the Lab Website\n\n\n\nExternal documentation\n\nPublishing Quarto websites with GitHub Pages"
+  },
+  {
+    "objectID": "docs/cookbook/lab-operations/index.html",
+    "href": "docs/cookbook/lab-operations/index.html",
+    "title": "Lab Operations",
+    "section": "",
+    "text": "These recipes document recurring workflows for maintaining shared Pollack Group resources and activities.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nContribute to Lab Meetings\n\n\n\n\n\nMaintain agendas, schedules, and presentation materials for Pollack Group lab meetings.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nContribute to the Lab Manual\n\n\n\n\n\nPropose, develop, preview, and submit changes to the Pollack Group Lab Manual.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nContribute to the Lab Website\n\n\n\n\n\nPropose, develop, test, and submit changes to the Pollack Group website.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPublish a Quarto Site with GitHub Pages\n\n\n\n\n\nConfigure a shared Quarto repository to automatically render and publish through GitHub Pages.\n\n\n\n\n\n\n\n\n\nNo matching items",
+    "crumbs": [
+      "Cookbook",
+      "Lab Cookbook",
+      "Lab Operations"
+    ]
+  },
+  {
+    "objectID": "docs/cookbook/lab-operations/lab-website.html",
+    "href": "docs/cookbook/lab-operations/lab-website.html",
+    "title": "Contribute to the Lab Website",
+    "section": "",
+    "text": "Contribute updates or improvements to the Pollack Group website while allowing changes to be reviewed and tested before publication."
+  },
+  {
+    "objectID": "docs/cookbook/lab-operations/lab-website.html#goal",
+    "href": "docs/cookbook/lab-operations/lab-website.html#goal",
+    "title": "Contribute to the Lab Website",
+    "section": "",
+    "text": "Contribute updates or improvements to the Pollack Group website while allowing changes to be reviewed and tested before publication."
+  },
+  {
+    "objectID": "docs/cookbook/lab-operations/lab-website.html#prerequisites",
+    "href": "docs/cookbook/lab-operations/lab-website.html#prerequisites",
+    "title": "Contribute to the Lab Website",
+    "section": "Prerequisites",
+    "text": "Prerequisites\n\nAccess to the Pollack Group website repository\nPixi\nQuarto\nBasic familiarity with Git and GitHub"
+  },
+  {
+    "objectID": "docs/cookbook/lab-operations/lab-website.html#procedure",
+    "href": "docs/cookbook/lab-operations/lab-website.html#procedure",
+    "title": "Contribute to the Lab Website",
+    "section": "Procedure",
+    "text": "Procedure\nTODO: Complete this recipe once the Pollack Group website repository and development workflow have been finalized.\nAt minimum, the workflow should follow the group’s general collaboration model:\n\nDiscuss substantial changes through an issue when useful.\nCreate a branch for the change.\nMake and locally test the changes.\nCommit and push the branch.\nOpen a pull request.\nMerge after review.\n\nRepository-specific setup, development, and deployment instructions should be maintained in the website repository’s README and linked from this recipe rather than duplicated here."
+  },
+  {
+    "objectID": "docs/cookbook/lab-operations/lab-website.html#verify",
+    "href": "docs/cookbook/lab-operations/lab-website.html#verify",
+    "title": "Contribute to the Lab Website",
+    "section": "Verify",
+    "text": "Verify\nTODO: Document the appropriate local preview and deployment checks once the website technology is finalized."
+  },
+  {
+    "objectID": "docs/cookbook/lab-operations/lab-website.html#related-resources",
+    "href": "docs/cookbook/lab-operations/lab-website.html#related-resources",
+    "title": "Contribute to the Lab Website",
+    "section": "Related resources",
+    "text": "Related resources\n\nRelated recipes\n\nContribute to Lab Meetings\nContribute to the Lab Manual"
+  },
+  {
+    "objectID": "docs/lab-values/index.html",
+    "href": "docs/lab-values/index.html",
+    "title": "Lab Values",
+    "section": "",
+    "text": "Our group holds the following core values (in no particular order):\n\nTransparency: We share our research process, code, data, and limitations openly. We aim to be explicit about the values-laden nature of our work. We push ourselves to communicate honestly and clearly.\nAccessibility: We aim to make our research understandable and available to both academic and public audiences. We design our shared workspaces to accommodate different needs of group members and foster an open environment in which members can confidently request accommodations.\nInclusivity: We believe the healthiest lab environment and best science happens when people with different viewpoints and experiences work together. We actively foster such an environment and aim to make the Keller Group a place where all members feel like they can completely be themselves.\nCuriosity: We crave a lab environment filled with creative ideas, questions, open exchange, and boundary pushing.\nWork-life balance: We understand that research is just one part of who we are. We maintain clear boundaries between work and personal time, and support each other in pursuing interests and commitments outside the lab.\nContributing to real-world problems: Our research is motivated by, and reponsive to, pressing societal challenges. We wish they weren’t so hard and consequential, but we love thinking about wicked problems! We strive to make meaningful impacts beyond academia. This often calls for a transdisciplinary, collaborative, and integrative approach that we all enjoy.\nExcellence: We strive for excellence in all our activities. For example, we want the paper we’re working on to be our best and we treat every talk like a job talk. We are careful, rigorous, and polished. In the words of John Wooden, “if you don’t have time to do it right, when will you have time to do it over?”"
+  },
+  {
+    "objectID": "docs/sci-comm/presentation-guidelines.html",
+    "href": "docs/sci-comm/presentation-guidelines.html",
+    "title": "Presentation Guidelines",
+    "section": "",
+    "text": "Warning\n\n\n\nThis page is under construction! The content here is currently for planning purposes.\n\n\n\nGeneral principles\nChecklist\nExamples/Gallery",
+    "crumbs": [
+      "Guide",
+      "Science Communication",
+      "Presentations"
+    ]
+  },
+  {
+    "objectID": "docs/materials/reproduce-repos.html",
+    "href": "docs/materials/reproduce-repos.html",
+    "title": "Reproduce Our Projects!",
+    "section": "",
+    "text": "Good Contribution Opportunity!\n\n\n\nAdd entries to data/repos.yml! Think of a better way to organize the GitHub repos and display the information so other lab members can choose the projects most relevant to their trajectory. Test out your changes and open a pull request!\n\n\n\n\nCode\nimport pandas as pd\nimport yaml\nfrom itables import init_notebook_mode, show\nimport itables.options as opt\nfrom pathlib import Path\nimport re\n\n# Initialize itables\ninit_notebook_mode(all_interactive=True)\n\n# Function to make DOIs clickable\ndef make_doi_clickable(text):\n    doi_pattern = r'(https://doi\\.org/[^\\s)]+)'\n    return re.sub(doi_pattern, r'&lt;a href=\"\\1\" target=\"_blank\"&gt;\\1&lt;/a&gt;', text)\n\n# Create relative path to repos file\n# Goes up two levels (../../) from current .qmd location to reach root\nrepo_path = Path('../../data/repos.yml')\n\n# Load YAML data\nwith open(repo_path, 'r') as f:\n    data = yaml.safe_load(f)\n\n# Convert to DataFrame\ndf = pd.DataFrame(data['repos'])\n\n# Make DOIs clickable in reference column\ndf['reference'] = df['reference'].apply(make_doi_clickable)\n\n# Format the repo column to include HTML links\ndf['repo'] = df.apply(lambda x: f'&lt;a href=\"{x[\"repo\"][\"url\"]}\" target=\"_blank\"&gt;{x[\"repo\"][\"name\"]}&lt;/a&gt;', axis=1)\n\n# Join topics with semicolons\ndf['topics'] = df['topics'].apply(lambda x: '; '.join(x))\n\n# Configure itables options\nopt.classes = [\"display\", \"cell-border\"]\nopt.columnDefs = [\n    {   # Reference column\n        \"width\": \"50%\", \n        \"targets\": 0\n    },  \n    {   # Year column\n        \"width\": \"5%\", \n        \"targets\": 1,\n        \"className\": \"dt-left\"\n    },   \n    {   # Repo column\n        \"width\": \"15%\", \n        \"targets\": 2\n    },  \n    {   # Topics column\n        \"width\": \"30%\", \n        \"targets\": 3\n    }   \n]\nopt.showIndex = False\n\n# By default, show newest to oldest\nsorted_df = df.sort_values('year', ascending=False)\n\n# Display the interactive table\nshow(sorted_df)\n\n\n\n\n\n\n\n\n\n\n    \n        \n        \n        \n        \n        \n        \n        \n        \n    \n    \n   \n    \n      \n  \n        \n    \n    \n  \n        \n    \n    \n  \n        \n    \n      \n  \n        \n            \n                \n                \n            \n\n            \n                \n                \n            \n\n            \n                \n                \n            \n\n            \n                \n                \n            \n\n            \n                \n                \n            \n        \n    \n\n\nThis is the init_notebook_mode cell from ITables v2.2.4\n(you should not see this message - is your notebook trusted?)\n\n\n\n\n\n\n    \n      \n      reference\n      year\n      repo\n      topics\n    \n  \n\n\n    \n        \n        \n        \n        \n        \n        \n        \n        \n    \n    \n   \n    \n      \n  \n        \n    \n    \n  \n        \n    \n    \n  \n        \n    \n      \n  \n        \n            \n                \n                \n            \n\n            \n                \n                \n            \n\n            \n                \n                \n            \n\n            \n                \n                \n            \n\n            \n                \n                \n            \n        \n    \n\n\nLoading ITables v2.2.4 from the init_notebook_mode cell...\n(need help?)",
+    "crumbs": [
+      "Guide",
+      "Learning Materials",
+      "Repositories"
+    ]
+  },
+  {
+    "objectID": "docs/materials/reading-list.html",
+    "href": "docs/materials/reading-list.html",
+    "title": "Reading List",
+    "section": "",
+    "text": "Applegate, P. J., & Keller, K. (Eds.). (2016). Risk analysis in the Earth Sciences: A Lab manual. 2nd edition. Leanpub. Retrieved from https://leanpub.com/raes\nBaron, N. (2010). Escape from the ivory tower: a guide to making your science matter (1st ed.). Island Press.\nGarner, G. G., & Keller, K. (2018). Using direct policy search to identify robust strategies in adapting to uncertain sea-level rise and storm surge. Environmental Modelling & Software, 107, 96–104. https://doi.org/10.1016/j.envsoft.2018.05.006\nHerman Jonathan D., Reed Patrick M., Zeff Harrison B., & Characklis Gregory W. (2015). How Should Robustness Be Defined for Water Systems Planning under Change? Journal of Water Resources Planning and Management, 141(10), 04015012. https://doi.org/10.1061/(ASCE)WR.1943-5452.0000509\nHuang, Xinyuan, Vivek Srikrishnan, Jonathan Lamontagne, Klaus Keller, and Wei Peng. “Effects of Global Climate Mitigation on Regional Air Quality and Health.” Nature Sustainability, May 18, 2023, 1–13. https://doi.org/10.1038/s41893-023-01133-5.\nKeller, K., Helgeson, C., & Srikrishnan, V. (2021). Climate risk management. Annual Review of Earth and Planetary Sciences, 49, 95-116. https://doi.org/10.1146/annurev-earth-080320-055847\nMarangoni, G., Lamontagne, J. R., Quinn, J. D., Reed, P. M., & Keller, K. (2021). Adaptive mitigation strategies hedge against extreme climate futures. Climatic Change, 166(3-4). https://doi.org/10.1007/s10584-021-03132-x\nMorgan, M. G., & Henrion, M. (1995). Uncertainty, a guide to dealing with uncertainty in quantitative policy analysis. Cambridge University Press.\nOprean, D., Spence, C., Simpson, M., Miller, R., Jr, Bansal, S., Keller, K., & Klippel, A. (2019). Human Interpretation of Trade-Off Diagrams in Multi-Objective Problems: Implications for Developing Interactive Decision Support Systems. In Proceedings of the 52nd Hawaii International Conference on System Sciences. Retrieved from https://scholarspace.manoa.hawaii.edu/handle/10125/59596\nQuinn, J. D., Reed, P. M., & Keller, K. (2017). Direct policy search for robust multi-objective management of deeply uncertain socio-ecological tipping points. Environmental Modelling & Software, 92, 125–141. https://doi.org/10.1016/j.envsoft.2017.02.017\nReed, P. M., Hadjimichael, A., Malek, K., Karimi, T., Vernon, C. R., Srikrishnan, V., et al. (2022). Addressing Uncertainty in MultiSector Dynamics Research. https://immm-sfa.github.io/msd_uncertainty_ebook/\nReed, P. M., Hadjimichael, A., Moss, R. H., Brelsford, C., Burleyson, C. D., Cohen, S., et al. (2022). Multisector dynamics: Advancing the science of complex adaptive human-earth systems. Earth’s Future, 10(3). https://doi.org/10.1029/2021ef002621\nTebyanian, N., Wu, H., Iulo, L., & Keller, K. (2022). Uncertainty Considerations in Green Infrastructure Optimization: A Review. Journal of Digital Landscape Architecture: JoDLA, 2022(7), 549–560. https://doi.org/10.14627/537724052\nWong, T. E., & Keller, K. (2017). Deep Uncertainty Surrounding Coastal Flood Risk Projections: A Case Study for New Orleans. Earth’s Future, 5(10), 1015–1026. https://doi.org/10.1002/2017EF000607\nZarekarizi, M., Srikrishnan, V., & Keller, K. (2020). Neglecting Uncertainties Biases House-Elevation Decisions to Manage Riverine Flood Risks. Nature Communications. https://doi.org/10.1038/s41467-020-19188-9",
+    "crumbs": [
+      "Guide",
+      "Learning Materials",
+      "Reading Lists"
+    ]
+  },
+  {
+    "objectID": "docs/materials/reading-list.html#strongly-recommended-reading",
+    "href": "docs/materials/reading-list.html#strongly-recommended-reading",
+    "title": "Reading List",
+    "section": "",
+    "text": "Applegate, P. J., & Keller, K. (Eds.). (2016). Risk analysis in the Earth Sciences: A Lab manual. 2nd edition. Leanpub. Retrieved from https://leanpub.com/raes\nBaron, N. (2010). Escape from the ivory tower: a guide to making your science matter (1st ed.). Island Press.\nGarner, G. G., & Keller, K. (2018). Using direct policy search to identify robust strategies in adapting to uncertain sea-level rise and storm surge. Environmental Modelling & Software, 107, 96–104. https://doi.org/10.1016/j.envsoft.2018.05.006\nHerman Jonathan D., Reed Patrick M., Zeff Harrison B., & Characklis Gregory W. (2015). How Should Robustness Be Defined for Water Systems Planning under Change? Journal of Water Resources Planning and Management, 141(10), 04015012. https://doi.org/10.1061/(ASCE)WR.1943-5452.0000509\nHuang, Xinyuan, Vivek Srikrishnan, Jonathan Lamontagne, Klaus Keller, and Wei Peng. “Effects of Global Climate Mitigation on Regional Air Quality and Health.” Nature Sustainability, May 18, 2023, 1–13. https://doi.org/10.1038/s41893-023-01133-5.\nKeller, K., Helgeson, C., & Srikrishnan, V. (2021). Climate risk management. Annual Review of Earth and Planetary Sciences, 49, 95-116. https://doi.org/10.1146/annurev-earth-080320-055847\nMarangoni, G., Lamontagne, J. R., Quinn, J. D., Reed, P. M., & Keller, K. (2021). Adaptive mitigation strategies hedge against extreme climate futures. Climatic Change, 166(3-4). https://doi.org/10.1007/s10584-021-03132-x\nMorgan, M. G., & Henrion, M. (1995). Uncertainty, a guide to dealing with uncertainty in quantitative policy analysis. Cambridge University Press.\nOprean, D., Spence, C., Simpson, M., Miller, R., Jr, Bansal, S., Keller, K., & Klippel, A. (2019). Human Interpretation of Trade-Off Diagrams in Multi-Objective Problems: Implications for Developing Interactive Decision Support Systems. In Proceedings of the 52nd Hawaii International Conference on System Sciences. Retrieved from https://scholarspace.manoa.hawaii.edu/handle/10125/59596\nQuinn, J. D., Reed, P. M., & Keller, K. (2017). Direct policy search for robust multi-objective management of deeply uncertain socio-ecological tipping points. Environmental Modelling & Software, 92, 125–141. https://doi.org/10.1016/j.envsoft.2017.02.017\nReed, P. M., Hadjimichael, A., Malek, K., Karimi, T., Vernon, C. R., Srikrishnan, V., et al. (2022). Addressing Uncertainty in MultiSector Dynamics Research. https://immm-sfa.github.io/msd_uncertainty_ebook/\nReed, P. M., Hadjimichael, A., Moss, R. H., Brelsford, C., Burleyson, C. D., Cohen, S., et al. (2022). Multisector dynamics: Advancing the science of complex adaptive human-earth systems. Earth’s Future, 10(3). https://doi.org/10.1029/2021ef002621\nTebyanian, N., Wu, H., Iulo, L., & Keller, K. (2022). Uncertainty Considerations in Green Infrastructure Optimization: A Review. Journal of Digital Landscape Architecture: JoDLA, 2022(7), 549–560. https://doi.org/10.14627/537724052\nWong, T. E., & Keller, K. (2017). Deep Uncertainty Surrounding Coastal Flood Risk Projections: A Case Study for New Orleans. Earth’s Future, 5(10), 1015–1026. https://doi.org/10.1002/2017EF000607\nZarekarizi, M., Srikrishnan, V., & Keller, K. (2020). Neglecting Uncertainties Biases House-Elevation Decisions to Manage Riverine Flood Risks. Nature Communications. https://doi.org/10.1038/s41467-020-19188-9",
+    "crumbs": [
+      "Guide",
+      "Learning Materials",
+      "Reading Lists"
+    ]
+  },
+  {
+    "objectID": "docs/materials/reading-list.html#mordm-reading-list",
+    "href": "docs/materials/reading-list.html#mordm-reading-list",
+    "title": "Reading List",
+    "section": "(MO)RDM Reading List",
+    "text": "(MO)RDM Reading List\nYou may want to prioritize the articles in red.\n\nCore/Concepts\n\n\nAckoff, R. A. (1979). “The Future of Operational Research is Past.” The Journal of the Operational Research Society 30(2): 93-104.\nChurchman, C. W. (1967). “Wicked problems. Guest editorial.” Management Science 14(4): B141-B142.\nLempert, R. J. (2019). Robust Decision Making (RDM). In V. A. W. J. Marchau, W. E. Walker, P. J. T. M. Bloemen, & S. W. Popper (Eds.), Decision Making under Deep Uncertainty: From Theory to Practice (pp. 23–51). Cham: Springer International Publishing. https://doi.org/10.1007/978-3-030-05252-2_2\nBankes, Steve. “Exploratory Modeling for Policy Analysis.” Operations Research 41, no. 3 (June 1, 1993): 435–49. https://doi.org/10.1287/opre.41.3.435\nEllsberg, Daniel. “Risk, Ambiguity, and the Savage Axioms.” The Quarterly Journal of Economics 75, no. 4 (November 1961): 643. https://doi.org/10.2307/1884324\nAnderies, J. M., Rodriguez, A. A., Janssen, M. A., & Cifdaloz, O. (2007). Panaceas, uncertainty, and the robust control framework in sustainability science. Proceedings of the National Academy of Sciences of the United States of America, 104(39), 15194–15199. https://doi.org/10.1073/pnas.0702655104\nHerman, J. D., Reed, P. M., Zeff, H. B., & Characklis, G. W. (2015). How should robustness be defined for water systems planning under change?. Journal of Water Resources Planning and Management, 141(10), 04015012.\nKasprzyk, J. R., Nataraj, S., Reed, P. M., & Lempert, R. J. (2013). Many objective robust decision making for complex environmental systems undergoing change. Environmental Modelling & Software, 42, 55-71.\nMcPhail, C., Maier, H. R., Kwakkel, J. H., Giuliani, M., Castelletti, A., & Westra, S. (2018). Robustness metrics: How are they calculated, when should they be used and why do they give different results?. Earth’s Future, 6(2), 169-191.\nKwakkel Jan H., Walker Warren E., & Haasnoot Marjolijn. (2016). Coping with the Wickedness of Public Policy Problems: Approaches for Decision Making under Deep Uncertainty. Journal of Water Resources Planning and Management, 142(3), 01816001. https://doi.org/10.1061/(ASCE)WR.1943-5452.0000626\nRittel, H. W. J., & Webber, M. M. (1973). Dilemmas in a general theory of planning. Policy Sciences, 4(2), 155–169. https://doi.org/10.1007/bf01405730\nKeller, K., Helgeson, C., & Srikrishnan, V. (2021). Climate risk management. Annual Review of Earth and Planetary Sciences, 49, 95-116.\nWoodruff, M. J., Reed, P. M., & Simpson, T. W. (2013). Many objective visual analytics: rethinking the design of complex engineered systems. Structural and Multidisciplinary Optimization, 48(1), 201–219. https://doi.org/10.1007/s00158-013-0891-z\n\n\n\n\nTechniques/Examples\n\n\nHadjimichael, A., & Gold, D. (2020). Rhodium: Python Library for Many-Objective Robust Decision Making and Exploratory Modeling. Journal of. Retrieved from https://openresearchsoftware.metajnl.com/articles/10.5334/jors.293/print/\nKwakkel - Environmental Modelling & Software, J. H., & 2017. (2017). The Exploratory Modeling Workbench: An open source toolkit for exploratory modeling, scenario discovery, and (multi-objective) robust decision making. Elsevier Oceanography Series, 96, 239–250. https://doi.org/10.1016/j.envsoft.2017.06.054\nHadka, D., & Reed, P. (2013). Borg: an auto-adaptive many-objective evolutionary computing framework. Evolutionary Computation, 21(2), 231–259. https://doi.org/10.1162/EVCO_a_00075\nGarner, G. G., & Keller, K. (2018). Using direct policy search to identify robust strategies in adapting to uncertain sea-level rise and storm surge. Environmental Modelling & Software, 107, 96–104. https://doi.org/10.1016/j.envsoft.2018.05.006\nLempert, R. J., Schlesinger, M. E., & Bankes, S. C. (1996). When we don’t know the costs or the benefits: Adaptive strategies for abating climate change. Climatic Change, 33(2), 235-274.\nBertoni Federica, Giuliani Matteo, & Castelletti Andrea. (2020). Integrated Design of Dam Size and Operations via Reinforcement Learning. Journal of Water Resources Planning and Management, 146(4), 04020010. https://doi.org/10.1061/(ASCE)WR.1943-5452.0001182\nCastelletti, A., Pianosi, F., & Restelli, M. (2013). A multiobjective reinforcement learning approach to water resources systems operation: Pareto frontier approximation in a single run. Water Resources Research, 49(6), 3476–3486. Retrieved from https://agupubs.onlinelibrary.wiley.com/doi/abs/10.1002/wrcr.20295\nMarangoni, G., Lamontagne, J. R., Quinn, J. D., Reed, P. M., & Keller, K. (2021). Adaptive mitigation strategies hedge against extreme climate futures. Climatic Change, in review(3-4). https://doi.org/10.1007/s10584-021-03132-x\nQuinn, J. D., Reed, P. M., & Keller, K. (2017). Direct policy search for robust multi-objective management of deeply uncertain socio-ecological tipping points. Environmental Modelling & Software, 92, 125–141. https://doi.org/10.1016/j.envsoft.2017.02.017\nRosenstein, M. T., & Barto, A. G. (2001). Robot weightlifting by direct policy search. IJCAI: Proceedings of the Conference / Sponsored by the International Joint Conferences on Artificial Intelligence. Retrieved from http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.10.5890&rep=rep1&type=pdf\nWong, T. E., & Keller, K. (2017). Deep Uncertainty Surrounding Coastal Flood Risk Projections: A Case Study for New Orleans. Earth’s Future, 5(10), 1015–1026. https://doi.org/10.1002/2017EF000607\nZaniolo, M., Giuliani, M., & Castelletti, A. (2021). Policy Representation Learning for multiobjective reservoir policy design with different objective dynamics. Water Resources Research. https://doi.org/10.1029/2020wr029329\nZarekarizi, M., Srikrishnan, V., & Keller, K. (2020). Neglecting Uncertainties Biases House-Elevation Decisions to Manage Riverine Flood Risks. Nature Communications. https://doi.org/10.1038/s41467-020-19188-9",
+    "crumbs": [
+      "Guide",
+      "Learning Materials",
+      "Reading Lists"
+    ]
+  },
+  {
+    "objectID": "docs/materials/reading-list.html#uncertainty-and-risk-communication",
+    "href": "docs/materials/reading-list.html#uncertainty-and-risk-communication",
+    "title": "Reading List",
+    "section": "Uncertainty and Risk Communication",
+    "text": "Uncertainty and Risk Communication\n\n\nvan der Bles, A. M., van der Linden, S., Freeman, A. L. J., & Spiegelhalter, D. J. (2020). The effects of communicating uncertainty on public trust in facts and numbers. Proceedings of the National Academy of Sciences of the United States of America, 117(14), 7672–7683. https://doi.org/10.1073/pnas.1913678117\nBudescu, D. V., Broomell, S., & Por, H.-H. (2009). Improving Communication of Uncertainty in the Reports of the Intergovernmental Panel on Climate Change. Psychological Science, 20(3), 299–308. https://doi.org/10.1111/j.1467-9280.2009.02284.x\nBudescu, D. V., Por, H.-H., & Broomell, S. B. (2012). Effective communication of uncertainty in the IPCC reports. Climatic Change, 113(2), 181–200. https://doi.org/10.1007/s10584-011-0330-3\nBudescu, D. V., Broomell, S. B., Lempert, R. J., & Keller, K. (2014). Aided and unaided decisions with imprecise probabilities in the domain of losses. EURO Journal on Decision Processes, 2(1), 31–62. https://doi.org/10.1007/s40070-013-0023-4\nBudescu, D. V., Por, H.-H., Broomell, S. B., & Smithson, M. (2014). The interpretation of IPCC probabilistic statements around the world. Nature Climate Change, 4(6), 508–512. https://doi.org/10.1038/nclimate2194\nCooper, C. M., Sharma, S., Nicholas, R. E., & Keller, K. (2022, January 4). Trade-offs in the design and communication of flood-risk information. arXiv [stat.AP]. Retrieved from http://arxiv.org/abs/2201.01254\nEllsberg, D. (1961). Risk, Ambiguity, and the Savage Axioms. The Quarterly Journal of Economics, 75(4), 643–669. https://doi.org/10.2307/1884324\nFEMA. (2021). National Risk Index- Technical Documentation. FEMA. Retrieved from https://www.fema.gov/sites/default/files/documents/fema_national-risk-index_technical-documentation.pdf accessed Oct 4 2011\nHobbins, R., Muñoz-Erickson, T. A., & Miller, C. (2021). Producing and Communicating Flood Risk: A Knowledge System Analysis of FEMA Flood Maps in New York City. In Z. A. Hamstead, D. M. Iwaniec, T. McPhearson, M. Berbés-Blázquez, E. M. Cook, & T. A. Muñoz-Erickson (Eds.), Resilient Urban Futures (pp. 67–84). Cham: Springer International Publishing. https://doi.org/10.1007/978-3-030-63131-4_5\nKoslov, L. (2019). How maps make time. City, 23(4-5), 658–672. https://doi.org/10.1080/13604813.2019.1690337\nMastrandrea, M. D., Field, C. B., Stocker, T. F., Edenhofer, O., Ebi, K. L., Frame, D. J., et al. (2010). Guidance note for lead authors of the IPCC fifth assessment report on consistent treatment of uncertainties. Retrieved from http://pubman.mpdl.mpg.de/pubman/item/escidoc:2147184/component/escidoc:2147185/uncertainty-guidance-note.pdf\nMastrandrea, M. D., Mach, K. J., Plattner, G.-K., Edenhofer, O., Stocker, T. F., Field, C. B., et al. (2011). The IPCC AR5 guidance note on consistent treatment of uncertainties: a common approach across the working groups. Climatic Change, 108(4), 675. https://doi.org/10.1007/s10584-011-0178-6\nSimpson, M., Padilla, L., Keller, K., & Klippel, A. (2022). Immersive storm surge flooding: Scale and risk perception in virtual reality. Journal of Environmental Psychology, (101764), 101764. https://doi.org/10.1016/j.jenvp.2022.101764\nWing, O. E. J., Pinter, N., Bates, P. D., & Kousky, C. (2020). New insights into US flood vulnerability revealed from flood insurance big data. Nature Communications, 11(1), 1444. https://doi.org/10.1038/s41467-020-15264-2\nZwick, R., Budescu, D. V., & Wallsten, T. S. (1988). An Empirical Study of the Integration of Linguistic Probabilities. In T. Zétényi (Ed.), Advances in Psychology (Vol. 56, pp. 91–125). North-Holland. https://doi.org/10.1016/S0166-4115(08)60483-5\nAhmad, N., Peterson, N., & Torella, F. (2015). The Micromort: a unit for comparing and communicating risk to patients. International Journal of Clinical Practice, 69(5), 515–517. https://doi.org/10.1111/ijcp.12643\nFaulkner, H., Parker, D., Green, C., & Beven, K. (2007). Developing a translational discourse to communicate uncertainty in flood risk between science and the practitioner. Ambio, 36(8), 692–703. Retrieved from https://www.ncbi.nlm.nih.gov/pubmed/18240686\nFischhoff, B. (2014). Four answers to four questions (about risk communication). Journal of Risk Research, 17(10), 1265–1267. https://doi.org/10.1080/13669877.2014.940598\nLarrick, R. P., & Soll, J. B. (2008). Economics. The MPG illusion. Science, 320(5883), 1593–1594. https://doi.org/10.1126/science.1154983\nLee, K. D., Torell, G. L., & Newman, S. (2021). A once-in-one-hundred-year event? A survey assessing deviation between perceived and actual understanding of flood risk terminology. Journal of Environmental Management, 277, 111400. https://doi.org/10.1016/j.jenvman.2020.111400\nOtway, H., & Wynne, B. (1989). Risk Communication: Paradigm and Paradox. Risk Analysis: An Official Publication of the Society for Risk Analysis, 9(2), 141–145. https://doi.org/10.1111/j.1539-6924.1989.tb01232.x\nSpiegelhalter, D. (2017). Risk and Uncertainty Communication. Annual Review of Statistics and Its Application. https://doi.org/10.1146/annurev-statistics-010814-020148",
+    "crumbs": [
+      "Guide",
+      "Learning Materials",
+      "Reading Lists"
+    ]
+  },
+  {
+    "objectID": "docs/materials/reading-list.html#other-lists",
+    "href": "docs/materials/reading-list.html#other-lists",
+    "title": "Reading List",
+    "section": "Other Lists",
+    "text": "Other Lists\n\n\n\n\n\n\nGood Contribution Opportunity!\n\n\n\nThese lists are saved on google docs that only lab members have access to. Porting these over to the manual is a great first contribution opportunity for lab members who want practice collaborating on GitHub and opening a pull request!\n\n\n\nAgent-Based Modeling\nCoastal Flood Hazards\nDiscount Rates\nDecarbonization\nUC/UQ\nPM2.5 Health Impacts",
+    "crumbs": [
+      "Guide",
+      "Learning Materials",
+      "Reading Lists"
+    ]
+  },
+  {
+    "objectID": "docs/analysis/lab-github.html",
+    "href": "docs/analysis/lab-github.html",
+    "title": "Our Group’s Common GitHub Use Cases",
+    "section": "",
+    "text": "We use GitHub for many tasks:\n\nConduct careful versional control on all projects (solo or collaborative)\nKeep track of our lab meeting agendas and presentation order\nMaintain the group webpage\nMaintain this lab manual\n\nThis is easier said than done! See below for some helpful resources and code."
+  },
+  {
+    "objectID": "docs/analysis/lab-github.html#high-level-overview",
+    "href": "docs/analysis/lab-github.html#high-level-overview",
+    "title": "Our Group’s Common GitHub Use Cases",
+    "section": "",
+    "text": "We use GitHub for many tasks:\n\nConduct careful versional control on all projects (solo or collaborative)\nKeep track of our lab meeting agendas and presentation order\nMaintain the group webpage\nMaintain this lab manual\n\nThis is easier said than done! See below for some helpful resources and code."
+  },
+  {
+    "objectID": "docs/analysis/lab-github.html#recommended-tutorials-and-resources",
+    "href": "docs/analysis/lab-github.html#recommended-tutorials-and-resources",
+    "title": "Our Group’s Common GitHub Use Cases",
+    "section": "Recommended Tutorials and Resources",
+    "text": "Recommended Tutorials and Resources\nCredit to James Doss-Gollin’s CEVE 421/521: Climate Risk Management Course at Rice University for this helpful curated list.\n\nGit Basics from The Odin Project.\nLearn Git Branching: An interactive, visual tutorial to how git works.\nVersion Control from MIT’s “CS: Your Missing Semester” course.\nGit and GitHub for Poets: YouTube playlist covering the basics of git and GitHub.\nVersion Control with Git course from Software Carpentry"
+  },
+  {
+    "objectID": "docs/analysis/lab-github.html#github-for-puppies",
+    "href": "docs/analysis/lab-github.html#github-for-puppies",
+    "title": "Our Group’s Common GitHub Use Cases",
+    "section": "GitHub for Puppies",
+    "text": "GitHub for Puppies\nThese code blocks and recommendations can be helpful for routine tasks, but may require knowledge and set-up that they don’t explicitly acknowledge. To use these recipes well, you should work through the recommended tutorials and resources above (or have commensurate knowledge).\n\nKeep track of lab meetings\nThis (TO DO) is our lab meeting repo.\nThe person responsible for organizing and leading lab meetings will:\n\n\n\n\n\n\nWe can organize this better!\n\n\n\nWe should probably have subdirectories on the main branch for each term and avoid the complicated branch structure we currently use.\n\n\n\nOnce per term, create a new branch named for the term (e.g., winter25) and update the README with the meeting details and schedule.\nOnce per term, update the main branch README.md to reflect the branch we are currently on.\nEvery week, add a new subdirectory for the meeting of that week (e.g., 1-15/) and add an agenda.md file. Include a link to the presenter’s slides if possible. Update the meeting schedule with a link to the week’s agenda.md.\n\nWe only expect other lab members to view this repo.\n\n\nContribute to the webpage\nThis [TO DO] is our webpage repo.\n\n\n\n\n\n\nWe may want to migrate to Quarto!\n\n\n\nThe main interactions with the webpage is to add/remove a member profile. Quarto could simplify this quite a bit, and synchronizing tech stacks for the manual and webpage could make it simpler for a wider range of contributions to each.\n\n\nThe person reponsible for maintaining the webpage should follow, and add to, the README.md as appropriate for various tasks.\nOccassionally, other lab members may want to propose changes. You can always post an Issue to the repo. If you want to directly implement changes, the workflow for this is to:\n\nClone the repo to your local machine\nCreate a new branch named parsimoniously for the change you’d like to make. For example, when we added this web manual to the navigation bar at the top of the webpage, we did the following workflow after cloning:\n\ngit checkout -b web-manual\nmade changes and tested locally\ngit add .\ngit commit -m add link to lab manual on web page resources\ngit push -u origin web-manual\nOn the web repo, open a PR with a detailed description and assign the task to Adam and the person in charge of the webpage\n\n\n\n\nContribute to this manual\nThis is the web manual repo.\nWe need to define the workflow for contributing to it before we add more instructions here.\n\n\nSet up and maintain your research project\nIf this is your first project in the group, check out the metarepo documentation and start from the IM3 template. You should:\n\nMake keller-lab the owner\nGenerally, set the repo to private while you are first beginning your work\nClone the repo (ideally to both kasper and your local machine)\nBegin modifying the template to better meet your needs. For example:\n\nWe often add data/ to our .gitignore because we like having this in our project directory\nSome of us prefer renaming scripts/ to workflow/ because we are special\nYou may want to add other directories, .yml files, etc.,\n\n\nIf you have your own project template (e.g., maybe you like Cookiecutter Data Science), please use your template!\nNo matter how you initialize your project, please keep the following principles in mind:\n\ngit add and git commit often, and make sure your commit messages are informative (and make you feel more comfortable reverting, if necessary).\nKeep reproducibility in mind (e.g., use relative filepaths, update your README as you go, keep your kapser & local machine repos up to date with each other and make sure you can run code on both machines, etc.,)\nIn general, separate functions from analysis.\n\nStudy the UNSAFE directory structure (esp. the pyproject.toml) and see how we use it in the examples/ directory. See here\nUse software packages you develop for various functions as submodules in your analysis-focused projects. For example, see here.\n\n\nCheck out our example repositories to see neat code directory structures. Reproduce these examples to see how the data gets structured for ideas on how to structure your unique project well."
+  },
+  {
+    "objectID": "docs/sci-comm/our-goals.html",
+    "href": "docs/sci-comm/our-goals.html",
+    "title": "Our Science Communication Goals",
+    "section": "",
+    "text": "Warning\n\n\n\nThis page is under construction! The content here is currently for planning purposes.\n\n\nThe idea of this page is to lay out why we care about science communication and providing context about the subsequent guides on being a good communicator for mediums such as presentations, papers, paper contracts, etc., Our goals might follow the message box format -&gt; clear issue, audience, problem statement, so what, etc., Could change this from “goals” to “approach” as well.",
+    "crumbs": [
+      "Guide",
+      "Science Communication",
+      "Our Goals"
+    ]
+  },
+  {
+    "objectID": "docs/prof-dev.html",
+    "href": "docs/prof-dev.html",
+    "title": "Professional Development",
+    "section": "",
+    "text": "Warning\n\n\n\nThis page is under construction! The content here is currently for planning purposes.\n\n\n\nOverview\nQuestions to ask oneself through career\nSome helpful resources\n\nApplication checklist\nBuilding a cv\nBuilding a personal webpage",
+    "crumbs": [
+      "Guide",
+      "Professional Development"
+    ]
+  },
+  {
+    "objectID": "docs/cookbook/lab-operations/lab-meetings.html",
+    "href": "docs/cookbook/lab-operations/lab-meetings.html",
+    "title": "Contribute to Lab Meetings",
+    "section": "",
+    "text": "Maintain the shared lab meeting repository so that meeting schedules, agendas, and presentation materials are organized and accessible to the group."
+  },
+  {
+    "objectID": "docs/cookbook/lab-operations/lab-meetings.html#goal",
+    "href": "docs/cookbook/lab-operations/lab-meetings.html#goal",
+    "title": "Contribute to Lab Meetings",
+    "section": "",
+    "text": "Maintain the shared lab meeting repository so that meeting schedules, agendas, and presentation materials are organized and accessible to the group."
+  },
+  {
+    "objectID": "docs/cookbook/lab-operations/lab-meetings.html#prerequisites",
+    "href": "docs/cookbook/lab-operations/lab-meetings.html#prerequisites",
+    "title": "Contribute to Lab Meetings",
+    "section": "Prerequisites",
+    "text": "Prerequisites\n\nAccess to the Pollack Group lab meeting repository\nBasic familiarity with Git and GitHub\n\nSee the Version Control guide for our general approach and recommended learning resources."
+  },
+  {
+    "objectID": "docs/cookbook/lab-operations/lab-meetings.html#procedure",
+    "href": "docs/cookbook/lab-operations/lab-meetings.html#procedure",
+    "title": "Contribute to Lab Meetings",
+    "section": "Procedure",
+    "text": "Procedure\n\n1. Review the current meeting schedule\nTODO: Add the lab meeting repository and describe the agreed-upon term organization.\n\n\n2. Create or update the meeting agenda\nTODO: Define the directory and naming convention for individual meetings.\n\n\n3. Add presentation materials\nTODO: Define where presentation materials or links should be stored.\n\n\n4. Submit your changes\nFollow the repository’s contribution workflow and submit substantive changes for review when appropriate."
+  },
+  {
+    "objectID": "docs/cookbook/lab-operations/lab-meetings.html#verify",
+    "href": "docs/cookbook/lab-operations/lab-meetings.html#verify",
+    "title": "Contribute to Lab Meetings",
+    "section": "Verify",
+    "text": "Verify\nConfirm that the meeting agenda, schedule, and any presentation links render correctly on GitHub and point to the intended materials."
+  },
+  {
+    "objectID": "docs/cookbook/lab-operations/lab-meetings.html#common-problems",
+    "href": "docs/cookbook/lab-operations/lab-meetings.html#common-problems",
+    "title": "Contribute to Lab Meetings",
+    "section": "Common problems",
+    "text": "Common problems\nTo be completed as the lab meeting workflow is established."
+  },
+  {
+    "objectID": "docs/cookbook/lab-operations/lab-meetings.html#related-resources",
+    "href": "docs/cookbook/lab-operations/lab-meetings.html#related-resources",
+    "title": "Contribute to Lab Meetings",
+    "section": "Related resources",
+    "text": "Related resources\n\nRelated recipes\n\nContribute to the Lab Manual\nContribute to the Lab Website"
+  },
+  {
+    "objectID": "docs/cookbook/lab-operations/lab-manual.html",
+    "href": "docs/cookbook/lab-operations/lab-manual.html",
+    "title": "Contribute to the Lab Manual",
+    "section": "",
+    "text": "Contribute corrections, new documentation, or new recipes to the Pollack Group Lab Manual.\nMinor edits can be proposed directly through GitHub. Larger changes should be developed locally so that the manual can be previewed before submitting a pull request."
+  },
+  {
+    "objectID": "docs/cookbook/lab-operations/lab-manual.html#goal",
+    "href": "docs/cookbook/lab-operations/lab-manual.html#goal",
+    "title": "Contribute to the Lab Manual",
+    "section": "",
+    "text": "Contribute corrections, new documentation, or new recipes to the Pollack Group Lab Manual.\nMinor edits can be proposed directly through GitHub. Larger changes should be developed locally so that the manual can be previewed before submitting a pull request."
+  },
+  {
+    "objectID": "docs/cookbook/lab-operations/lab-manual.html#prerequisites",
+    "href": "docs/cookbook/lab-operations/lab-manual.html#prerequisites",
+    "title": "Contribute to the Lab Manual",
+    "section": "Prerequisites",
+    "text": "Prerequisites\nFor local development:\n\nGit\nQuarto\nPixi\naccess to the Pollack Group Lab Manual repository"
+  },
+  {
+    "objectID": "docs/cookbook/lab-operations/lab-manual.html#procedure",
+    "href": "docs/cookbook/lab-operations/lab-manual.html#procedure",
+    "title": "Contribute to the Lab Manual",
+    "section": "Procedure",
+    "text": "Procedure\n\n1. Discuss substantial additions when appropriate\nFor a substantial new Guide page or Cookbook recipe, consider opening a GitHub issue before beginning implementation.\nFor new recipes in particular, the issue can be used to discuss:\n\nthe scope of the recipe;\nwhether an existing recipe already addresses the task;\nwhere the recipe belongs in the Cookbook;\nappropriate categories and metadata; and\nrelated Guide pages and recipes.\n\nSmall corrections do not require an issue.\n\n\n2. Create a branch\nFrom an up-to-date local copy of the repository:\ngit switch -c descriptive-branch-name\nUse a concise name that describes the proposed change.\n\n\n3. Install the manual environment\npixi install\nThe Pixi environment provides Python and other dependencies used by executable content in the manual. Quarto itself is installed separately.\n\n\n4. Make your changes\nGuide pages explain concepts, practices, and the reasoning behind lab workflows.\nCookbook recipes document recurring, multi-step lab procedures. New recipes should follow RECIPE_TEMPLATE.qmd.\n\n\n5. Preview while you work\nFrom the root of the repository:\nquarto preview\nQuarto will open a local version of the manual and automatically update it as source files change.\nUse the preview to inspect:\n\npage content and formatting;\nnavigation;\ninternal and external links;\ncallouts;\ncode output; and\nchanges to _quarto.yml or site styling.\n\nStop the preview server with Ctrl+C.\n\n\n6. Fully render the manual\nBefore committing the finished contribution, render the entire website:\nquarto render\nA successful preview does not replace this step. A full render checks the complete Quarto project and updates any executable content that needs to be recomputed.\nDo not proceed until the full render completes without errors.\n\nExecutable content\nThe manual uses Quarto’s freeze functionality for executable content.\nIf you modify a .qmd file containing executable Python code, render it locally using the appropriate environment before submitting the pull request:\nquarto render\nUpdated computational results under _freeze/ should be included in the commit when Quarto generates them.\nThis allows the published manual to use locally verified computational results without requiring the publishing workflow to reproduce every research environment used by the documentation.\n\n\n\n7. Review your changes\nCheck:\ngit status\nand, when useful:\ngit diff\nMake sure the contribution does not contain unrelated files, generated content that should be ignored, credentials, or other unintended changes.\n\n\n8. Commit and push\nStage the intended changes:\ngit add &lt;files&gt;\nCommit them:\ngit commit -m \"Describe your changes\"\nThen push your branch:\ngit push -u origin descriptive-branch-name\n\n\n9. Open a pull request\nOpen a pull request into main on GitHub.\nDescribe:\n\nwhat you changed;\nwhy the change is useful;\nany decisions that would benefit from discussion; and\nanything reviewers should specifically test.\n\nAddress review comments on the same branch. Additional commits pushed to that branch will automatically appear in the pull request.\nOnce the pull request has been reviewed and merged into main, the lab manual’s publishing workflow will automatically rebuild and deploy the website."
+  },
+  {
+    "objectID": "docs/cookbook/lab-operations/lab-manual.html#verify",
+    "href": "docs/cookbook/lab-operations/lab-manual.html#verify",
+    "title": "Contribute to the Lab Manual",
+    "section": "Verify",
+    "text": "Verify\nBefore requesting merge, confirm that:\n\nquarto preview runs successfully;\nchanged pages render correctly;\ninternal and external links work;\nnew recipes contain appropriate metadata; and\nfiles unrelated to the contribution have not accidentally been included."
+  },
+  {
+    "objectID": "docs/cookbook/lab-operations/lab-manual.html#common-problems",
+    "href": "docs/cookbook/lab-operations/lab-manual.html#common-problems",
+    "title": "Contribute to the Lab Manual",
+    "section": "Common problems",
+    "text": "Common problems\n\nThe manual does not render\nReview the Quarto output.\n\n\nPython packages are missing\nThe manual’s Python dependencies are managed with Pixi. Do not install a required project dependency manually into the environment. Add it through Pixi so that the environment definition and lock file remain reproducible."
+  },
+  {
+    "objectID": "docs/cookbook/lab-operations/lab-manual.html#related-resources",
+    "href": "docs/cookbook/lab-operations/lab-manual.html#related-resources",
+    "title": "Contribute to the Lab Manual",
+    "section": "Related resources",
+    "text": "Related resources\n\nRelated recipes\n\nConfigure a Quarto Site for GitHub Pages"
+  },
+  {
+    "objectID": "docs/cookbook/data-management/portable-project-paths.html",
+    "href": "docs/cookbook/data-management/portable-project-paths.html",
+    "title": "Configure Portable Project Data Paths",
+    "section": "",
+    "text": "Configure a Python project so that notebooks, scripts, and reusable functions can locate the same project data when running on either Argon or IDAS.\nLSS is available from both systems, but it is mounted at different filesystem locations. We therefore do not want to hard-code an Argon or IDAS path throughout the project.\nInstead, we will:\n\nidentify the LSS mount available on the current system;\ndefine the project’s important data directories in one Python module; and\nimport those paths wherever they are needed.\n\nThis recipe uses the risk_prob project as an example."
+  },
+  {
+    "objectID": "docs/cookbook/data-management/portable-project-paths.html#goal",
+    "href": "docs/cookbook/data-management/portable-project-paths.html#goal",
+    "title": "Configure Portable Project Data Paths",
+    "section": "",
+    "text": "Configure a Python project so that notebooks, scripts, and reusable functions can locate the same project data when running on either Argon or IDAS.\nLSS is available from both systems, but it is mounted at different filesystem locations. We therefore do not want to hard-code an Argon or IDAS path throughout the project.\nInstead, we will:\n\nidentify the LSS mount available on the current system;\ndefine the project’s important data directories in one Python module; and\nimport those paths wherever they are needed.\n\nThis recipe uses the risk_prob project as an example."
+  },
+  {
+    "objectID": "docs/cookbook/data-management/portable-project-paths.html#prerequisites",
+    "href": "docs/cookbook/data-management/portable-project-paths.html#prerequisites",
+    "title": "Configure Portable Project Data Paths",
+    "section": "Prerequisites",
+    "text": "Prerequisites\nThis recipe assumes that:\n\nthe project is organized as an installable Python package using a src/ layout;\nthe project can be run from both Argon and IDAS; and\nproject data are stored on the Pollack Group LSS.\n\nFor a project named risk_prob, the relevant structure is:\nrisk_prob/\n├── notebooks/\n├── scripts/\n├── src/\n│   └── risk_prob/\n│       ├── __init__.py\n│       └── paths.py\n├── pyproject.toml\n└── pixi.lock\nThe data are stored separately on LSS:\nlss-apollack/\n└── projects/\n    └── risk_prob/\n        └── data/\n            ├── raw/\n            ├── processed/\n            └── results/"
+  },
+  {
+    "objectID": "docs/cookbook/data-management/portable-project-paths.html#understand-the-two-lss-paths",
+    "href": "docs/cookbook/data-management/portable-project-paths.html#understand-the-two-lss-paths",
+    "title": "Configure Portable Project Data Paths",
+    "section": "Understand the two LSS paths",
+    "text": "Understand the two LSS paths\nThe same Pollack Group LSS is exposed at different paths on Argon and IDAS.\nOn Argon, the LSS root is:\n/Shared/lss-apollack\nOn IDAS, the LSS root is:\n/home/&lt;hawkid&gt;/LSS/lss-apollack\nThe remainder of the path is the same on both systems:\nprojects/risk_prob/data\nWe therefore only need to detect the LSS root. Everything below it can be defined once."
+  },
+  {
+    "objectID": "docs/cookbook/data-management/portable-project-paths.html#procedure",
+    "href": "docs/cookbook/data-management/portable-project-paths.html#procedure",
+    "title": "Configure Portable Project Data Paths",
+    "section": "Procedure",
+    "text": "Procedure\n\n1. Create a project path module\nInside the project’s Python package, create:\nsrc/risk_prob/paths.py\nFor risk_prob, use:\nfrom pathlib import Path\n\n\ndef get_lss_root() -&gt; Path:\n    \"\"\"Return the Pollack Group LSS root available on this system.\"\"\"\n\n    candidates = [\n        Path(\"/Shared/lss-apollack\"),             # Argon\n        Path.home() / \"LSS\" / \"lss-apollack\",    # IDAS\n    ]\n\n    for path in candidates:\n        if path.is_dir():\n            return path\n\n    raise RuntimeError(\n        \"Could not locate the Pollack Group LSS. \"\n        \"Expected /Shared/lss-apollack on Argon or \"\n        \"~/LSS/lss-apollack on IDAS.\"\n    )\n\n\nLSS = get_lss_root()\n\nDATA = LSS / \"projects\" / \"risk_prob\" / \"data\"\n\nRAW = DATA / \"raw\"\nPROCESSED = DATA / \"processed\"\nRESULTS = DATA / \"results\"\nThis module contains all machine-specific knowledge about where the LSS is mounted.\nThe rest of the project does not need to know whether it is running on Argon or IDAS.\n\n\n2. Import project paths in scripts and notebooks\nInstead of writing:\nfrom pathlib import Path\n\ndata = Path(\"/Shared/lss-apollack/projects/risk_prob/data\")\nor:\nfrom pathlib import Path\n\ndata = (\n    Path.home()\n    / \"LSS\"\n    / \"lss-apollack\"\n    / \"projects\"\n    / \"risk_prob\"\n    / \"data\"\n)\nuse:\nfrom risk_prob.paths import DATA\nThe same script can now run unchanged on Argon or IDAS.\n\n\n3. Add more project paths when they are shared\nAs a project develops, other commonly used locations can be defined in paths.py.\nFor example:\nEXTERNAL = RAW / \"external\"\nHAZARD = EXTERNAL / \"haz\"\nAvoid defining every directory in the project globally. Add paths here when they represent stable locations used across multiple scripts, notebooks, or modules."
+  },
+  {
+    "objectID": "docs/cookbook/data-management/portable-project-paths.html#verify",
+    "href": "docs/cookbook/data-management/portable-project-paths.html#verify",
+    "title": "Configure Portable Project Data Paths",
+    "section": "Verify",
+    "text": "Verify\nFirst verify the paths on IDAS.\nIn a notebook using the project’s kernel:\nfrom risk_prob.paths import LSS, DATA, RAW\n\nprint(LSS)\nprint(DATA)\nprint(RAW)\nFor risk_prob, the output on IDAS should begin with:\n/home/&lt;hawkid&gt;/LSS/lss-apollack\nand DATA should resolve to:\n/home/&lt;hawkid&gt;/LSS/lss-apollack/projects/risk_prob/data\nOn Argon:\npixi run python -c \"from risk_prob.paths import LSS, DATA; print(LSS); print(DATA)\"\nshould report:\n/Shared/lss-apollack\n/Shared/lss-apollack/projects/risk_prob/data"
+  },
+  {
+    "objectID": "docs/cookbook/data-management/portable-project-paths.html#common-problems",
+    "href": "docs/cookbook/data-management/portable-project-paths.html#common-problems",
+    "title": "Configure Portable Project Data Paths",
+    "section": "Common problems",
+    "text": "Common problems\n\nModuleNotFoundError: No module named 'risk_prob'\nThe project package is not available to the Python environment currently running the code.\nConfirm that you are using the project’s Pixi environment:\npixi run python -c \"import risk_prob; print(risk_prob.__file__)\"\nFor a Jupyter notebook, also check:\nimport sys\nprint(sys.executable)\nand confirm that the notebook is using the project’s intended kernel.\n\n\nA new data directory does not exist yet\nThe path definitions above describe locations; they do not automatically create them.\nWhen a workflow is responsible for creating a new directory, create it explicitly:\noutdir = RAW / \"external\" / \"haz\" / \"new_dataset\"\noutdir.mkdir(parents=True, exist_ok=True)\nThis makes directory creation part of the workflow that actually needs the directory."
+  },
+  {
+    "objectID": "docs/cookbook/data-management/portable-project-paths.html#related-resources",
+    "href": "docs/cookbook/data-management/portable-project-paths.html#related-resources",
+    "title": "Configure Portable Project Data Paths",
+    "section": "Related resources",
+    "text": "Related resources\n\nGuide\n\nResearch Project Organization\nOur Computing Approach\n\n\n\nRelated recipes\n\nInitialize a Python Research Project with Pixi"
+  },
+  {
+    "objectID": "docs/cookbook/index.html",
+    "href": "docs/cookbook/index.html",
+    "title": "Lab Cookbook",
+    "section": "",
+    "text": "The Lab Cookbook contains tested recipes for recurring Pollack Group workflows. Recipes focus on tasks that combine multiple steps, tools, or lab-specific conventions.",
+    "crumbs": [
+      "Cookbook",
+      "Lab Cookbook"
+    ]
+  },
+  {
+    "objectID": "docs/cookbook/index.html#cookbook-sections",
+    "href": "docs/cookbook/index.html#cookbook-sections",
+    "title": "Lab Cookbook",
+    "section": "Cookbook sections",
+    "text": "Cookbook sections\n\nLab Operations\nWorkflows for maintaining shared lab resources and activities.\nBrowse Lab Operations recipes\n\n\nResearch Computing\nWorkflows for using the Pollack Group’s research computing infrastructure.\nBrowse Research Computing recipes\n\n\nData Management\nWorkflows for acquiring, transferring, organizing, and maintaining research data.\nBrowse Data Management recipes",
+    "crumbs": [
+      "Cookbook",
+      "Lab Cookbook"
+    ]
+  },
+  {
+    "objectID": "docs/cookbook/research-computing/initialize-python-project.html",
+    "href": "docs/cookbook/research-computing/initialize-python-project.html",
+    "title": "Initialize a Python Research Project with Pixi",
+    "section": "",
+    "text": "Initialize a Python research project using Pixi, organize the project using a standard src/ layout, and define a reproducible computational environment.\nThere are two workflows:\n\na project used on a single computer; and\na project that will be used across Argon and IDAS.\n\nThe second workflow should be used for projects that need both interactive analysis on IDAS and larger or longer-running computation on Argon."
+  },
+  {
+    "objectID": "docs/cookbook/research-computing/initialize-python-project.html#goal",
+    "href": "docs/cookbook/research-computing/initialize-python-project.html#goal",
+    "title": "Initialize a Python Research Project with Pixi",
+    "section": "",
+    "text": "Initialize a Python research project using Pixi, organize the project using a standard src/ layout, and define a reproducible computational environment.\nThere are two workflows:\n\na project used on a single computer; and\na project that will be used across Argon and IDAS.\n\nThe second workflow should be used for projects that need both interactive analysis on IDAS and larger or longer-running computation on Argon."
+  },
+  {
+    "objectID": "docs/cookbook/research-computing/initialize-python-project.html#prerequisites",
+    "href": "docs/cookbook/research-computing/initialize-python-project.html#prerequisites",
+    "title": "Initialize a Python Research Project with Pixi",
+    "section": "Prerequisites",
+    "text": "Prerequisites\n\nGit\nPixi\nFor local development: a local Python-capable development environment\nFor the HPC workflow: access to Argon and IDAS"
+  },
+  {
+    "objectID": "docs/cookbook/research-computing/initialize-python-project.html#project-layout",
+    "href": "docs/cookbook/research-computing/initialize-python-project.html#project-layout",
+    "title": "Initialize a Python Research Project with Pixi",
+    "section": "Project layout",
+    "text": "Project layout\nA Python research project will generally use a src/ layout:\nproject-name/\n├── config/\n├── jobs/\n├── notebooks/\n├── scripts/\n├── src/\n│   └── project_name/\n│       └── __init__.py\n├── pyproject.toml\n├── pixi.lock\n└── README.md\nThe src/project_name/ directory contains reusable project-specific Python code. Notebooks and scripts should import that code rather than repeatedly defining the same functions."
+  },
+  {
+    "objectID": "docs/cookbook/research-computing/initialize-python-project.html#single-machine-project",
+    "href": "docs/cookbook/research-computing/initialize-python-project.html#single-machine-project",
+    "title": "Initialize a Python Research Project with Pixi",
+    "section": "Single-machine project",
+    "text": "Single-machine project\nUse this workflow when the project will be developed and run on one computer and does not need to maintain separate environments on different systems.\n\n1. Create or enter the project directory\nmkdir project-name\ncd project-name\nIf the repository already exists, simply work from its root directory.\n\n\n2. Initialize the Python project\nIf the project does not already have a pyproject.toml:\npixi init --format pyproject\nIf the project already has a pyproject.toml, run:\npixi init\nPixi will add its workspace configuration to the existing Python project. It can also configure the project itself as an editable dependency. The pyproject.toml serves as the project and Pixi manifest, while pixi.lock records the resolved environment.\n\n\n3. Add Python dependencies\nFor example:\npixi add python=3.12 pandas numpy\nUse pixi add rather than manually installing packages into the environment. This records the dependency in the project manifest and updates the lock file.\n\n\n4. Install the environment\npixi install\nThe actual environment is maintained by Pixi and should not be committed to Git. Commit the project definition and lock file instead:\npyproject.toml\npixi.lock\nPixi creates the local .pixi/ directory for the installed environment.\n\n\n5. Run Python\nRather than manually activating the environment, use:\npixi run python\nor:\npixi run python scripts/example.py\nCommands such as pixi run automatically ensure that the environment is available and up to date.\n\n\n6. Register the environment as a Jupyter kernel\nIf the project will use Jupyter notebooks or executable Quarto documents, make sure jupyter and ipykernel are included in the environment:\npixi add jupyter ipykernel\nRegister the project’s Python environment as a Jupyter kernel:\npixi run python -m ipykernel install \\\n    --user \\\n    --name project_name \\\n    --display-name \"Python (project_name)\"\nReplace project_name with a short, recognizable name for the project.\nThe kernel only needs to be registered once. Installing additional packages into the same Pixi environment does not normally require creating a new kernel. Once the kernel is registered, you can follow your normal Jupyter workflow."
+  },
+  {
+    "objectID": "docs/cookbook/research-computing/initialize-python-project.html#argon-idas-project",
+    "href": "docs/cookbook/research-computing/initialize-python-project.html#argon-idas-project",
+    "title": "Initialize a Python Research Project with Pixi",
+    "section": "Argon + IDAS project",
+    "text": "Argon + IDAS project\nProjects that will use both Argon and IDAS require additional care because the two systems do not have identical operating systems or system libraries.\nThe project definition is shared, but the installed environments are machine-specific.\n\n1. Initialize the project on Argon\nCreate or clone the project on Argon and initialize Pixi there.\nFor a new Python project:\npixi init --format pyproject\nFor an existing Python project:\npixi init\nAdd the project dependencies normally:\npixi add python=3.12 pandas numpy\n\n\n2. Target Argon’s system compatibility\nArgon and IDAS run different Linux environments. In particular, Argon uses an older version of glibc than IDAS.\nPixi uses these system characteristics when resolving compiled dependencies. If the environment is solved against IDAS’s newer system, Pixi may select packages that cannot run on Argon.\nFor a project that must run on both systems, configure the project to target Argon’s older system requirements.\nIn the Pixi workspace configuration, use:\n[tool.pixi.workspace]\nchannels = [\"conda-forge\"]\nplatforms = [\n    { platform = \"linux-64\", linux = \"3.10\", glibc = \"2.17\" }\n]\nIf the project uses pixi.toml rather than pyproject.toml, the equivalent configuration is:\n[workspace]\nchannels = [\"conda-forge\"]\nplatforms = [\n    { platform = \"linux-64\", linux = \"3.10\", glibc = \"2.17\" }\n]\nThis reflects the relevant system requirements on Argon:\nLinux:  3.10\nglibc:  2.17\nIDAS has newer system libraries, so an environment compatible with this older baseline can also be instantiated on IDAS.\n\n\n3. Configure detached environments\nThe project files are accessible from both Argon and IDAS, but the two systems must not share an installed Pixi environment.\nOn both Argon and IDAS from their respective home directories, create:\n~/.pixi/config.toml\nwith:\ndetached-environments = \"~/.pixi/envs\"\nThis separates the portable project definition from its machine-specific installation:\nShared project\n├── pyproject.toml\n├── pixi.lock\n├── src/\n├── notebooks/\n└── scripts/\n\nArgon\n└── ~/.pixi/envs/\n    └── Argon-compatible installed environment\n\nIDAS\n└── ~/.pixi/envs/\n    └── IDAS installed environment\nThe project definition and lock file are shared. The installed environments are not.\n\n\n4. Solve and install on Argon\nRun:\npixi install\nArgon is the authoritative place to update the environment definition for a project that must support both Argon and IDAS.\nAfter changing dependencies:\npixi add package-name\npixi install\nor update an existing dependency as appropriate.\nCommit the resulting project configuration:\ngit add pyproject.toml pixi.lock\ngit commit -m \"Update project dependencies\"\n\n\n5. Use the same project on IDAS\nThe project directory is accessible from IDAS, so the same:\npyproject.toml\npixi.lock\nare available there.\nThe installed Pixi environment, however, is not shared with Argon.\nEach machine should maintain its own local Pixi environment.\nOn IDAS, from the project root:\npixi install\nThis creates or updates the IDAS-local environment from the project’s definition and lock file.\nDo not copy the Argon .pixi/ directory to IDAS.\n\n\n6. Use the environment on IDAS\nFor command-line work:\npixi run python\nFor Jupyter, register the project environment as a kernel:\npixi run python -m ipykernel install \\\n    --user \\\n    --name project_name \\\n    --display-name \"Python (project_name)\"\nUse that kernel for notebooks associated with the project.\nIf the environment changes substantially, reinstall the kernel so that the kernel specification points to the current project environment."
+  },
+  {
+    "objectID": "docs/cookbook/research-computing/initialize-python-project.html#maintaining-the-project-across-argon-and-idas",
+    "href": "docs/cookbook/research-computing/initialize-python-project.html#maintaining-the-project-across-argon-and-idas",
+    "title": "Initialize a Python Research Project with Pixi",
+    "section": "Maintaining the project across Argon and IDAS",
+    "text": "Maintaining the project across Argon and IDAS\nFor projects that use both systems, the recommended workflow is:\n1. Modify project dependencies on Argon\n2. Run pixi install on Argon\n3. Verify the environment\n4. Commit pyproject.toml + pixi.lock\n5. Use the updated project on IDAS\n6. Run pixi install on IDAS when needed\n7. Recreate/update the Jupyter kernel if necessary\nThe important distinction is:\nShared:\n\npyproject.toml\npixi.lock\nsource code\nnotebooks\nscripts\nproject configuration\n\nMachine-specific:\n\nthe installed .pixi/ environment\nJupyter kernel registration\nmachine-specific caches\nsystem-level modules and software"
+  },
+  {
+    "objectID": "docs/cookbook/research-computing/initialize-python-project.html#data-and-storage",
+    "href": "docs/cookbook/research-computing/initialize-python-project.html#data-and-storage",
+    "title": "Initialize a Python Research Project with Pixi",
+    "section": "Data and storage",
+    "text": "Data and storage\nProject code and project data have different storage requirements.\nGenerally:\n\nkeep code and project configuration in Git;\nkeep large research datasets on LSS;\nkeep generated environments out of Git;\nuse portable/project-relative paths where possible;\nuse a shared path helper when machine-specific mount locations need to be handled.\n\nFor more detail, see Research Project Organization.\n\n\n\n\n\n\nRelated recipes\n\n\n\n\nConfigure Portable Project Paths"
+  },
+  {
+    "objectID": "docs/cookbook/research-computing/initialize-python-project.html#verify",
+    "href": "docs/cookbook/research-computing/initialize-python-project.html#verify",
+    "title": "Initialize a Python Research Project with Pixi",
+    "section": "Verify",
+    "text": "Verify\n\nSingle-machine project\nConfirm that the environment works:\npixi run python --version\nand:\npixi run python -c \"import sys; print(sys.executable)\"\nThe executable should be inside the project’s Pixi environment.\n\n\nArgon + IDAS project\nOn each system:\npixi run python --version\nand:\npixi info\nConfirm that Pixi is using the expected platform and local environment.\nFrom IDAS, confirm that the intended Jupyter kernel starts and that:\nimport sys\nprint(sys.executable)\npoints to the project’s IDAS-local Pixi environment."
+  },
+  {
+    "objectID": "docs/cookbook/research-computing/initialize-python-project.html#related-resources",
+    "href": "docs/cookbook/research-computing/initialize-python-project.html#related-resources",
+    "title": "Initialize a Python Research Project with Pixi",
+    "section": "Related resources",
+    "text": "Related resources\n\nGuide\n\nResearch Project Organization\nOur Computing Approach\nVersion Control\n\n\n\nExternal documentation\n\nPixi Python projects\nHPC Documentation"
+  },
+  {
+    "objectID": "docs/checklists.html",
+    "href": "docs/checklists.html",
+    "title": "Onboarding Checklists",
+    "section": "",
+    "text": "Have fun and be safe\nReview your personal motivation, values, and professional goals",
+    "crumbs": [
+      "Onboarding",
+      "Checklists"
+    ]
+  },
+  {
+    "objectID": "docs/checklists.html#the-basics",
+    "href": "docs/checklists.html#the-basics",
+    "title": "Onboarding Checklists",
+    "section": "",
+    "text": "Have fun and be safe\nReview your personal motivation, values, and professional goals",
+    "crumbs": [
+      "Onboarding",
+      "Checklists"
+    ]
+  },
+  {
+    "objectID": "docs/checklists.html#coordinate",
+    "href": "docs/checklists.html#coordinate",
+    "title": "Onboarding Checklists",
+    "section": "Coordinate with Adam",
+    "text": "Coordinate with Adam\nThis document is available as a pdf (see the right margin) so that you may download and check/highlight items as you complete them.\n\nBefore first meeting\n\nReview Lab Values\nSet up your calendar (e.g., Outlook)\n\nBlock out working and lunch hours\nLeave room for lab meetings, journal club, etc.,\nSet up your weekly meeting schedule with Adam\n\nAccept Adam’s invitation to our group’s lab meeting GitHub repo\nMake sure you have access to the group’s shared-folders directory on OneDrive\nFind out who to ask for lab meeting invite\nFind out who to ask for Slack workspace invite\nFind out who to ask for webpage profile\nFind out who to talk to at SEES or CLAS for your ID card, office access, etc., if you don’t already know\nGet situated in your office space\n\nGet equipment\n\nIntroduce yourself to the staff that help make our group successful\n\nAngie Bellew\nKatie Bottorff\nAli Geraets\nMatthew Wortel\n\nDiscuss research interests and potential projects\n\n\n\nAfter first meeting\n\nSend photo, bio, contact, socials to web manager\n\nCheck out existing profiles (TO DO) for examples\n\nJoin group Slack and browse/join channels\nApply for an Argon and IDAS account.\nWork through required trainings\n\nUniversity of Iowa will have some for you\n\n\n\n\nBefore first lab meeting\n\nCheck out the lab meeting repo (TO DO) and add yourself to the next presentation block\n\nNote: Depending on your experience level, you may find it helpful to consult some examples.\n\nPrepare a 5 minute max presentation to introduce yourself to the group\n\nReview our presentation guidelines\n\n\n\n\nLosing your training wheels\nNow that you have followed these steps, your tasks in the group will become more organic and unique to your chosen path. There is some reading material we strongly recommend for all lab members (and Adam may assign some), but you can otherwise go through the reading list as best suits your early exploration and planning stages. Otherwise, work through the tutorials in the Guide and find projects to reproduce!",
+    "crumbs": [
+      "Onboarding",
+      "Checklists"
+    ]
+  },
+  {
+    "objectID": "docs/checklists.html#setup",
+    "href": "docs/checklists.html#setup",
+    "title": "Onboarding Checklists",
+    "section": "Set up work environment",
+    "text": "Set up work environment\nIf you work from a University of Iowa laptop, it will come equipped with a lot of helpful software and functionality. If not, you may have to contribute to the manual to offer guidance for setting up software, tools, etc., Either way, there are still set up steps you will have to follow, such as:\n\n\n\n\n\n\n\n\nNote\n\n\n\nIt would be great to have guide entries about selecting between various reference managers, and setting up our coding environments!\n\n\n\nSet up Zotero account and install desktop app and browser plugin\nSet up a GitHub account if you don’t have one already\nConfigure your GitHub with SSH\nSet up your coding environment\n\nYou will likely run VSCode and Jupyter Notebooks through IDAS, and run scripts through Argon on compute nodes.\n\nI recommend a local computing setup as well.\n\nSet up online profiles\n\nResearchgate\nGoogle scholar\n\nInstall software that you need for your work.\n\nWhile this is an incomplete list, it will hopefully be enough to get you going for the reading list and the guide",
+    "crumbs": [
+      "Onboarding",
+      "Checklists"
+    ]
+  },
+  {
+    "objectID": "docs/onboarding/index.html",
+    "href": "docs/onboarding/index.html",
+    "title": "Onboarding",
+    "section": "",
+    "text": "Congratulations on joining the Pollack group! You are going to have a lot of fun over the next few years. Things are probably moving fast and you might feel overwhelmed by the pace, your big ideas, Adam’s big ideas, and a steep learning curve for some of the skills you need to do your research well. This manual can help you get on the track to accomplishing your goals. To settle in, follow the onboarding checklists. The first two are quick and the rest should keep you busy as you iterate on paper ideas with Adam.",
+    "crumbs": [
+      "Onboarding"
+    ]
+  },
+  {
+    "objectID": "docs/onboarding/index.html#welcome",
+    "href": "docs/onboarding/index.html#welcome",
+    "title": "Onboarding",
+    "section": "",
+    "text": "Congratulations on joining the Pollack group! You are going to have a lot of fun over the next few years. Things are probably moving fast and you might feel overwhelmed by the pace, your big ideas, Adam’s big ideas, and a steep learning curve for some of the skills you need to do your research well. This manual can help you get on the track to accomplishing your goals. To settle in, follow the onboarding checklists. The first two are quick and the rest should keep you busy as you iterate on paper ideas with Adam.",
+    "crumbs": [
+      "Onboarding"
+    ]
+  },
+  {
+    "objectID": "docs/onboarding/index.html#checklists",
+    "href": "docs/onboarding/index.html#checklists",
+    "title": "Onboarding",
+    "section": "Checklists",
+    "text": "Checklists\n\n\n\nOrder\nTopic\nExpected Commitment\n\n\n\n\n1\nCoordinate with Adam\n&lt; 1 week\n\n\n2\nSet up work environment\n&lt; 1 week\n\n\n3\nWork through reading lists\n4 (MS/PhD) or 8 (postdoc) hrs per week\n\n\n3\nWork through the guide\n4 (MS/PhD) or 8 (postdoc) hrs per week\n\n\n3\nReproduce relevant studies\n1-2 hours if you’re lucky",
+    "crumbs": [
+      "Onboarding"
+    ]
+  },
+  {
+    "objectID": "docs/onboarding/index.html#resources",
+    "href": "docs/onboarding/index.html#resources",
+    "title": "Onboarding",
+    "section": "Resources",
+    "text": "Resources\nThere are also some webpages we think you should be aware of. We provide a list and description here.",
+    "crumbs": [
+      "Onboarding"
+    ]
+  }
+]
