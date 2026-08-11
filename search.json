@@ -281,7 +281,7 @@
     "href": "docs/cookbook/research-computing/index.html",
     "title": "Research Computing",
     "section": "",
-    "text": "These recipes document recurring workflows for research computing activities.\n\n\n\n\n\n\n\n\n\n\n\n\nInitialize a Python Research Project with Pixi\n\n\nCreate a reproducible Python project and configure it for local development or use across Argon and IDAS.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSubmit and Monitor an Argon Job\n\n\nSubmit a research workflow to Argon, run it with the project’s Pixi environment, and monitor the job.\n\n\n\n\n\n\n\n\n\n\nNo matching items",
+    "text": "These recipes document recurring workflows for research computing activities.\n\n\n\n\n\n\n\n\n\n\n\nInitialize a Python Research Project with Pixi\n\n\n\nResearch Computing\n\nPixi\n\nPython\n\nArgon\n\nIDAS\n\nReproducibility\n\n\n\nCreate a reproducible Python project and configure it for local development or use across Argon and IDAS.\n\n\n\n\n\n\n\n\n\nSubmit and Monitor an Argon Job\n\n\n\nResearch Computing\n\nArgon\n\nHPC\n\nSGE\n\nPixi\n\n\n\nSubmit a research workflow to Argon, run it with the project’s Pixi environment, and monitor the job.\n\n\n\n\n\nNo matching items",
     "crumbs": [
       "Cookbook",
       "Lab Cookbook",
@@ -718,7 +718,7 @@
     "href": "docs/cookbook/lab-operations/index.html",
     "title": "Lab Operations",
     "section": "",
-    "text": "These recipes document recurring workflows for maintaining shared Pollack Group resources and activities.\n\n\n\n\n\n\n\n\n\n\n\n\nContribute to Lab Meetings\n\n\nMaintain agendas, schedules, and presentation materials for Pollack Group lab meetings.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nContribute to the Lab Manual\n\n\nPropose, develop, preview, and submit changes to the Pollack Group Lab Manual.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nContribute to the Lab Website\n\n\nPropose, develop, test, and submit changes to the Pollack Group website.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPublish a Quarto Site with GitHub Pages\n\n\nConfigure a shared Quarto repository to automatically render and publish through GitHub Pages.\n\n\n\n\n\n\n\n\n\n\nNo matching items",
+    "text": "These recipes document recurring workflows for maintaining shared Pollack Group resources and activities.\n\n\n\n\n\n\n\n\n\n\n\nContribute to Lab Meetings\n\n\n\nLab Operations\n\nCollaboration\n\n\n\nMaintain agendas, schedules, and presentation materials for Pollack Group lab meetings.\n\n\n\n\n\n\n\n\n\nContribute to the Lab Manual\n\n\n\nLab Operations\n\nCollaboration\n\n\n\nPropose, develop, preview, and submit changes to the Pollack Group Lab Manual.\n\n\n\n\n\n\n\n\n\nContribute to the Lab Website\n\n\n\nLab Operations\n\nCollaboration\n\n\n\nPropose, develop, test, and submit changes to the Pollack Group website.\n\n\n\n\n\n\n\n\n\nPublish a Quarto Site with GitHub Pages\n\n\n\nLab Operations\n\nQuarto\n\nGitHub\n\nGitHub Pages\n\nGitHub Actions\n\n\n\nConfigure a shared Quarto repository to automatically render and publish through GitHub Pages.\n\n\n\n\n\nNo matching items",
     "crumbs": [
       "Cookbook",
       "Lab Cookbook",
@@ -905,7 +905,7 @@
     "href": "docs/cookbook/data-management/index.html",
     "title": "Data Management",
     "section": "",
-    "text": "These recipes document recurring workflows for data management activities.\n\n\n\n\n\n\n\n\n\n\n\n\nConfigure Portable Project Data Paths\n\n\nConfigure a Python project to locate data on LSS when running on either Argon or IDAS.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDownload and Transfer Data to LSS\n\n\nMove research data from a local computer or external data service into the Pollack Group LSS.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nExtract Selected Files from a Remote ZIP Archive\n\n\nRetrieve only selected files from a remote ZIP archive without downloading the entire archive.\n\n\n\n\n\n\n\n\n\n\nNo matching items",
+    "text": "These recipes document recurring workflows for data management activities.\n\n\n\n\n\n\n\n\n\n\n\nConfigure Portable Project Data Paths\n\n\n\nData Management\n\nPython\n\nLSS\n\nArgon\n\nIDAS\n\nProject Organization\n\n\n\nConfigure a Python project to locate data on LSS when running on either Argon or IDAS.\n\n\n\n\n\n\n\n\n\nDownload and Transfer Data to LSS\n\n\n\nData Management\n\nLSS\n\nFile Transfer\n\nArgon\n\nIDAS\n\nDesignSafe\n\nZenodo\n\n\n\nMove research data from a local computer or external data service into the Pollack Group LSS.\n\n\n\n\n\n\n\n\n\nExtract Selected Files from a Remote ZIP Archive\n\n\n\nData Management\n\nData Downloads\n\nZenodo\n\nPython\n\nRemote Archives\n\nLSS\n\n\n\nRetrieve only selected files from a remote ZIP archive without downloading the entire archive.\n\n\n\n\n\nNo matching items",
     "crumbs": [
       "Cookbook",
       "Lab Cookbook",
