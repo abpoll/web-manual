@@ -2,14 +2,13 @@
   {
     "listing": "/docs/cookbook/research-computing/index.html",
     "items": [
-      "/docs/cookbook/research-computing/initialize-python-project.html"
+      "/docs/cookbook/research-computing/initialize-python-project.html",
+      "/docs/cookbook/research-computing/argon-jobs.html"
     ]
   },
   {
-    "listing": "/docs/cookbook/data-management/index.html",
-    "items": [
-      "/docs/cookbook/data-management/portable-project-paths.html"
-    ]
+    "listing": "/docs/guide/index.html",
+    "items": []
   },
   {
     "listing": "/docs/cookbook/lab-operations/index.html",
@@ -21,7 +20,11 @@
     ]
   },
   {
-    "listing": "/docs/guide/index.html",
-    "items": []
+    "listing": "/docs/cookbook/data-management/index.html",
+    "items": [
+      "/docs/cookbook/data-management/portable-project-paths.html",
+      "/docs/cookbook/data-management/lss-transfer.html",
+      "/docs/cookbook/data-management/extract-files-remote-zip.html"
+    ]
   }
 ]
