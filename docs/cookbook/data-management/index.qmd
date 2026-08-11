@@ -6,6 +6,7 @@ listing:
     - "*.qmd"
     - "!index.qmd"
   type: grid
+  fields: [title, description, categories]
   sort: "title"
 ---
 
