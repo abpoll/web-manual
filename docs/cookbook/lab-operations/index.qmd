@@ -1,5 +1,6 @@
 ---
 title: "Lab Operations"
+sidebar: false
 listing:
   contents:
     - "*.qmd"

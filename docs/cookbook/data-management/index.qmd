@@ -1,5 +1,6 @@
 ---
 title: "Data Management"
+sidebar: false
 listing:
   contents:
     - "*.qmd"

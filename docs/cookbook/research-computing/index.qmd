@@ -1,5 +1,6 @@
 ---
 title: "Research Computing"
+sidebar: false
 listing:
   contents:
     - "*.qmd"
