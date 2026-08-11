@@ -257,7 +257,6 @@ render before publication.
 ### Related recipes
 
 - [Contribute to the Lab Manual](lab-manual.qmd)
-- [Contribute to Lab Meetings](lab-meetings.qmd)
 - [Contribute to the Lab Website](lab-website.qmd)
 
 ### External documentation
