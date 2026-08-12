@@ -65,8 +65,6 @@ website:
             - section: "Research Computing"
               href: docs/computing/index.qmd
               contents:
-                - text: "Our Computing Approach"
-                  href: docs/computing/computing-approach.qmd
                 - text: "Research Project Organization"
                   href: docs/computing/project-organization.qmd
                 - text: "Version Control"

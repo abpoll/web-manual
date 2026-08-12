@@ -4,24 +4,14 @@ format:
   html: default
 ---
 
-## Strongly Recommended Reading
+## General Reading
 
 ::: {.wrap-list}
-* Applegate, P. J., & Keller, K. (Eds.). (2016). Risk analysis in the Earth Sciences: A Lab manual. 2nd edition. Leanpub. Retrieved from <https://leanpub.com/raes>
 * Baron, N. (2010). Escape from the ivory tower: a guide to making your science matter (1st ed.). Island Press.
-* Garner, G. G., & Keller, K. (2018). Using direct policy search to identify robust strategies in adapting to uncertain sea-level rise and storm surge. Environmental Modelling & Software, 107, 96–104. <https://doi.org/10.1016/j.envsoft.2018.05.006>
-* Herman Jonathan D., Reed Patrick M., Zeff Harrison B., & Characklis Gregory W. (2015). How Should Robustness Be Defined for Water Systems Planning under Change? Journal of Water Resources Planning and Management, 141(10), 04015012. <https://doi.org/10.1061/(ASCE)WR.1943-5452.0000509> 
-* Huang, Xinyuan, Vivek Srikrishnan, Jonathan Lamontagne, Klaus Keller, and Wei Peng. “Effects of Global Climate Mitigation on Regional Air Quality and Health.” Nature Sustainability, May 18, 2023, 1–13. <https://doi.org/10.1038/s41893-023-01133-5>.
 * Keller, K., Helgeson, C., & Srikrishnan, V. (2021). Climate risk management. Annual Review of Earth and Planetary Sciences, 49, 95-116. <https://doi.org/10.1146/annurev-earth-080320-055847>
-* Marangoni, G., Lamontagne, J. R., Quinn, J. D., Reed, P. M., & Keller, K. (2021). Adaptive mitigation strategies hedge against extreme climate futures. Climatic Change, 166(3-4). <https://doi.org/10.1007/s10584-021-03132-x> 
-* Morgan, M. G., & Henrion, M. (1995). Uncertainty, a guide to dealing with uncertainty in quantitative policy analysis. Cambridge University Press.
-* Oprean, D., Spence, C., Simpson, M., Miller, R., Jr, Bansal, S., Keller, K., & Klippel, A. (2019). Human Interpretation of Trade-Off Diagrams in Multi-Objective Problems: Implications for Developing Interactive Decision Support Systems. In Proceedings of the 52nd Hawaii International Conference on System Sciences. Retrieved from <https://scholarspace.manoa.hawaii.edu/handle/10125/59596>
-* Quinn, J. D., Reed, P. M., & Keller, K. (2017). Direct policy search for robust multi-objective management of deeply uncertain socio-ecological tipping points. Environmental Modelling & Software, 92, 125–141. <https://doi.org/10.1016/j.envsoft.2017.02.017>
 * Reed, P. M., Hadjimichael, A., Malek, K., Karimi, T., Vernon, C. R., Srikrishnan, V., et al. (2022). Addressing Uncertainty in MultiSector Dynamics Research. <https://immm-sfa.github.io/msd_uncertainty_ebook/>
 * Reed, P. M., Hadjimichael, A., Moss, R. H., Brelsford, C., Burleyson, C. D., Cohen, S., et al. (2022). Multisector dynamics: Advancing the science of complex adaptive human-earth systems. Earth’s Future, 10(3). <https://doi.org/10.1029/2021ef002621>
-* Tebyanian, N., Wu, H., Iulo, L., & Keller, K. (2022). Uncertainty Considerations in Green Infrastructure Optimization: A Review. Journal of Digital Landscape Architecture: JoDLA, 2022(7), 549–560. <https://doi.org/10.14627/537724052>
-* Wong, T. E., & Keller, K. (2017). Deep Uncertainty Surrounding Coastal Flood Risk Projections: A Case Study for New Orleans. Earth’s Future, 5(10), 1015–1026. <https://doi.org/10.1002/2017EF000607> 
-* Zarekarizi, M., Srikrishnan, V., & Keller, K. (2020). Neglecting Uncertainties Biases House-Elevation Decisions to Manage Riverine Flood Risks. Nature Communications. <https://doi.org/10.1038/s41467-020-19188-9>
+* Pollack, A.B. et al. (2026). Unlocking the benefits of transparent and reusable science for climate risk management.. Proceedings of the National Academy of Sciences, 123(3), p. e2422157123. <https://doi.org/10.1073/pnas.2422157123>.
 :::
 
 ## (MO)RDM Reading List
@@ -51,14 +41,10 @@ You may want to prioritize the articles in [red]{style="color: red;"}.
 * Hadjimichael, A., & Gold, D. (2020). Rhodium: Python Library for Many-Objective Robust Decision Making and Exploratory Modeling. Journal of. Retrieved from <https://openresearchsoftware.metajnl.com/articles/10.5334/jors.293/print/>
 * [Kwakkel - Environmental Modelling & Software, J. H., & 2017. (2017). The Exploratory Modeling Workbench: An open source toolkit for exploratory modeling, scenario discovery, and (multi-objective) robust decision making. Elsevier Oceanography Series, 96, 239–250. <https://doi.org/10.1016/j.envsoft.2017.06.054>]{.red}
 * Hadka, D., & Reed, P. (2013). Borg: an auto-adaptive many-objective evolutionary computing framework. Evolutionary Computation, 21(2), 231–259. <https://doi.org/10.1162/EVCO_a_00075>
-* Garner, G. G., & Keller, K. (2018). Using direct policy search to identify robust strategies in adapting to uncertain sea-level rise and storm surge. Environmental Modelling & Software, 107, 96–104. <https://doi.org/10.1016/j.envsoft.2018.05.006>
-* Lempert, R. J., Schlesinger, M. E., & Bankes, S. C. (1996). When we don't know the costs or the benefits: Adaptive strategies for abating climate change. Climatic Change, 33(2), 235-274. 
 * Bertoni Federica, Giuliani Matteo, & Castelletti Andrea. (2020). Integrated Design of Dam Size and Operations via Reinforcement Learning. Journal of Water Resources Planning and Management, 146(4), 04020010. <https://doi.org/10.1061/(ASCE)WR.1943-5452.0001182>
 * Castelletti, A., Pianosi, F., & Restelli, M. (2013). A multiobjective reinforcement learning approach to water resources systems operation: Pareto frontier approximation in a single run. Water Resources Research, 49(6), 3476–3486. Retrieved from <https://agupubs.onlinelibrary.wiley.com/doi/abs/10.1002/wrcr.20295>
-* [Marangoni, G., Lamontagne, J. R., Quinn, J. D., Reed, P. M., & Keller, K. (2021). Adaptive mitigation strategies hedge against extreme climate futures. Climatic Change, in review(3-4). <https://doi.org/10.1007/s10584-021-03132-x>]{.red}
 * [Quinn, J. D., Reed, P. M., & Keller, K. (2017). Direct policy search for robust multi-objective management of deeply uncertain socio-ecological tipping points. Environmental Modelling & Software, 92, 125–141. <https://doi.org/10.1016/j.envsoft.2017.02.017>]{.red}
 * Rosenstein, M. T., & Barto, A. G. (2001). Robot weightlifting by direct policy search. IJCAI: Proceedings of the Conference / Sponsored by the International Joint Conferences on Artificial Intelligence. Retrieved from <http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.10.5890&rep=rep1&type=pdf>
-* [Wong, T. E., & Keller, K. (2017). Deep Uncertainty Surrounding Coastal Flood Risk Projections: A Case Study for New Orleans. Earth’s Future, 5(10), 1015–1026. <https://doi.org/10.1002/2017EF000607>]{.red} 
 * Zaniolo, M., Giuliani, M., & Castelletti, A. (2021). Policy Representation Learning for multiobjective reservoir policy design with different objective dynamics. Water Resources Research. <https://doi.org/10.1029/2020wr029329>
 * [Zarekarizi, M., Srikrishnan, V., & Keller, K. (2020). Neglecting Uncertainties Biases House-Elevation Decisions to Manage Riverine Flood Risks. Nature Communications. <https://doi.org/10.1038/s41467-020-19188-9>]{.red}
 :::
@@ -66,20 +52,19 @@ You may want to prioritize the articles in [red]{style="color: red;"}.
 ## Uncertainty and Risk Communication
 
 ::: {.wrap-list}
+* Morgan, M. G., & Henrion, M. (1995). Uncertainty, a guide to dealing with uncertainty in quantitative policy analysis. Cambridge University Press.
 * van der Bles, A. M., van der Linden, S., Freeman, A. L. J., & Spiegelhalter, D. J. (2020). The effects of communicating uncertainty on public trust in facts and numbers. Proceedings of the National Academy of Sciences of the United States of America, 117(14), 7672–7683. <https://doi.org/10.1073/pnas.1913678117>
 * Budescu, D. V., Broomell, S., & Por, H.-H. (2009). Improving Communication of Uncertainty in the Reports of the Intergovernmental Panel on Climate Change. Psychological Science, 20(3), 299–308. <https://doi.org/10.1111/j.1467-9280.2009.02284.x>
 * Budescu, D. V., Por, H.-H., & Broomell, S. B. (2012). Effective communication of uncertainty in the IPCC reports. Climatic Change, 113(2), 181–200. <https://doi.org/10.1007/s10584-011-0330-3>
 * Budescu, D. V., Broomell, S. B., Lempert, R. J., & Keller, K. (2014). Aided and unaided decisions with imprecise probabilities in the domain of losses. EURO Journal on Decision Processes, 2(1), 31–62. <https://doi.org/10.1007/s40070-013-0023-4>
 * Budescu, D. V., Por, H.-H., Broomell, S. B., & Smithson, M. (2014). The interpretation of IPCC probabilistic statements around the world. Nature Climate Change, 4(6), 508–512. <https://doi.org/10.1038/nclimate2194>
-* Cooper, C. M., Sharma, S., Nicholas, R. E., & Keller, K. (2022, January 4). Trade-offs in the design and communication of flood-risk information. arXiv [stat.AP]. Retrieved from <http://arxiv.org/abs/2201.01254>
+* Cooper, C.M. et al. (2022) Toward more actionable flood‐risk information. Earth’s future, 10(11). <https://doi.org/10.1029/2022ef003093>
 * Ellsberg, D. (1961). Risk, Ambiguity, and the Savage Axioms. The Quarterly Journal of Economics, 75(4), 643–669. <https://doi.org/10.2307/1884324>
-* FEMA. (2021). National Risk Index- Technical Documentation. FEMA. Retrieved from <https://www.fema.gov/sites/default/files/documents/fema_national-risk-index_technical-documentation.pdf> accessed Oct 4 2011
 * Hobbins, R., Muñoz-Erickson, T. A., & Miller, C. (2021). Producing and Communicating Flood Risk: A Knowledge System Analysis of FEMA Flood Maps in New York City. In Z. A. Hamstead, D. M. Iwaniec, T. McPhearson, M. Berbés-Blázquez, E. M. Cook, & T. A. Muñoz-Erickson (Eds.), Resilient Urban Futures (pp. 67–84). Cham: Springer International Publishing. <https://doi.org/10.1007/978-3-030-63131-4_5>
 * Koslov, L. (2019). How maps make time. City, 23(4-5), 658–672. <https://doi.org/10.1080/13604813.2019.1690337>
 * Mastrandrea, M. D., Field, C. B., Stocker, T. F., Edenhofer, O., Ebi, K. L., Frame, D. J., et al. (2010). Guidance note for lead authors of the IPCC fifth assessment report on consistent treatment of uncertainties. Retrieved from <http://pubman.mpdl.mpg.de/pubman/item/escidoc:2147184/component/escidoc:2147185/uncertainty-guidance-note.pdf>
 * Mastrandrea, M. D., Mach, K. J., Plattner, G.-K., Edenhofer, O., Stocker, T. F., Field, C. B., et al. (2011). The IPCC AR5 guidance note on consistent treatment of uncertainties: a common approach across the working groups. Climatic Change, 108(4), 675. <https://doi.org/10.1007/s10584-011-0178-6>
 * Simpson, M., Padilla, L., Keller, K., & Klippel, A. (2022). Immersive storm surge flooding: Scale and risk perception in virtual reality. Journal of Environmental Psychology, (101764), 101764. <https://doi.org/10.1016/j.jenvp.2022.101764>
-* Wing, O. E. J., Pinter, N., Bates, P. D., & Kousky, C. (2020). New insights into US flood vulnerability revealed from flood insurance big data. Nature Communications, 11(1), 1444. <https://doi.org/10.1038/s41467-020-15264-2>
 * Zwick, R., Budescu, D. V., & Wallsten, T. S. (1988). An Empirical Study of the Integration of Linguistic Probabilities. In T. Zétényi (Ed.), Advances in Psychology (Vol. 56, pp. 91–125). North-Holland. <https://doi.org/10.1016/S0166-4115(08)60483-5>
 * Ahmad, N., Peterson, N., & Torella, F. (2015). The Micromort: a unit for comparing and communicating risk to patients. International Journal of Clinical Practice, 69(5), 515–517. <https://doi.org/10.1111/ijcp.12643>
 * Faulkner, H., Parker, D., Green, C., & Beven, K. (2007). Developing a translational discourse to communicate uncertainty in flood risk between science and the practitioner. Ambio, 36(8), 692–703. Retrieved from <https://www.ncbi.nlm.nih.gov/pubmed/18240686>
