@@ -1,8 +1,6 @@
 - title: Research Computing
   subtitle: Think, Code, Visualize
   links:
-    - text: Our Computing Approach
-      href: ../computing/computing-approach.qmd
     - text: Project Organization
       href: ../computing/project-organization.qmd
     - text: Version Control
